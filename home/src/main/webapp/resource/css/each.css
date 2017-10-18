@@ -1,0 +1,202 @@
+@charset "UTF-8";
+/* 개별적으로 적용할 속성을 정의 */
+
+/* 테스트 코드 */
+div, header, footer, main, nav, aside, article, section {
+	/*                border:1px solid black;*/
+	
+}
+
+/* 페이지 설정 */
+.page {
+	/* 	display: flex; */
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+/* 상단 메뉴 */
+header {
+	width: 100%;
+	min-height: 80px;
+	text-align: center;
+	order: 1;
+}
+
+/* 사이드 메뉴 */
+aside {
+	width: 12%;
+	padding: 15px;
+	order: 3;
+}
+
+/* 중앙 영역 */
+main {
+	flex-grow: 1;
+	min-height: 500px;
+	padding: 30px;
+	order: 4;
+}
+
+/* 하단 영역 */
+footer {
+	width: 100%;
+	min-height: 50px;
+	text-align: center;
+	border-top: 1px solid black;
+	order: 5;
+}
+
+/* 메뉴 관련된 style */
+nav {
+	text-align: center;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	padding: 0.5em;
+	order: 2;
+}
+
+nav a {
+	font-size: 20px;
+}
+
+/*nav .hamberg{*/
+#hamberg+label {
+	display: none;
+}
+
+/* 링크 스타일 */
+a:link, a:visited {
+	text-align: center;
+	/*  padding-right: 25px;*/
+	/*  padding-left: 25px;*/
+	-webkit-transition: color 250ms ease;
+	transition: color 250ms ease;
+	font-family: Lato, sans-serif;
+	color: #474747;
+	font-size: 18px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+a:hover {
+	color: #5da8ef;
+}
+
+/* login */
+.login_id {
+	width: 90%;
+	font-size: 15px;
+	padding: 12px;
+	padding-left: 30px;
+	background-size: 25px;
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+}
+
+.login_pw {
+	width: 90%;
+	font-size: 15px;
+	padding: 12px;
+	padding-left: 30px;
+	background-size: 25px;
+	background-repeat: no-repeat;
+	background-position: 10px 10px;
+}
+
+.login_btn {
+	width: 100%;
+	font-size: 15px;
+	padding: 12px;
+	background-color: hotpink;
+	color: white;
+	outline: none;
+	border: none;
+	margin-top: 15px;
+}
+
+.search_id a {
+	font-size: 14px;
+	text-decoration: none;
+}
+
+/*join*/
+.join-table {
+	border-collapse: collapse;
+	border: 1px solid #d7d5d5;
+	border-left: 0;
+	border-right: 0;
+	line-height: 1.5;
+	width: 100%;
+	font-size: 13px;
+}
+
+.join-table input {
+	padding: 0 10px;
+	border: 1px solid #e8e8e8;
+	height: 28px;
+}
+
+.join-table th {
+	border-right: 1px solid #d7d5d5;
+	background-color: #fbfafa;
+	border: 1px solid #dfdfdf;
+	padding: 11px 0 10px 18px;
+	border-left: 0;
+	font-weight: normal;
+	text-align: left;
+}
+
+.join-table td {
+	border: 1px solid #dfdfdf;
+	border-right: 0;
+	padding: 8px 10px 7px;
+}
+
+.join-table input:hover {
+	border: 1px solid #aaa;
+}
+
+.join-table input[name=addr2], .join-table input[name=addr3] {
+	width: 280px;
+	margin: 5px 0 0;
+}
+
+.join-button {
+	margin: 20px 0 50px;
+	text-align: center;
+}
+
+.join-button input[type=submit] {
+	background-color: #333;
+	color: #fff !important;
+	border: 1px solid #222;
+	padding: 10px;
+}
+
+.join-button input[type=button] {
+	background-color: #ffffff;
+	color: #333 !important;
+	border: 1px solid #222;
+	padding: 10px;
+}
+
+/* 관리자 홈 */
+.mypage {
+	width: 50%;
+	height: 200px;
+	border-collapse: collapse;
+}
+
+.mypage tr {
+	/*            width:120px;*/
+	
+}
+
+.mypage td {
+	width: 200px;
+	text-align: center;
+}
+}

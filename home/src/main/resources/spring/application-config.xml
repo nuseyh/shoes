@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- Uncomment and add your base-package here: <context:component-scan base-package="org.springframework.samples.service"/> -->
+
+	<!-- <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"> -->
+	<!-- <property name="driverClassName" value="oracle.jdbc.OracleDriver" /> -->
+	<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" /> -->
+	<!-- <property name="username" value="sw2" /> -->
+	<!-- <property name="password" value="sw2" /> -->
+
+	<!-- <property name="maxTotal" value="20"/> -->
+	<!-- <property name="maxIdle" value="10"/> -->
+	<!-- <property name="maxWaitMillis" value="3000"/> -->
+	<!-- </bean> -->
+
+	<!-- 관리를 쉽게 하기 위해 properties 파일을 활용하도록 설정 -->
+	<context:property-placeholder location="/WEB-INF/property/*.properties" />
+
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="${database.driver}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
+
+		<property name="maxTotal" value="${database.maxAction}" />
+		<property name="maxIdle" value="${database.maxIdle}" />
+		<property name="maxWaitMillis" value="${database.maxWait}" />
+	</bean>
+
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+</beans>
