@@ -18,159 +18,109 @@ public class Member {
 	private int money;
 	private String power;
 	private String reg;
-	
+
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-
 	public int getNo() {
 		return no;
 	}
-
-
 
 	public void setNo(int no) {
 		this.no = no;
 	}
 
-
-
 	public String getId() {
 		return id;
 	}
-
-
 
 	public void setId(String id) {
 		this.id = id;
 	}
 
-
-
 	public String getPw() {
 		return pw;
 	}
-
-
 
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
 
-
-
 	public String getName() {
 		return name;
 	}
-
-
 
 	public void setName(String name) {
 		this.name = name;
 	}
 
-
-
 	public String getPhone() {
 		return phone;
 	}
-
-
 
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
-
-
 	public String getAddr1() {
 		return addr1;
 	}
-
-
 
 	public void setAddr1(String addr1) {
 		this.addr1 = addr1;
 	}
 
-
-
 	public String getAddr2() {
 		return addr2;
 	}
-
-
 
 	public void setAddr2(String addr2) {
 		this.addr2 = addr2;
 	}
 
-
-
 	public String getAddr3() {
 		return addr3;
 	}
-
-
 
 	public void setAddr3(String addr3) {
 		this.addr3 = addr3;
 	}
 
-
-
 	public int getMoney() {
 		return money;
 	}
-
-
 
 	public void setMoney(int money) {
 		this.money = money;
 	}
 
-
-
 	public String getPower() {
 		return power;
 	}
-
-
 
 	public void setPower(String power) {
 		this.power = power;
 	}
 
-
-
 	public String getReg() {
 		return reg;
 	}
-
-
 
 	public void setReg(String reg) {
 		this.reg = reg;
 	}
 
-
-
-	public Member(ResultSet rs) throws SQLException{
+	public Member(ResultSet rs) throws SQLException {
 		setNo(rs.getInt("no"));
 		setId(rs.getString("id"));
 		setPw(rs.getString("pw"));
@@ -184,10 +134,10 @@ public class Member {
 		setPower(rs.getString("power"));
 		setReg(rs.getString("reg"));
 	}
-	
+
 	public Member(HttpServletRequest request) {
 		String no = request.getParameter("no");
-		setNo(no==null?0:Integer.parseInt(no));
+		setNo(no == null ? 0 : Integer.parseInt(no));
 		setId(request.getParameter("id"));
 		setPw(request.getParameter("pw"));
 		setName(request.getParameter("name"));
@@ -197,20 +147,18 @@ public class Member {
 		setAddr2(request.getParameter("addr2"));
 		setAddr3(request.getParameter("addr3"));
 		String money = request.getParameter("money");
-		setMoney(money==null?0:Integer.parseInt(money));
+		setMoney(money == null ? 0 : Integer.parseInt(money));
 		setPower(request.getParameter("power"));
 		setReg(request.getParameter("reg"));
 	}
-	
-	//관리자인지 여부를 확인하는 메소드
+
+	// 
 	public boolean isAdmin() {
-		if(power != null && power.equals("관리자")) 
+		if (power != null && power.equals("������"))
 			return true;
 		else
 			return false;
 	}
-
-
 
 	@Override
 	public String toString() {

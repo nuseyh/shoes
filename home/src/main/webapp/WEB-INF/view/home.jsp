@@ -4,6 +4,6 @@
     
 <%@ include file="/WEB-INF/view/template/header.jsp" %>
 
-<h1>main</h1>
+<h1>main123</h1>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp" %>
