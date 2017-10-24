@@ -33,8 +33,9 @@ aside {
 main {
 	flex-grow: 1;
 	min-height: 500px;
-	padding: 30px;
+	/* 	padding: 30px; */
 	order: 4;
+	width: 100%;
 }
 
 /* 하단 영역 */
@@ -54,6 +55,7 @@ nav {
 	flex-direction: row;
 	flex-wrap: nowrap;
 	padding: 0.5em;
+	margin-left: -55px;
 	order: 2;
 }
 
@@ -79,6 +81,7 @@ a:link, a:visited {
 	font-weight: 700;
 	letter-spacing: 2px;
 	text-transform: uppercase;
+	text-decoration: none;
 }
 
 a:hover {
@@ -198,5 +201,159 @@ a:hover {
 .mypage td {
 	width: 200px;
 	text-align: center;
+}
+
+/* 아이디 찾기 */
+.searchId input[type=text] {
+	width: 105%;
+}
+
+.searchId strong {
+	display: inline-block;
+	width: 50px;
+	text-align: left;
+}
+
+.searchId {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	padding: 5px;
+}
+
+.search_btn input[type=submit] {
+	width: 100%;
+	height: 40px;
+	line-height: 50px;
+	line-height: 48px\0;
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+	font-weight: normal;
+	letter-spacing: 1px;
+}
+
+/* profile */
+.profile {
+	width: 100%;
+}
+
+.profile th {
+	text-align: left;
+}
+
+.profile td {
+	text-align: center;
+}
+
+.edit-button {
+	margin: 20px 0 50px;
+	text-align: center;
+}
+
+.edit-button input[type=button] {
+	background-color: #ffffff;
+	color: #333;
+	border: 1px solid #222;
+	padding: 10px;
+}
+
+#edit {
+	background-color: #333 !important;
+	color: #fff !important;
+}
+
+/*userlist*/
+.user-list table {
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	table-layout: fixed;
+	width: 100%;
+}
+
+.user-list table caption {
+	font-size: 1.5em;
+	margin: .5em 0 .75em;
+}
+
+.user-list table tr {
+	border: 1px solid #ddd;
+	padding: .35em;
+}
+
+.user-list table tr:nth-child(even) {
+	background: #f8f8f8;
+}
+
+.user-list table th, table td {
+	padding: .625em;
+	text-align: left;
+}
+
+.user-list table th {
+	background: #999;
+	color: #fff;
+	font-size: .85em;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+}
+
+.user-list table td {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/*userlist-search(검색)*/
+.search {
+	width: 500px;
+	height: 40px;
+	/* 	margin: 150px auto; */
+	background: #F6F6F6;
+	/* 	background: rgba(0, 0, 0, .2); */
+	border-radius: 3px;
+	border: 1px solid #fff;
+}
+
+.search input {
+	width: 370px;
+	padding: 10px 5px;
+	float: left;
+	color: #ccc;
+	border: 0;
+	background: transparent;
+	border-radius: 3px 0 0 3px;
+}
+
+.search input:focus {
+	outline: 0;
+	background: transparent;
+}
+
+.search button {
+	position: relative;
+	float: right;
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	height: 40px;
+	width: 120px;
+	/* 	color: #fff; */
+	background: transparent;
+	border-left: 1px solid #fff;
+	border-radius: 0 3px 3px 0;
+}
+
+.search button:hover {
+	background: #fff;
+	color: #444;
+}
+
+.search button:active {
+	box-shadow: 0px 0px 12px 0px rgba(225, 225, 225, 1);
+}
+
+.search button:focus {
+	outline: 0;
 }
 }

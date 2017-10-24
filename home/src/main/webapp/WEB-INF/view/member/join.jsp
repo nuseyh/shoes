@@ -4,9 +4,9 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
-
-
-
+ 
+  
+ 
 <div class="page center">
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
@@ -15,20 +15,19 @@
 		<table class="join-table">
 			<tr>
 				<th class="text-left">아이디</th>
-				<td><input type="text" id="id" name="id" onkeyup="idCheck();" placeholder="아이디">
-					<input type="button" value=중복확인 id=check_id >
+				<td><input type="text" id="id" name="id" placeholder="아이디" onblur="idCheck();">
 					<div class="id-check"></div>
 					</td>
 			</tr>
 			<tr>
 				<th class="text-left">비밀번호</th>
-				<td><input type="password" id="pw" name="pw" onkeyup="pwCheck();" placeholder="패스워드">
+				<td><input type="password" id="pw" name="pw" onblur="pwCheck();" placeholder="패스워드">
 					<div class="pw-check"></div>
 				</td>
 			</tr>
 			<tr>
 				<th class="text-left">비밀번호 확인</th>
-				<td><input type="password" id="pw_check" name="pw2" onkeyup="pw2Check();" placeholder="패스워드">
+				<td><input type="password" id="pw_check" name="pw2" onblur="pw2Check();" placeholder="패스워드">
 					<div class="pw-recheck"></div>
 					</td>
 			</tr>
@@ -57,8 +56,8 @@
 			</tr>
 		</table>
 		<div class="join-button">
-			<input type="submit" value="회원가입"> <input type="button"
-				id=reset value="취소">
+			<input type="submit" value="회원가입"> 
+			<input type="button" id=reset value="취소">
 		</div>
 	</form>
 </div>

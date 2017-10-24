@@ -8,19 +8,13 @@
 
 <div class="page area-60 center">
 	<div class="area-60 center">
-		<div>
+		<div>	
 			<div class="empty-row"></div>
-			<!--                    로고-->
-			<div class="text-center">
-				<a href="#" class="left"><img
-					src="http://via.placeholder.com/200x100"></a>
-				<div class="empty-row"></div>
-
-				<hr>
-			</div>
+			<strong>login</strong>
+			<hr>
 		</div>
 		<div class="empty-row"></div>
-		<form action="login" method="post" class="center">
+		<form action="login" name="loginform" method="post" class="center" onSubmit="return checking();">
 			<div class="row">
 				<input type="text" class="login_id" name=id placeholder="아이디">
 			</div>
@@ -28,7 +22,7 @@
 				<input type="password" class="login_pw" name=pw placeholder="비밀번호">
 			</div>
 			<div class="row">
-				<input type="submit" class="login_btn" value="로그인">
+				<input type="submit" class="login_btn" onClick="checking();" value="로그인">
 			</div>
 
 			<div>
@@ -39,7 +33,7 @@
 
 			<div class="search_id text-center">
 				<hr>
-				<a href="search-id">아이디찾기</a><a href="search-pw">비밀번호찾기</a> <a href="join">회원가입</a>
+				<a href="idsearch">아이디찾기</a> <a href="pwsearch">비밀번호찾기</a> <a href="join">회원가입</a>
 				<hr>
 			</div>
 		</form>
