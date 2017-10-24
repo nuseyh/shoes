@@ -11,10 +11,7 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/best")
-	public String best() {
-		return "best";
-	}
+
 
 }
 

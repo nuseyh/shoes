@@ -5,7 +5,9 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -20,20 +22,17 @@ public class MemberDaoImpl implements MemberDao {
 	private RowMapper<Member> mapper = new RowMapper<Member>() {
 		@Override
 		public Member mapRow(ResultSet rs, int index) throws SQLException {
-			Member m = new Member();
-			m.setNo(rs.getInt("no"));
-			m.setId(rs.getString("id"));
-			m.setPw(rs.getString("pw"));
-			m.setName(rs.getString("name"));
-			m.setPhone(rs.getString("phone"));
-			m.setEmail(rs.getString("email"));
-			m.setAddr1(rs.getString("addr1"));
-			m.setAddr2(rs.getString("addr2"));
-			m.setAddr3(rs.getString("addr3"));
-			m.setMoney(rs.getInt("money"));
-			m.setPower(rs.getString("power"));
-			m.setReg(rs.getString("reg"));
-			return m;
+			return new Member(rs);
+		}
+	};
+	private ResultSetExtractor<Member> extractor = new ResultSetExtractor<Member>() {
+		@Override
+		public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
+			//return rs.next()?new Member(rs):null;
+			if(rs.next())
+				return new Member(rs);
+			else
+				return null;
 		}
 	};
 
@@ -53,5 +52,45 @@ public class MemberDaoImpl implements MemberDao {
 		System.out.println(result);
 		return result > 0;
 	}
+	
+//	public boolean idcheck(String id) {
+//		String sql = "select * from member where id=?";
+//		Object[] args = {id};
+//		int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
+//		
+//		return result > 0;
+//		
+//	}
+//	
+	public String idsearch(String name, String email) {
+		String sql = "select id from member where name=? and email=?";
+//		Object[] args = {name, email};
+		String id = jdbcTemplate.queryForObject(sql, String.class, name, email);
+		System.out.println(id);
+		return id;
+	}
+
+	@Override
+	public boolean delete(String id, String pw) {
+		String sql = "delete member where id=? and pw=?";
+		Object[] args = {id, pw};
+		
+		return jdbcTemplate.update(sql, args) > 0;
+	}
+
+	@Override
+	public Member profile(String id) {
+		String sql = "select * from member where id=?";
+		Object[] args = {id};
+		return jdbcTemplate.query(sql, args, extractor);
+	}
+
+	@Override
+	public boolean edit(Member m) {
+		String sql = "update member set pw=?, phone=?, email=?, addr1=?,addr2=?,addr3=? where id=?";
+		Object[] args = {m.getPw(), m.getPhone(), m.getEmail(), m.getAddr1(), m.getAddr2(), m.getAddr3(), m.getId()};
+		return jdbcTemplate.update(sql, args) > 0;
+	}
+
 
 }
