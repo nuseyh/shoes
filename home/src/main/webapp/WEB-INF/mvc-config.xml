@@ -12,8 +12,9 @@
             
     <!-- 정적 자원에 대한 연결 설정 -->
 	<mvc:annotation-driven/>
-	<mvc:resources location="/resource/css/" mapping="/css/**"/>
-	<mvc:resources location="/resource/img/" mapping="/img/**"/>
+	<mvc:resources location="/resource/css/" mapping="/css/**" />
+	<mvc:resources location="/resource/img/" mapping="/img/**" />
+	<mvc:resources location="/resource/js/" mapping="/js/**" />
             
 	<context:component-scan base-package="spring.controller"/> <!-- 패키지 인식~~ -->
 	<context:component-scan base-package="spring.model"/>
