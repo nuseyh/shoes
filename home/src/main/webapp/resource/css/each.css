@@ -3,8 +3,7 @@
 
 /* 테스트 코드 */
 div, header, footer, main, nav, aside, article, section {
-	/*                border:1px solid black;*/
-	
+/* 		border:1px solid black; */
 }
 
 /* 페이지 설정 */
@@ -124,6 +123,7 @@ a:hover {
 	font-size: 14px;
 	text-decoration: none;
 }
+
 
 /*join*/
 .join-table {
@@ -262,6 +262,24 @@ a:hover {
 	background-color: #333 !important;
 	color: #fff !important;
 }
+
+/*paging */
+.paging-table {
+	
+}
+
+/*board*/
+.border-table{
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	width: 100%;
+	}
+		
+.border-table th, .border-table td{
+    border: 1px solid #ccc;
+    padding:10px;
+}
+
 
 /*userlist*/
 .user-list table {

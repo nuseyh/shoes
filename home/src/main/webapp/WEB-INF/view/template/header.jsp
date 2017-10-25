@@ -184,7 +184,7 @@
 							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/mypage">MY PAGE</a></li>
-							<li><a href="${pageContext.request.contextPath }/board/qna">Q&amp;A</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 							<%-- 							<c:if test="${admin}"> --%>
 							<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
 							<%-- 							</c:if> --%>
@@ -193,7 +193,7 @@
 							<li><a href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/qna">Q&amp;A</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
