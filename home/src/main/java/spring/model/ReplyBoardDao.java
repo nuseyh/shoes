@@ -10,5 +10,5 @@ import spring.bean.ReplyBoard;
 public interface ReplyBoardDao {
 	void insert(ReplyBoard rboard);
 	List<ReplyBoard> list(int parent);
-	boolean delete(int no, String writer);
+	boolean delete(int no, int parent);
 }

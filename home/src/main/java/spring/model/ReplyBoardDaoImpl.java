@@ -39,9 +39,9 @@ public class ReplyBoardDaoImpl implements ReplyBoardDao {
 	}
 
 	@Override
-	public boolean delete(int no, String writer) {
-		String sql = "delete replyboard where no=? and writer=?";
-		Object[] obj = {no, writer};
+	public boolean delete(int no, int parent) {
+		String sql = "delete replyboard where no=? and parent=?";
+		Object[] obj = {no, parent};
 		return jdbcTemplate.update(sql, obj) > 0;
 	}
 

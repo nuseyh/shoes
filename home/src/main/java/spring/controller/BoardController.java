@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import spring.bean.Board;
+import spring.bean.ReplyBoard;
 import spring.model.BoardDao;
 import spring.model.ReplyBoardDao;
 
@@ -155,5 +156,19 @@ public class BoardController {
 		return "redirect:list";
 	}
 	
+	//답글 등록
+	@RequestMapping(value="/reply", method=RequestMethod.POST)
+	public String reply(@RequestParam("parent") int parent, HttpServletRequest request) {
+		ReplyBoard rboard = new ReplyBoard(request);
+		rbdao.insert(rboard);
+		return "redirect:detail";
+	}
+	
+	//답글 삭제
+	@RequestMapping(value="/replydelete", method=RequestMethod.POST)
+	public String replydelete(@RequestParam("no") int no, @RequestParam("parnet") int parent) {
+		rbdao.delete(no, parent);
+		return "redirect:detail";
+	}
 	
 }

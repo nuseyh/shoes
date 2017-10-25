@@ -2,12 +2,26 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
+<style>
+.board-table{
+	border: 1px solid #ccc;
+	border-collapse: collapse;
+	width: 100%;
+	}
+		
+.board-table th, .board-table td{
+    border: 1px solid #ccc;
+    padding:10px;
+}
+
+
+</style>
 
 <div class="empty-row"></div>
 <div class="area-80 center">
 	<div class="row text-center font-big">문의 게시판</div>
 	<div class="row">
-		<table class="table">
+		<table class="board-table">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -24,24 +38,59 @@
 						<td>${board.getNo()}</td>
 						<!-- 답변유무 등록 -->
 						<td>${board.getState()}</td>
-						<td align="left">
-							<a href="password?no=${board.getNo()}">${board.getTitle()}</a>
-	                    </td>
+						<td align="left"><a href="password?no=${board.getNo()}">${board.getTitle()}</a>
+						</td>
 						<td>${board.getWriter()}</td>
 						<td>${board.getAuto()}</td>
 						<td>${board.getRead()}</td>
 					</tr>
 				</c:forEach>
-					<tr>
-						<th colspan="8" align="right"><a href="write">글쓰기</a></th>
-					</tr>
 			</tbody>
 		</table>
 	</div>
-	<div class="row text-center center">
-		<table>
-			<tr>
-				<th colspan="9" align="right">
+	<div class="row">
+		<div class=" text-right">
+			<a href="write">글쓰기</a>
+		</div>
+	</div>
+
+	<%-- <!-- Paging 처리, Bootstrap -->
+	<nav>
+		<ul class="pagination">
+			<li>
+				<c:if test="${startBlock>1}">
+					<a href="list?page=${blockstart-1}${searchParam}" aria-label="Previous">
+						<span aria-hidden="true">&laquo;</span>
+					</a>
+				</c:if>
+			</li>
+			<c:forEach var="i" begin="${startBlock}" end="${endBlock}" step="1">
+				<c:choose>
+					<c:when test="${pageNo==n}">
+						<li class="active">
+							<a href="list?page=${n}" class="active">${n}</a>
+						</li>
+					</c:when>
+					<c:otherwise>
+						<li>
+							<a href="list?page=${n}${searchParam}">${n}</a>
+						</li>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${blockend < blocktotal}">
+				<li>
+					<a href="list?page=${blockend+1}${searchParam}" aria-label="Next">
+						<span aria-hidden="true">&raquo;</span>
+					</a>
+				</li>
+			</c:if>
+		</ul>
+	</nav> --%>
+
+
+	<div class="row center">
+		<div class="text-center">
 					<c:if test="${blockstart > 1}">
 						<a href="list?page=${blockstart-1}${searchParam}">[이전]</a>
 					</c:if> 
@@ -58,9 +107,7 @@
 					<c:if test="${blockend < blocktotal}">
 						<a href="list?page=${blockend+1}${searchParam}">[다음]</a>
 					</c:if>
-				</th>
-			</tr>
-		</table>
+		</div>
 	</div>
 	<div class="row">
 		<form action="list">
@@ -69,7 +116,8 @@
 					<input type="submit" value="검색">
 				</div>
 				<div>
-					<input type="search" name="key" placeholder="검색어" value="${key}" required>
+					<input type="search" name="key" placeholder="검색어" value="${key}"
+						required>
 				</div>
 				<div>
 					<select name="type">
