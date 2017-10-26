@@ -35,7 +35,7 @@ public class MemberController {
 	public String join(Member m) {
 		System.out.println(m);
 		memberDao.join(m);
-		return "redirect:/";
+		return "member/joiner";
 	}
 
 	// 아이디 중복 검사
