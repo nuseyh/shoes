@@ -150,6 +150,19 @@
 			return true;
 		}
 	}
+	
+	function emailCheck(){
+		var email = document.querySelector("input[name=email]").value;
+		var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+		if(!regex.test(email)){
+			document.querySelector(".email-check").innerHTML = "올바른 형식이아닙니다";
+			return false;
+		}else{
+			document.querySelector(".email-check").innerHTML = "";
+			return true;
+		}
+	}
 
 	function sendCheck() {
 		//폼의 전송을 중지하고 검사한 뒤에 합격이면 전송한다
@@ -158,7 +171,7 @@
 		event.preventDefault();
 
 		//검사
-		var result = pwCheck() & pw2Check() & phoneCheck();
+		var result = pwCheck() & pw2Check() & phoneCheck() & emailCheck();
 		if (!result)
 			return;
 
