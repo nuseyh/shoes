@@ -30,10 +30,20 @@ import spring.model.ItemBoardDao;
 @RequestMapping("/imageboard")
 public class ItemBoardController {
 	
+	
 	@Autowired
 	private ItemBoardDao itemBoardDao;
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
+	
+	@RequestMapping("/home")
+	public String home() {
+		return "imageboard/home";
+	}
+	@RequestMapping("/itemmain")
+	public String itemmain() {
+		return "imageboard/itemmain";
+	}
 	
 	@Autowired
 	private ServletContext servletContext;
@@ -43,17 +53,17 @@ public class ItemBoardController {
 		return "/upload";
 	}
 	
-	@RequestMapping("/list")
+	@RequestMapping({"/list", "/list/"})
 	public String list(Model model) {
 		List<Product> list = itemBoardDao.list();
 		log.debug("list size = {}", list.size());
 		model.addAttribute("list", list);
-		return "/list";
+		return "imageboard/list";
 	}
 	
-	@RequestMapping("/itemadd")
+	@RequestMapping({"/itemadd", "/itemadd/"})
 	public String itemadd() {
-		return "/itemadd";
+		return "imageboard/itemadd";
 	}
 	
 //	@RequestMapping("/itemremove")

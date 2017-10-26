@@ -1,28 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
-<head>
-<title>이미지 게시판</title>
+<%@ include file="/WEB-INF/view/template/header.jsp"%>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/css/main.css">
 <script type="text/javascript"
 	src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script>
-            window.onload = function(){
-                var all = document.querySelector("#all");
-                all.addEventListener("click", function(){
-                    //console.log(this.checked);
-                    var list = document.querySelectorAll("input[type=checkbox]:not(#all)");
-                    for(var i=0; i<list.length; i++){
-                        list[i].checked = this.checked;
-                    }
-                });
-            };
-            	
-                	
-            
-        </script>
+	window.onload = function() {
+		var all = document.querySelector("#all");
+		all.addEventListener("click", function() {
+			//console.log(this.checked);
+			var list = document
+					.querySelectorAll("input[type=checkbox]:not(#all)");
+			for (var i = 0; i < list.length; i++) {
+				list[i].checked = this.checked;
+			}
+		});
+	};
+</script>
 <style>
 table {
 	border: 1px solid black;
@@ -42,10 +38,11 @@ img {
 }
 </style>
 </head>
+<div class = "user-list">
 <form action="list" method="post">
 
-	<h1>상품</h1>
 	<table>
+	<caption>Item List</caption>
 		<tr>
 			<td scope="col"><input type=checkbox id=all></td>
 			<td scope="col">상품 번호</td>
@@ -74,11 +71,11 @@ img {
 
 		</c:forEach>
 	</table>
-<input type="button" value=등록 onclick="location.href='itemadd';">
-<input type="submit" value=삭제>
+	<div class = "join-button">
+	<input type="button" value=등록 onclick="location.href='itemadd';">
+	<input type="submit" value=삭제>
+	</div>
 </form>
-<div onclick="test();">
-	<h3>이거 한번눌러봐</h3>
 </div>
-</html>
 
+<%@ include file="/WEB-INF/view/template/footer.jsp"%>

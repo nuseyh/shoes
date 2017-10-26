@@ -9,5 +9,5 @@
         </tr>
     
     </table>
-            </div>
+    </div>
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
