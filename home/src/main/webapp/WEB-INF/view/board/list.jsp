@@ -2,26 +2,37 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
+<link rel="stylesheet" type="text/css"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
-.board-table{
+.board-table {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
 	width: 100%;
-	}
-		
-.board-table th, .board-table td{
-    border: 1px solid #ccc;
-    padding:10px;
 }
 
+.board-table th, .board-table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+.fa {
+	font-size: 1.2em;
+}
+
+.board-font td a{
+	font-size:13px;
+}
 
 </style>
 
 <div class="empty-row"></div>
 <div class="area-80 center">
-	<div class="row text-center font-big">문의 게시판</div>
+	<div class="row text-center font-small">문의 게시판</div>
 	<div class="row">
-		<table class="board-table">
+		<table class="board-font join-table">
 			<thead>
 				<tr>
 					<th>번호</th>
@@ -91,22 +102,24 @@
 
 	<div class="row center">
 		<div class="text-center">
-					<c:if test="${blockstart > 1}">
-						<a href="list?page=${blockstart-1}${searchParam}">[이전]</a>
-					</c:if> 
-					<c:forEach var="n" begin="${blockstart}" end="${blockend}">
-						<c:choose>
-							<c:when test="${pageNo==n}">
-								<a href="list?page=${n}" class="active">${n}</a>
-							</c:when>
-							<c:otherwise>
-								<a href="list?page=${n}${searchParam}">${n}</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach> 
-					<c:if test="${blockend < blocktotal}">
-						<a href="list?page=${blockend+1}${searchParam}">[다음]</a>
-					</c:if>
+			<c:if test="${blockstart > 1}">
+				<a href="list?page=${blockstart-1}${searchParam}"><i
+					class="fa fa-angle-left" aria-hidden="true"></i></a>
+			</c:if>
+			<c:forEach var="n" begin="${blockstart}" end="${blockend}">
+				<c:choose>
+					<c:when test="${pageNo==n}">
+						<a href="list?page=${n}" class="active">${n}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="list?page=${n}${searchParam}">${n}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<c:if test="${blockend < blocktotal}">
+				<a href="list?page=${blockend+1}${searchParam}"><i
+					class="fa fa-angle-right" aria-hidden="true"></i></a>
+			</c:if>
 		</div>
 	</div>
 	<div class="row">
