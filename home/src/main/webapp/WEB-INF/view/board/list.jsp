@@ -2,10 +2,6 @@
 	pageEncoding="UTF-8"%>
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
-<link rel="stylesheet" type="text/css"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <style>
 .board-table {
 	border: 1px solid #ccc;
@@ -22,10 +18,42 @@
 	font-size: 1.2em;
 }
 
-.board-font td a{
-	font-size:13px;
+.board-font td a {
+	font-size: 13px;
 }
 
+select {
+	height: 42px;
+}
+
+.num img{
+	height:10px;
+	width:15px;
+}
+
+.num a{
+	font-size:14px;
+}
+
+.search-btn {
+	text-align: center;
+}
+
+.search-all input[type=search] {
+	height: 42px;
+}
+
+.search-btn input[type=submit] {
+	background-color: #333;
+	color: #fff !important;
+	border: 1px solid #222;
+	padding: 11px;
+}
+
+.writer a {
+	font-size: 14px;
+	font-weight: 400;
+}
 </style>
 
 <div class="empty-row"></div>
@@ -60,7 +88,7 @@
 		</table>
 	</div>
 	<div class="row">
-		<div class=" text-right">
+		<div class="writer text-right">
 			<a href="write">글쓰기</a>
 		</div>
 	</div>
@@ -101,10 +129,9 @@
 
 
 	<div class="row center">
-		<div class="text-center">
+		<div class="text-center num">
 			<c:if test="${blockstart > 1}">
-				<a href="list?page=${blockstart-1}${searchParam}"><i
-					class="fa fa-angle-left" aria-hidden="true"></i></a>
+				<a href="list?page=${blockstart-1}${searchParam}"><img src="${pageContext.request.contextPath }/img/back.png"/></a>
 			</c:if>
 			<c:forEach var="n" begin="${blockstart}" end="${blockend}">
 				<c:choose>
@@ -117,15 +144,14 @@
 				</c:choose>
 			</c:forEach>
 			<c:if test="${blockend < blocktotal}">
-				<a href="list?page=${blockend+1}${searchParam}"><i
-					class="fa fa-angle-right" aria-hidden="true"></i></a>
+				<a href="list?page=${blockend+1}${searchParam}"><img src="${pageContext.request.contextPath }/img/next.png"/></a>
 			</c:if>
 		</div>
 	</div>
-	<div class="row">
+	<div class="search-all row">
 		<form action="list">
 			<div class="inner-align-right">
-				<div>
+				<div class="search-btn">
 					<input type="submit" value="검색">
 				</div>
 				<div>
