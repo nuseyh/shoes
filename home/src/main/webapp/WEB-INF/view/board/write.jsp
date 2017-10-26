@@ -22,11 +22,16 @@
 }
 
 .writer th {
-	
+	text-align:left;
+	padding: 10px 0 10px 20px;
 }
 
 .write td {
 	
+}
+
+.write select{
+	width:100%;
 }
 </style>
 
