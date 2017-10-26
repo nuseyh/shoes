@@ -3,10 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
- 
-  
- 
 <div class="page center">
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
@@ -37,7 +35,8 @@
 			</tr>
 			<tr>
 				<th class="text-left">폰번호</th>
-				<td><input type="text" name="phone"></td>
+				<td><input type="text" name="phone" onblur="phoneCheck();">
+				<div class="phone-check"></div></td>
 			</tr>
 			<tr>
 				<th class="text-left">이메일</th>

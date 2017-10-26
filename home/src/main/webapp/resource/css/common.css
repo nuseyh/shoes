@@ -132,6 +132,12 @@ div.inner-align-right {
 	flex-wrap: nowrap;
 }
 
+div.inner-align-center {
+	display: flex;
+	margin : auto;
+	flex-wrap: nowrap;
+}
+
 /* 내용물 가운데 정렬 */
 div.text-center {
 	text-align: center;

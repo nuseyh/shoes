@@ -104,30 +104,7 @@
 	function idCheck() {
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
-// 		if (regex.test(input)) {
-// 			$
-// 					.ajax({
-// 						url : "join",
-// 						type : "post",
-// 						data : $("#id").val(),
-// 						success : function(data) {
-// 							if (data.length > 0) {
-// 								document.getElementById(".id-check").value = "이미 해당 아이디로 가입된 회원가 있습니다.";
-// 							} else {
-// 								if ($("#id").val().length < 5) {
-// 									document.getElementById(".id-check").value = "아이디를 5자 이상 입력해주세요.";
-// 								} else {
-// 									document.getElementById(".id-check").value = "사용 가능한 아이디입니다.";
-// 								}
-// 							}
-// 						},
-// 						error : function(error) {
-// 							alert(error.statusText);
-// 						}
-// 					});
 
-// 			return false;
-// 		}
 	}
 
 	function pwCheck() {
@@ -160,6 +137,19 @@
 			return false;
 		}
 	}
+	
+	function phoneCheck(){
+		var phone = document.querySelector("input[name=phone]").value;
+		var regex = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
+
+		if(!regex.test(phone)){
+			document.querySelector(".phone-check").innerHTML = "올바른 형식이아닙니다";
+			return false;
+		}else{
+			document.querySelector(".phone-check").innerHTML = "";
+			return true;
+		}
+	}
 
 	function sendCheck() {
 		//폼의 전송을 중지하고 검사한 뒤에 합격이면 전송한다
@@ -168,7 +158,7 @@
 		event.preventDefault();
 
 		//검사
-		var result = pwCheck() & pw2Check();
+		var result = pwCheck() & pw2Check() & phoneCheck();
 		if (!result)
 			return;
 
@@ -178,10 +168,6 @@
 	}
 </script>
 
-<!-- <script type="text/javascript"> -->
-<%-- // 	var message = '${msg}'; --%>
-<!-- // 	alert(message); -->
-<!-- </script> -->
 
 </head>
 <style>
@@ -198,7 +184,7 @@
 							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/mypage">MY PAGE</a></li>
-							<li><a href="${pageContext.request.contextPath }/board/qna">Q&amp;A</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 							<%-- 							<c:if test="${admin}"> --%>
 							<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
 							<%-- 							</c:if> --%>
@@ -207,7 +193,7 @@
 							<li><a href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
 							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/qna">Q&amp;A</a></li>
+							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>

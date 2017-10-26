@@ -12,4 +12,6 @@ public interface AdminDao {
 	// 관리자 기능
 	List<Member> list();
 	public List<Member> search(String key);
+	
+	boolean delete(String check2);
 }
