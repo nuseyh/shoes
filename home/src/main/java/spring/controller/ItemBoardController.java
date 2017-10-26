@@ -9,7 +9,6 @@ import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -170,16 +169,17 @@ public class ItemBoardController {
 			return "imageboard/remove";
 		}
 
-		@RequestMapping(value = "/remove", method = RequestMethod.POST)
-		public String remove(HttpServletRequest request, Model model) {
-			HttpSession session = request.getSession();
-			String i_name = (String)session.getAttribute("i_name");
-
-			if (itemBoardDao.remove(i_name)) {
-				model.addAttribute("remove");
-				session.invalidate();
+		@RequestMapping(value = "/list", method = RequestMethod.POST)
+		public String removeitems(HttpServletRequest request, Model model) {
+			model.addAttribute("list", itemBoardDao.list());
+			String[] check = request.getParameterValues("check");
+			System.out.println(check.toString());
+			
+			for(String check2 : check) {
+				System.out.println(check2);
+				itemBoardDao.remove(check2);
 			}
-			return "imageboard/remove2";
+			return "imageboard/list2";
 		}
 		
 }

@@ -12,6 +12,6 @@ public interface ItemBoardDao {
 	List<Product> list();
 	Product get(String savename);
 //	void remove(Product product);
-	boolean remove(String i_name);
+	boolean remove(String check2);
 
 }

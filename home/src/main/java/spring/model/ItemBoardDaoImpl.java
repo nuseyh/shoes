@@ -67,9 +67,9 @@ public class ItemBoardDaoImpl implements ItemBoardDao {
 	}
 	
 	@Override
-	public boolean remove(String i_name) {
-		String sql = "delete itemboard where i_num=?";
-		Object[] args = {i_name};
+	public boolean remove(String check2) {
+		String sql = "delete itemboard where i_name=?";
+		Object[] args = {check2};
 		
 		return jdbcTemplate.update(sql, args) > 0;
 	}
