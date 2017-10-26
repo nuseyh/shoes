@@ -1,11 +1,15 @@
 package spring.controller;
 
+import java.util.Properties;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,6 +74,19 @@ public class MemberController {
 	@RequestMapping("/pwsearch")
 	public String pwsearch() {
 		return "member/pwsearch";
+	}
+	
+	@RequestMapping(value = "/pwsearch", method = RequestMethod.POST)
+	public String pwsearch(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		String email = request.getParameter("email");
+		
+		boolean result = memberDao.pwsearch(id, email);
+		if(result) {
+			
+		}
+		
+		return "member/pwsearch2";
 	}
 
 	@RequestMapping("/login")

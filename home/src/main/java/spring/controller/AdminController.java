@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.model.AdminDao;
-import spring.model.MemberDao;
 
 @Controller
 @RequestMapping("/admin")
@@ -44,7 +43,7 @@ public class AdminController {
 	}
 
 	// 회원 삭제
-	@RequestMapping(value = "/memberlist", method = RequestMethod.POST)
+	@RequestMapping(value = {"/memberlist","/memberlist/{key}"}, method = RequestMethod.POST)
 	public String deletemember(HttpServletRequest request, Model model) {
 		model.addAttribute("list", adminDao.list());
 		String[] check = request.getParameterValues("check");
@@ -54,8 +53,8 @@ public class AdminController {
 			System.out.println(check2);
 			adminDao.delete(check2);
 		}
-
 		return "admin/memberlist2";
-
 	}
+	
+	
 }
