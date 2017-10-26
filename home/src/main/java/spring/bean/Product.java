@@ -7,10 +7,6 @@ import java.text.Format;
 
 public class Product {
 	
-	boolean checkControl = true;
-	private String name;
-	private String code;
-
 	private int i_num;
 	private int i_leftnum;
 	private int i_price;

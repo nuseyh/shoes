@@ -11,7 +11,7 @@ public interface ItemBoardDao {
 	void insert(Product product);
 	List<Product> list();
 	Product get(String savename);
-//	void delete(Product product);
-	
+//	void remove(Product product);
+	boolean remove(String i_name);
 
 }
