@@ -105,8 +105,8 @@ public class MemberController {
 			session.setAttribute("id", m.getId());
 			//로그인시 관리라면 관리자인지를 저장한다.
 			//db의 power를 관리자로 명한다
-//			session.setAttribute("power", m.getPower());
-			session.setAttribute("power", "관리자");
+			session.setAttribute("power", m.getPower());
+//			session.setAttribute("power", "관리자");
 			return "redirect:/";
 		}
 

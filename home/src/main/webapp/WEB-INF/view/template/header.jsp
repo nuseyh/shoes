@@ -13,7 +13,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.css">
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
-<script src="js/swiper.js"></script>
+<script src="${pageContext.request.contextPath}/js/swiper.js"></script>
 <style>
 /* 이미지 슬라이더의 크기 설정 */
 .swiper-container {
