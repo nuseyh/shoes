@@ -73,21 +73,27 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 비밀번호 찾기
 	public boolean pwsearch(String id, String email) {
-		 String sql="select pw from member where id=? and email=?";
+		 String sql="select  *from member where id=? and email=?";
 		 int pw = jdbcTemplate.queryForObject(sql, Integer.class, id, email);
 		 return pw > 0;
 		
 	}
 
-	// 임시 비밀번호 설정
-	// public String temp(String id) {
-	// String tempPw = StringUtil.createRandomString(10);
-	//
-	// String sql = "update member set pw=? where id=?";
-	// Object[] args = {tempPw, id};
-	//
-	// return jdbcTemplate.update(sql, args) > 0;
-	// }
+//	 임시 비밀번호 설정
+	 public String temp(String id) {
+	 String tempPw = StringUtil.createRandomString(10);
+	
+	 String sql = "update member set pw=? where id=?";
+	 Object[] args = {tempPw, id};
+	
+	  boolean result = jdbcTemplate.update(sql, args) > 0;
+	  if(result) {
+		  return tempPw; 
+	  }else {
+		  return "";
+	  }
+	  
+	 }
 
 	@Override
 	public boolean delete(String id, String pw) {

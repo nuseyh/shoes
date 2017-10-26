@@ -1,6 +1,5 @@
 package spring.controller;
 
-import java.util.Properties;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,8 +7,6 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -82,11 +79,10 @@ public class MemberController {
 		String email = request.getParameter("email");
 		
 		boolean result = memberDao.pwsearch(id, email);
-		if(result) {
-			
-		}
+		System.out.println(result);
 		
-		return "member/pwsearch2";
+		return null;
+		
 	}
 
 	@RequestMapping("/login")
@@ -144,7 +140,6 @@ public class MemberController {
 	public String edit(Member m) {
 		memberDao.edit(m);
 		return "member/profile";
-		
 	}
 
 	// 회원탈퇴

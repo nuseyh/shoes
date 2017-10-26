@@ -12,8 +12,8 @@ public interface MemberDao {
 	boolean login(Member m);
 
 	boolean join(Member m);
-
-	// boolean idcheck(String id);
+	
+	String temp(String id);
 
 	String idsearch(String name, String email);
 	

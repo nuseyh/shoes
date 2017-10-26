@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
-<form action="idsearch" class="center text-center" method="post">
+<form action="pwsearch" class="center text-center" method="post">
 
 	<strong algin="center">비밀번호 찾기</strong>
 	<div class="center area-70">
