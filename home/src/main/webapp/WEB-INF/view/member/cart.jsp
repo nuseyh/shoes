@@ -3,10 +3,6 @@
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
 <style>
-#store_cart ul {
-	-webkit-padding-start: 0;
-}
-
 .cart_img_col img {
 	width: 100%;
 	max-width: 100%;
@@ -14,7 +10,7 @@
 
 /* Mobile */
 #store_cart {
-	float: left;
+	float: left;F
 	width: 100%;
 }
 
@@ -302,7 +298,7 @@
 }
 </style>
 
-<div class="page area-100 center">
+<div class="page area-80 center">
 	<form action="" method="post">
 		<div id="store_cart center">
 			<ul class="cart_head">
@@ -331,7 +327,7 @@
 					src="https://i.imgur.com/bI4oD5C.png"></li>
 			</ul>
 		</div>
-		
+
 		<div>전체 합계:</div>
 		<div class="join-button">
 			<input type="submit" value="주문하기">

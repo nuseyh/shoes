@@ -53,10 +53,17 @@
 
 .top-menu {
 	list-style: none;
+	width: 1250px;
 }
 
 .top-menu li {
 	display: inline-block;
+}
+
+.logos {
+	position: relative;
+	display: inline-block;
+	width: 1250px;
 }
 </style>
 
@@ -189,18 +196,18 @@
 
 </head>
 <style>
-.logo img{
-	width:270px;
-	height:100px;
+.logo img {
+	width: 270px;
+	height: 100px;
 }
 </style>
 
 
 <body>
-	<div class="page area-90 center">
+	<div class="page area-80 center">
 		<header>
-			<div class="right">
-				<ul class="top-menu text-right">
+			<div class=" text-right">
+				<ul class="top-menu">
 					<c:choose>
 						<c:when test="${login}">
 							<li><a
@@ -227,25 +234,32 @@
 					</c:choose>
 				</ul>
 			</div>
-			<div class="center">
-				<div>
-					<a href="${pageContext.request.contextPath }/home" class="logo"><img
-						src="${pageContext.request.contextPath }/img/logo.jpg" /></a>
-				</div>
+			<div class="logos center">
+
+				<a href="${pageContext.request.contextPath }/home" class="logo">
+				<img src="${pageContext.request.contextPath }/img/logo.jpg" />
+				</a>
+
 			</div>
 			<!-- 			http://pyeonne.tistory.com/9 -->
-		</header>
 		<nav>
 			<ul class="menu">
 				<li><a href="#">NEW</a></li>
 				<li><a href="#">BEST</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=sneakers">SNEAKERS</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=sandal">SANDAL</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=flat/loafer">FLAT/LOAFER</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=boots">BOOTS</a></li>
-				<li><a href="${pageContext.request.contextPath}/product/list?type=shoe">SHOE</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=sneakers">SNEAKERS</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=sandal">SANDAL</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=flat/loafer">FLAT/LOAFER</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=boots">BOOTS</a></li>
+				<li><a
+					href="${pageContext.request.contextPath}/product/list?type=shoe">SHOE</a></li>
 			</ul>
 		</nav>
+		</header>
 		<!-- // 			http://autumnly.tistory.com/61 -->
 		<main> <!-- 		http://blog.naver.com/hanhunh89/220403113901 -->

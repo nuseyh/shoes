@@ -58,7 +58,7 @@ select {
 
 
 <div class="empty-row"></div>
-<div class="area-80 center">
+<div class="page area-80 center">
 	<div class="row text-center font-small">문의 게시판</div>
 	<div class="row">
 		<table class="board-font join-table">

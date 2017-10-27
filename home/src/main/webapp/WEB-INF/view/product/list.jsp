@@ -3,40 +3,42 @@
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 <style>
 
-.list{
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    flex-wrap:wrap;
-}
-.list .image{
-    padding:20px;
-    width:16%;
-    /*flex-grow:1;*/
-    
-}
-.list .image img{
-    width:180px;
-    height: 150px;
-}
-
-
+/* h1 { */
+/* 	display: inline-block; */
+/* 	background-color: #333; */
+/* 	color: #fff; */
+/* 	font-size: 20px; */
+/* 	font-weight: normal; */
+/* 	text-transform: uppercase; */
+/* 	padding: 4px 20px; */
+/* 	float: left; */
+/* } */
 </style>
 
-<div class="area-80 center">
+<div class="center">
+	<div class="center">
 
-	<div class="list">
-		<c:forEach var="pdao" items="${plist}">
-			<div class="image">
-				<a href="detail?no=${pdao.i_num}"><img src="${pageContext.request.contextPath}/file/${pdao.savename}">
-				<div class="text-center">
-					<h4>${pdao.i_name}</h4>
-					<h5>${pdao.i_price}원</h5>
-					</div>
-					</a>
-			</div>
-		</c:forEach>
+		<div class="clear"></div>
+		<!-- items -->
+		<div class="items">
+			<c:forEach var="pdao" items="${plist}">
+				<div class="item">
+					<a href="detail?no=${pdao.i_num}"> <img
+						src="http://img.tjskl.org.cn/pic/z2577d9d-200x200-1/pinarello_lungavita_2010_single_speed_bike.jpg"
+						alt="item" /></a>
+					<h2>${pdao.i_name}</h2>
+
+					<p>
+						Price: <em>${pdao.i_price}원</em>
+					</p>
+				</div>
+				<!-- item -->
+			</c:forEach>
+
+		</div>
+		<!--/ items -->
 	</div>
-	
+	<div class="clear"></div>
 </div>
+
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

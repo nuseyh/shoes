@@ -3,7 +3,19 @@
 
 /* 테스트 코드 */
 div, header, footer, main, nav, aside, article, section {
-/* 		border:1px solid black; */
+	/* 		border:1px solid black; */
+	
+}
+
+body {
+	margin-left: auto;
+	margin-right: auto;
+	width: 100%;
+}
+
+ul {
+	margin-top: 16px;
+	padding: 10px;
 }
 
 /* 페이지 설정 */
@@ -15,23 +27,19 @@ div, header, footer, main, nav, aside, article, section {
 
 /* 상단 메뉴 */
 header {
-	width: 100%;
-	min-height: 80px;
+	width: 1300px;
+	/* 	max-height: 130px; */
 	text-align: center;
 	order: 1;
-}
-
-/* 사이드 메뉴 */
-aside {
-	width: 12%;
-	padding: 15px;
-	order: 3;
+	position: relative;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 /* 중앙 영역 */
 main {
 	flex-grow: 1;
-	min-height: 500px;
+	/* 	min-height: 500px; */
 	/* 	padding: 30px; */
 	order: 4;
 	width: 100%;
@@ -53,8 +61,8 @@ nav {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
-	padding: 0.5em;
-	margin-left: -55px;
+	padding: 0.2em;
+	margin-left: -20px;
 	order: 2;
 }
 
@@ -112,7 +120,7 @@ a:hover {
 	width: 100%;
 	font-size: 15px;
 	padding: 12px;
-	background-color: hotpink;
+	background-color: #333;
 	color: white;
 	outline: none;
 	border: none;
@@ -123,7 +131,6 @@ a:hover {
 	font-size: 14px;
 	text-decoration: none;
 }
-
 
 /*join*/
 .join-table {
@@ -269,17 +276,16 @@ a:hover {
 }
 
 /*board*/
-.border-table{
+.border-table {
 	border: 1px solid #ccc;
 	border-collapse: collapse;
 	width: 100%;
-	}
-		
-.border-table th, .border-table td{
-    border: 1px solid #ccc;
-    padding:10px;
 }
 
+.border-table th, .border-table td {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
 
 /*userlist*/
 .user-list table {
@@ -373,5 +379,63 @@ a:hover {
 
 .search button:focus {
 	outline: 0;
+}
+
+/*list style*/
+.clear {
+	clear: both;
+}
+
+.items {
+	display: block;
+	margin: 20px 0;
+}
+
+.item {
+	background-color: #fff;
+	float: left;
+	margin: 0 10px 10px 0;
+	width: 284px;
+	padding: 10px;
+	height: 290px;
+}
+
+.item img {
+	display: block;
+	margin: auto;
+}
+
+h2 {
+	font-size: 16px;
+	display: block;
+	border-bottom: 1px solid #ccc;
+	margin: 0 0 10px 0;
+	padding: 0 0 5px 0;
+}
+
+button {
+	border: 1px solid #722A1B;
+	padding: 4px 14px;
+	background-color: #fff;
+	color: #722A1B;
+	text-transform: uppercase;
+	float: right;
+	margin: 5px 0;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+span {
+	float: right;
+}
+
+.shopping-cart {
+	display: inline-block;
+	background:
+		url('http://cdn1.iconfinder.com/data/icons/jigsoar-icons/24/_cart.png')
+		no-repeat 0 0;
+	width: 24px;
+	height: 24px;
+	margin: 0 10px 0 0;
 }
 }

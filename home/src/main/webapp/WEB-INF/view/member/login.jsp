@@ -11,11 +11,9 @@
 <div class="page area-60 center">
 	<div class="area-60 center">
 		<div>	
-			<div class="empty-row"></div>
 			<strong>login</strong>
 			<hr>
 		</div>
-		<div class="empty-row"></div>
 		<form action="login" name="loginform" method="post" class="center" onSubmit="return checking();">
 			<div class="row">
 				<input type="text" class="login_id" name=id placeholder="아이디">
@@ -28,14 +26,12 @@
 			</div>
 
 			<div>
-				<input type="checkbox"> 아이디 저장 <input type="checkbox">
-				로그인상태 유지
-			</div>
+				<input type="checkbox"> 아이디 저장 
 			<div class="empty-row"></div>
 
 			<div class="search_id text-center">
 				<hr>
-				<a href="idsearch">아이디찾기</a> <a href="pwsearch">비밀번호찾기</a> <a href="join">회원가입</a>
+				<a href="idsearch">아이디찾기</a> | <a href="pwsearch">비밀번호찾기</a> | <a href="join">회원가입</a>
 				<hr>
 			</div>
 		</form>

@@ -5,6 +5,7 @@
 
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
+	<div class="clear"></div>
 <div class="page center">
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
