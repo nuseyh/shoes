@@ -3,8 +3,7 @@
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
 <link rel="">
 <script src="${pageContext.request.contextPath}/js/jquery-te-1.4.0.js"></script>
 <script>

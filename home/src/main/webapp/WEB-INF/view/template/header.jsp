@@ -222,12 +222,12 @@
 			<ul class="menu">
 				<li><a href="#">NEW</a></li>
 				<li><a href="#">BEST</a></li>
-				<li><a href="#">PUMPS</a></li>
-				<li><a href="#">BOOTS/ANKLE</a></li>
-				<li><a href="#">SNEAKERS</a></li>
-				<li><a href="#">FLAT/LOAFER</a></li>
-				<li><a href="#">LUXURY</a></li>
-				<li><a href="#">SALE</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=sneakers">SNEAKERS</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=sandal">SANDAL</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=flat/loafer">FLAT/LOAFER</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=boots">BOOTS</a></li>
+				<li><a href="${pageContext.request.contextPath}/product/list?type=shoe">SHOE</a></li>
 			</ul>
 		</nav>
 		<!-- // 			http://autumnly.tistory.com/61 -->

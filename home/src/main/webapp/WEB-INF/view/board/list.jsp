@@ -56,6 +56,7 @@ select {
 }
 </style>
 
+
 <div class="empty-row"></div>
 <div class="area-80 center">
 	<div class="row text-center font-small">문의 게시판</div>
@@ -82,7 +83,14 @@ select {
 								<td align="left"><a href="detail?no=${board.getNo()}">${board.getTitle()}</a></td>
 							</c:when>
 							<c:otherwise>
-								<td align="left"><a href="password?no=${board.getNo()}">${board.getTitle()}</a></td>
+								<c:choose>
+									<c:when test="${login}">
+										<td align="left"><a href="password?no=${board.getNo()}">${board.getTitle()}</a></td>
+									</c:when>
+									<c:otherwise>
+										<td align=left><a href="boardalert" >${board.getTitle()}</a></td>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>
 						</c:choose>
 						<td>${board.getWriter()}</td>

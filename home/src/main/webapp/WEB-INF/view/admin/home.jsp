@@ -5,6 +5,7 @@
     <table border="1" class="mypage">
         <tr>
             <td><a href="${pageContext.request.contextPath }/admin/memberlist">회원목록</a></td>
+            <td><a href="pmenu">상품 관리</a></td>
          
         </tr>
     

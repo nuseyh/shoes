@@ -15,6 +15,7 @@
 	<mvc:resources location="/resource/css/" mapping="/css/**" />
 	<mvc:resources location="/resource/img/" mapping="/img/**" />
 	<mvc:resources location="/resource/js/" mapping="/js/**" />
+    <mvc:resources location="/upload" mapping="/file/**"/>
             
 	<context:component-scan base-package="spring.controller"/> <!-- 패키지 인식~~ -->
 	<context:component-scan base-package="spring.model"/>

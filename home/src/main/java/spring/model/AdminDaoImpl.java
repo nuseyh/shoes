@@ -12,6 +12,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Member;
+import spring.bean.Product;
 
 @Repository(value = "AdminDao")
 public class AdminDaoImpl implements AdminDao {
@@ -48,7 +49,7 @@ public class AdminDaoImpl implements AdminDao {
 		return jdbcTemplate.query(sql, args, mapper);
 	}
 
-
+	//회원 삭제
 	@Override
 	public boolean delete(String check2) {
 		String sql = "delete member where id=?";
@@ -56,6 +57,56 @@ public class AdminDaoImpl implements AdminDao {
 		Object[] args = {check2};
 
 		return jdbcTemplate.update(sql, args) > 0;
+	}
+
+	//상품등록
+	@Override
+	public void insert(Product product) {
+		String sql = "insert into itemboard values(itemboard_seq.nextval,?,?,?,?,?,?,?,sysdate,?,?,?,?)";
+		Object[] args = { 
+				/*product.getI_num(), product.getI_leftnum(), product.getI_price(), product.getI_color(),
+				product.getI_size(), product.getI_detail(), product.getI_type(), product.getI_name(), product.getDate(),
+				product.getFiletype(), product.getFilename(), product.getFilelen(), product.getSavename(),
+				product.getTitle()*/
+				
+				product.getI_leftnum(),
+				product.getI_price(),
+				
+				product.getI_color(),
+				product.getI_size(),
+				product.getI_detail(),
+				product.getI_type(),
+				product.getI_name(),
+				product.getFiletype(),
+				product.getFilename(),
+				product.getFilelen(),
+				product.getSavename()
+
+		};
+		jdbcTemplate.update(sql, args);
+		
+	}
+
+	//상품목록 리스트
+	@Override
+	public List<Product> plist() {
+		String sql = "select * from itemboard order by i_date desc";
+		RowMapper<Product> mapper = (rs, index) -> {
+			return new Product(rs);
+		};
+		return jdbcTemplate.query(sql, mapper);
+	}
+
+	@Override
+	public Product get(String savename) {
+		String sql = "select * from itemBoard where savename = ?";
+		ResultSetExtractor<Product> extractor = rs -> {
+			if (rs.next())
+				return new Product(rs);
+			else
+				return null;
+		};
+		return jdbcTemplate.query(sql, extractor, savename);
 	}
 
 }

@@ -94,7 +94,8 @@ public class MemberController {
 	public String login(Member m, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		boolean result = memberDao.login(m);
-
+		m = memberDao.profile(m.getId());
+		
 		if (!result) {
 
 			model.addAttribute("false");
@@ -145,7 +146,6 @@ public class MemberController {
 	// 회원탈퇴
 	@RequestMapping("/delete")
 	public String delete() {
-
 		return "member/delete";
 	}
 

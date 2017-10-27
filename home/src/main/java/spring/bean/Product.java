@@ -6,10 +6,6 @@ import java.text.DecimalFormat;
 import java.text.Format;
 
 public class Product {
-	
-	boolean checkControl = true;
-	private String name;
-	private String code;
 
 	private int i_num;
 	private int i_leftnum;
@@ -26,7 +22,6 @@ public class Product {
 	private String savename;
 	
 	
-
 	public int getI_num() {
 		return i_num;
 	}
