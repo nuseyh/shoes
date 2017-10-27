@@ -5,7 +5,12 @@
     <table border="1" class="mypage">
         <tr>
             <td><a href="${pageContext.request.contextPath }/admin/memberlist">회원목록</a></td>
+<<<<<<< HEAD
          	<td><a href="${pageContext.request.contextPath }/imageboard/itemmain">상품목록</a></td>
+=======
+            <td><a href="pmenu">상품 관리</a></td>
+         
+>>>>>>> refs/remotes/origin/master
         </tr>
     
     </table>

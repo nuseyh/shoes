@@ -6,7 +6,11 @@ import java.text.DecimalFormat;
 import java.text.Format;
 
 public class Product {
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> refs/remotes/origin/master
 	private int i_num;
 	private int i_leftnum;
 	private int i_price;
@@ -22,7 +26,6 @@ public class Product {
 	private String savename;
 	
 	
-
 	public int getI_num() {
 		return i_num;
 	}

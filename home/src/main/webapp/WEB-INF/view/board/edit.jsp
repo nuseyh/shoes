@@ -3,6 +3,18 @@
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
+<link rel="">
+<script src="${pageContext.request.contextPath}/js/jquery-te-1.4.0.js"></script>
+<script>
+	$(document).ready(function() {
+		//에디터로 변경
+		$("#editor").jqte({
+			b : false
+		});
+	});
+</script>
+
 <div class="empty-row"></div>
 <div class="area-80 center">
 	<div class="row text-center font-big">게시글 수정</div>
@@ -22,7 +34,7 @@
 					</tr>
 					<tr>
 						<th width="20%">내용</th>
-						<td><textarea class="form-input" name="detail" rows="10"
+						<td><textarea id="editor" class="form-input" name="detail" rows="10"
 								required>${board.getDetail()}</textarea></td>
 					</tr>
 					<tr>

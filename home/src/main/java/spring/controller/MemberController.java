@@ -1,5 +1,6 @@
 package spring.controller;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -71,6 +72,18 @@ public class MemberController {
 	public String pwsearch() {
 		return "member/pwsearch";
 	}
+	
+	@RequestMapping(value = "/pwsearch", method = RequestMethod.POST)
+	public String pwsearch(HttpServletRequest request, Model model) {
+		String id = request.getParameter("id");
+		String email = request.getParameter("email");
+		
+		boolean result = memberDao.pwsearch(id, email);
+		System.out.println(result);
+		
+		return null;
+		
+	}
 
 	@RequestMapping("/login")
 	public String login() {
@@ -81,7 +94,8 @@ public class MemberController {
 	public String login(Member m, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		boolean result = memberDao.login(m);
-
+		m = memberDao.profile(m.getId());
+		
 		if (!result) {
 
 			model.addAttribute("false");
@@ -92,8 +106,8 @@ public class MemberController {
 			session.setAttribute("id", m.getId());
 			//로그인시 관리라면 관리자인지를 저장한다.
 			//db의 power를 관리자로 명한다
-//			session.setAttribute("power", m.getPower());
-			session.setAttribute("power", "관리자");
+			session.setAttribute("power", m.getPower());
+//			session.setAttribute("power", "관리자");
 			return "redirect:/";
 		}
 
@@ -127,13 +141,11 @@ public class MemberController {
 	public String edit(Member m) {
 		memberDao.edit(m);
 		return "member/profile";
-		
 	}
 
 	// 회원탈퇴
 	@RequestMapping("/delete")
 	public String delete() {
-
 		return "member/delete";
 	}
 
@@ -149,7 +161,15 @@ public class MemberController {
 		}
 		return "member/delete2";
 	}
+	
+	
+	//장바구니
+	@RequestMapping("/cart")
+	public String cart() {
 
+		return "member/cart";
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();

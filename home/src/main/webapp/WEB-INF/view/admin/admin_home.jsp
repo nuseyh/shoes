@@ -8,6 +8,7 @@
             <td><a href="#">회원 정보</a></td>
             <td><a href="#">적립금</a></td>
             <td><a href="#">1:1 문의</a></td>
+            <td><a href="admin">상품 관리</a></td>
         </tr>
     
     </table>

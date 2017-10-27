@@ -23,7 +23,39 @@
 		$("#admin")
 		
 	});
+	
+	//board 삭제버튼 클릭시 확인창
+	var deletecheck;
+	var no = ${board.getNo()};
+	function Bdelete_check(){
+        /* confirm(문자열, 초기값) */
+        var bcheck = confirm("정말로 삭제하시겠습니까?");
+        /* if(check == true) else false */
+        if(bcheck) {
+        	deletecheck = "true";
+        	location.href='delete?no='+no;
+        }else {
+        	deletecheck = "false";
+        	location.href='detail?no='+no;
+        }
+     }
+	//replyboard 삭제버튼 클릭시 확인창
+	var rbdeletecheck;
+	var rbno = ${rboard.no};
+	var rbparent = no;
+	function RBdelete_check(){
+		var rbcheck = confirm("정말로 삭제 하시겠습니까?")
+		if(rbcheck){
+			rbdeletecheck = "true";
+			location.href='replydelete?no='+parent+'&parent='+no;
+		}else{
+			rbdeletecheck = "false";
+			location.href='detail?no='+no;
+		}
+		
+	}
 </script>
+
 
 
 
@@ -56,7 +88,7 @@
 								<input class="form-btn" type="button" value="답글쓰기 " onclick="location.href='write?title=${board.getTitle()}&gno=${board.getGno()}'"> 
 							</c:when> --%>
 							<input class="form-btn" type="button" value="수정하기" onclick="location.href='edit?no=${board.getNo()}'"> 
-							<input class="form-btn" type="button" value="삭제하기" onclick="location.href='delete?no=${board.getNo()}'"> 
+							<input class="form-btn" type="button" onclick="Bdelete_check();" value="삭제하기" onclick="location.href='delete?no=${board.getNo()}'"> 
 							<input class="form-btn" type="button" value="목록으로" onclick="location.href='list'">
 						</th>
 					</tr>
@@ -67,6 +99,7 @@
 	
 	
 	<form id="admin" action="reply" method="post">
+		<input type="hidden" name="writer" value="${id}">
     	<%-- <input type="hidden" name="writer" value="${userId}"> --%>
 		<input type="hidden" name="parent" value="${board.getNo()}">
 		<c:choose>
@@ -86,27 +119,27 @@
     </form>
     
     <c:choose>
-	    <c:when test="${empty list || list.size() == 0}">
+	    <c:when test="${relist.size() == 0}">
 	    	<div class="row font-medium">
 	    		답변 대기중입니다.
 	    	</div>
 	    </c:when>
 	    <c:otherwise>
 		    <div class="row">
-		        <table class="table">
+		        <table class="board-table">
 		            <tbody>
-		                <c:forEach var="rdto" items="${list}">
+		                <c:forEach var="rboard" items="${relist}">
 		                	<tr>
 		                		<!-- 어차피 작성자는 관리자 -->
 			                    <%-- <th width="20%">${rdto.writer}</th> --%>
 			                    <th width="20%">관리자</th>
 			                    <td>
-			                        <p>${rdto.detail}</p>
+			                        <p>${rboard.detail}</p>
 			                        <hr>
-			                        <small>${rdto.reg}</small>
+			                        <small>${rboard.reg}</small>
 			                        <!-- 관리자만이 삭제가능 -->
 			                        <c:if test="${power eq '관리자'}">
-										<a href="replydelete?no=${rdto.no}&parent=${rdto.parent}">삭제</a>
+										<a onclick="RBdelete_check();" href="replydelete?no=${rboard.no}&parent=${rboard.parent}">삭제</a>
 									</c:if>
 			                    </td>
 			                </tr>

@@ -107,14 +107,29 @@ public class BoardController {
 		return "redirect:detail?no="+no;
 	}
 	
+	
+	
 	//게시글 상세보기
 	@RequestMapping("/detail")
-	public String detail( @RequestParam("no") int no, HttpServletRequest request) {
+	public String detail(@RequestParam("no") int no, HttpServletRequest request) {
 		bdao.plusRead(no);
 		request.setAttribute("board", bdao.detail(no));
 		request.setAttribute("no", no);
+
+		List<ReplyBoard> relist = rbdao.list(no);
+		
+		request.setAttribute("relist", relist);
+		
 		return "board/detail";
 	}
+	
+	//로그인 상태가 아닐시 로그인창으로
+	@RequestMapping("/boardalert")
+	public String boardalert() {
+		return "board/boardalert";
+	}
+	
+	
 	
 	//게시글 수정
 	@RequestMapping("/edit")
@@ -161,7 +176,8 @@ public class BoardController {
 	public String reply(@RequestParam("parent") int parent, HttpServletRequest request) {
 		ReplyBoard rboard = new ReplyBoard(request);
 		rbdao.insert(rboard);
-		return "redirect:detail";
+		
+		return "redirect:detail?no="+ parent;
 	}
 	
 	//답글 삭제

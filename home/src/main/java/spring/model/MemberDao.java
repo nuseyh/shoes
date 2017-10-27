@@ -1,6 +1,5 @@
 package spring.model;
 
-import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -13,10 +12,12 @@ public interface MemberDao {
 	boolean login(Member m);
 
 	boolean join(Member m);
-
-	// boolean idcheck(String id);
+	
+	boolean temp(String id);
 
 	String idsearch(String name, String email);
+	
+	boolean pwsearch(String id, String email);
 
 	Member profile(String id);
 
