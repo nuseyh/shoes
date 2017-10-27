@@ -40,7 +40,7 @@ public class ItemBoardController {
 		return "imageboard/home";
 	}
 	@RequestMapping("/itemmain")
-	public String itemmain() {
+	public String itemmain() { 
 		return "imageboard/itemmain";
 	}
 	
