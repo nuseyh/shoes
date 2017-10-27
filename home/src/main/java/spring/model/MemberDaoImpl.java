@@ -2,7 +2,6 @@ package spring.model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -73,27 +72,21 @@ public class MemberDaoImpl implements MemberDao {
 
 	// 비밀번호 찾기
 	public boolean pwsearch(String id, String email) {
-		 String sql="select  *from member where id=? and email=?";
-		 int pw = jdbcTemplate.queryForObject(sql, Integer.class, id, email);
-		 return pw > 0;
-		
+		String sql = "select  count(*) from member where id=? and email=?";
+		int pw = jdbcTemplate.queryForObject(sql, Integer.class, id, email);
+		return pw > 0;
+
 	}
 
-//	 임시 비밀번호 설정
-	 public String temp(String id) {
-	 String tempPw = StringUtil.createRandomString(10);
-	
-	 String sql = "update member set pw=? where id=?";
-	 Object[] args = {tempPw, id};
-	
-	  boolean result = jdbcTemplate.update(sql, args) > 0;
-	  if(result) {
-		  return tempPw; 
-	  }else {
-		  return "";
-	  }
-	  
-	 }
+	// 임시 비밀번호 설정
+	public boolean temp(String id) {
+		String tempPw = StringUtil.createRandomString(10);
+
+		String sql = "update member set pw=? where id=?";
+		Object[] args = { tempPw, id };
+
+		return jdbcTemplate.update(sql, args) > 0;
+	}
 
 	@Override
 	public boolean delete(String id, String pw) {

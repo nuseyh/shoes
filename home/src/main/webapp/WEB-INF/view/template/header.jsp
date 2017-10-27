@@ -8,9 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>레이아웃</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/common.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/each.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/common.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/each.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/swiper.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/swiper.min.css">
 
 <script src="https://code.jquery.com/jquery-latest.js"></script>
 <script src="${pageContext.request.contextPath}/js/swiper.js"></script>
@@ -18,7 +23,7 @@
 /* 이미지 슬라이더의 크기 설정 */
 .swiper-container {
 	width: 100%;
-	height: 350px;
+	height: 500px;
 	margin: 20px auto;
 }
 
@@ -137,28 +142,28 @@
 			return false;
 		}
 	}
-	
-	function phoneCheck(){
+
+	function phoneCheck() {
 		var phone = document.querySelector("input[name=phone]").value;
 		var regex = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})([0-9]{3,4})([0-9]{4})$/;
 
-		if(!regex.test(phone)){
+		if (!regex.test(phone)) {
 			document.querySelector(".phone-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		}else{
+		} else {
 			document.querySelector(".phone-check").innerHTML = "";
 			return true;
 		}
 	}
-	
-	function emailCheck(){
+
+	function emailCheck() {
 		var email = document.querySelector("input[name=email]").value;
 		var regex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-		
-		if(!regex.test(email)){
+
+		if (!regex.test(email)) {
 			document.querySelector(".email-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		}else{
+		} else {
 			document.querySelector(".email-check").innerHTML = "";
 			return true;
 		}
@@ -184,6 +189,10 @@
 
 </head>
 <style>
+.logo img{
+	width:270px;
+	height:100px;
+}
 </style>
 
 
@@ -194,18 +203,25 @@
 				<ul class="top-menu text-right">
 					<c:choose>
 						<c:when test="${login}">
-							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/mypage">MY PAGE</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/mypage">MY
+									PAGE</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 							<%-- 							<c:if test="${admin}"> --%>
 							<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
 							<%-- 							</c:if> --%>
 						</c:when>
 						<c:otherwise>
-							<li><a href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
@@ -213,7 +229,8 @@
 			</div>
 			<div class="center">
 				<div>
-					<a href="${pageContext.request.contextPath }/home" class="logo"><img src="${pageContext.request.contextPath }/img/moomin.jpg"/></a>
+					<a href="${pageContext.request.contextPath }/home" class="logo"><img
+						src="${pageContext.request.contextPath }/img/logo.jpg" /></a>
 				</div>
 			</div>
 			<!-- 			http://pyeonne.tistory.com/9 -->

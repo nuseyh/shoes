@@ -13,7 +13,7 @@ public interface MemberDao {
 
 	boolean join(Member m);
 	
-	String temp(String id);
+	boolean temp(String id);
 
 	String idsearch(String name, String email);
 	
