@@ -161,7 +161,15 @@ public class MemberController {
 		}
 		return "member/delete2";
 	}
+	
+	
+	//장바구니
+	@RequestMapping("/cart")
+	public String cart() {
 
+		return "member/cart";
+	}
+	
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
