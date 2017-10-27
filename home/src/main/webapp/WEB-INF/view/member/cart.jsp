@@ -3,7 +3,7 @@
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
 <style>
-ul {
+#store_cart ul {
 	-webkit-padding-start: 0;
 }
 
