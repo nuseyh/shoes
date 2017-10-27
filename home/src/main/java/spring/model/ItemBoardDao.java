@@ -13,5 +13,5 @@ public interface ItemBoardDao {
 	Product get(String savename);
 //	void remove(Product product);
 	boolean remove(String check2);
-//ㅇ ㄹㅇ
+//ㅇ ㄹㅇ11
 }
