@@ -77,8 +77,14 @@ select {
 						<td>${board.getNo()}</td>
 						<!-- 답변유무 등록 -->
 						<td>${board.getState()}</td>
-						<td align="left"><a href="password?no=${board.getNo()}">${board.getTitle()}</a>
-						</td>
+						<c:choose>
+							<c:when test="${power eq '관리자'}">
+								<td align="left"><a href="detail?no=${board.getNo()}">${board.getTitle()}</a></td>
+							</c:when>
+							<c:otherwise>
+								<td align="left"><a href="password?no=${board.getNo()}">${board.getTitle()}</a></td>
+							</c:otherwise>
+						</c:choose>
 						<td>${board.getWriter()}</td>
 						<td>${board.getAuto()}</td>
 						<td>${board.getRead()}</td>
@@ -89,44 +95,16 @@ select {
 	</div>
 	<div class="row">
 		<div class="writer text-right">
-			<a href="write">글쓰기</a>
+			<c:choose>
+				<c:when test="${!login}">
+					<a  href="#">글쓰기</a>
+				</c:when>
+				<c:otherwise>
+					<a href="write">글쓰기</a>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-
-	<%-- <!-- Paging 처리, Bootstrap -->
-	<nav>
-		<ul class="pagination">
-			<li>
-				<c:if test="${startBlock>1}">
-					<a href="list?page=${blockstart-1}${searchParam}" aria-label="Previous">
-						<span aria-hidden="true">&laquo;</span>
-					</a>
-				</c:if>
-			</li>
-			<c:forEach var="i" begin="${startBlock}" end="${endBlock}" step="1">
-				<c:choose>
-					<c:when test="${pageNo==n}">
-						<li class="active">
-							<a href="list?page=${n}" class="active">${n}</a>
-						</li>
-					</c:when>
-					<c:otherwise>
-						<li>
-							<a href="list?page=${n}${searchParam}">${n}</a>
-						</li>
-					</c:otherwise>
-				</c:choose>
-			</c:forEach>
-			<c:if test="${blockend < blocktotal}">
-				<li>
-					<a href="list?page=${blockend+1}${searchParam}" aria-label="Next">
-						<span aria-hidden="true">&raquo;</span>
-					</a>
-				</li>
-			</c:if>
-		</ul>
-	</nav> --%>
-
 
 	<div class="row center">
 		<div class="text-center num">

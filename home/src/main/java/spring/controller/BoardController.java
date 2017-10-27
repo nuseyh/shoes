@@ -160,8 +160,14 @@ public class BoardController {
 	@RequestMapping(value="/reply", method=RequestMethod.POST)
 	public String reply(@RequestParam("parent") int parent, HttpServletRequest request) {
 		ReplyBoard rboard = new ReplyBoard(request);
+//		rboard.setParent(parent);
 		rbdao.insert(rboard);
-		return "redirect:detail";
+		rbdao.list(parent);
+		List<ReplyBoard> relist = rbdao.list(parent);
+		System.out.println(relist);
+		System.out.println(relist.size());
+		request.setAttribute("relist", relist);
+		return "redirect:detail?no="+ parent;
 	}
 	
 	//답글 삭제

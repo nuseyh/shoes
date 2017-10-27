@@ -67,6 +67,7 @@
 	
 	
 	<form id="admin" action="reply" method="post">
+		<input type="hidden" name="writer" value="${id}">
     	<%-- <input type="hidden" name="writer" value="${userId}"> --%>
 		<input type="hidden" name="parent" value="${board.getNo()}">
 		<c:choose>
@@ -86,16 +87,16 @@
     </form>
     
     <c:choose>
-	    <c:when test="${empty list || list.size() == 0}">
+	    <c:when test="${relist.size() == 0}">
 	    	<div class="row font-medium">
 	    		답변 대기중입니다.
 	    	</div>
 	    </c:when>
 	    <c:otherwise>
 		    <div class="row">
-		        <table class="table">
+		        <table class="board-table">
 		            <tbody>
-		                <c:forEach var="rdto" items="${list}">
+		                <c:forEach var="rdto" items="${relist}">
 		                	<tr>
 		                		<!-- 어차피 작성자는 관리자 -->
 			                    <%-- <th width="20%">${rdto.writer}</th> --%>
