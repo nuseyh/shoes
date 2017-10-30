@@ -3,11 +3,12 @@
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 <style>
+
 img {
 	width: 100%;
 	height: 100%;
 }
-
+</style>
 <div class="area-60 center align-center">
 
 	<table class="table">
