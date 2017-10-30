@@ -100,22 +100,6 @@
 						<option value="etc">etc</option>
 				</select></td>
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td>파일유형</td> -->
-<!-- 				<td><input type="file" name="filetype"></td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>파일이름</td> -->
-<!-- 				<td><input type="text" name="filename"></td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>파일길이</td> -->
-<!-- 				<td><input type="text" name="filelen"></td> -->
-<!-- 			</tr> -->
-<!-- 			<tr> -->
-<!-- 				<td>저장이름</td> -->
-<!-- 				<td><input type="text" name="savename"></td> -->
-<!-- 			</tr> -->
 		</table>
 		<input type="submit" value="완료">
 	</form>

@@ -20,7 +20,7 @@
 
 	<!-- 관리를 쉽게 하기 위해 properties 파일을 활용하도록 설정 -->
 	<context:property-placeholder location="/WEB-INF/property/*.properties" />
-
+	<context:component-scan base-package="spring.model"/>
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="${database.driver}" />
 		<property name="url" value="${database.url}" />
@@ -35,5 +35,5 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	
 </beans>
