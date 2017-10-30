@@ -116,6 +116,8 @@
 	function idCheck() {
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
+		
+		
 
 	}
 
