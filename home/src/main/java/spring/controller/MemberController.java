@@ -86,9 +86,11 @@ public class MemberController {
 		String tempPw = StringUtil.createRandomString(10);
 		if(result) {
 			System.out.println("성공");
+			
 			memberDao.temp(tempPw, id);
 			EmailService e = new EmailService();
 			e.send(email, tempPw);
+			
 		}
 		
 		return "member/pwsearch2";
