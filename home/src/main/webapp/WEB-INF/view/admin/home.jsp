@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
-
 <style>
 .galleryCategoryMenu {float;left;
 	clear: both;
@@ -112,7 +111,7 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 	background:
 		url('https://www.seanhartphotography.co.nz/wp-content/uploads/2014/09/menu-sprites2.png');
 }
-
+ 
 .galleryCategoryMenu ul li a span {
 	font-size: 12px !important;
 	margin-top: -10px;
@@ -257,9 +256,10 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 	.galleryCategoryMenu ul li:nth-child(4n) {
 		clear: none;
 	}
-}
+} 
 </style>
 
+<div class="area-80 center">
 <div class="galleryCategoryMenu center">
 	<ul>
 		<li class="portraits"><a
@@ -268,6 +268,8 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 		<li class="weddings"><a href="/weddings"> <span></span></a></li>
 
 	</ul>
+</div>
+	<div class="clear"></div>
 </div>
 
 
