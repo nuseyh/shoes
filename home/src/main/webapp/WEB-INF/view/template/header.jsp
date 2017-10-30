@@ -157,7 +157,11 @@
 		if (!regex.test(phone)) {
 			document.querySelector(".phone-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		} else {
+		}else if(phone==""){
+			document.querySelector(".phone-check").innerHTML = "폰번호를 입력하세요";
+			return false;
+		} 
+		else {
 			document.querySelector(".phone-check").innerHTML = "";
 			return true;
 		}
@@ -170,7 +174,10 @@
 		if (!regex.test(email)) {
 			document.querySelector(".email-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		} else {
+		}else if(phone==""){
+			document.querySelector(".email-check").innerHTML = "이메일을 입력하세요";
+			return false;
+		}  else {
 			document.querySelector(".email-check").innerHTML = "";
 			return true;
 		}
