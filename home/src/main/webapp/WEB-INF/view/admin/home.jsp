@@ -11,4 +11,5 @@
     
     </table>
             </div>
+            
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
