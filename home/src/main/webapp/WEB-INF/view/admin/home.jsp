@@ -111,7 +111,7 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 	background:
 		url('https://www.seanhartphotography.co.nz/wp-content/uploads/2014/09/menu-sprites2.png');
 }
-
+ 
 .galleryCategoryMenu ul li a span {
 	font-size: 12px !important;
 	margin-top: -10px;
