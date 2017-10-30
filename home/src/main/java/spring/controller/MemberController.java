@@ -16,12 +16,15 @@ import spring.bean.Member;
 import spring.model.EmailService;
 import spring.model.MemberDao;
 import spring.model.StringUtil;
+import spring.service.Service;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
+	@Autowired
+	private Service sec;
 	
 	private Logger log = LoggerFactory.getLogger(getClass());
 
@@ -33,7 +36,11 @@ public class MemberController {
 	// 회원 가입 처리(/register, post)
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(Member m) {
-		System.out.println(m);
+//		System.out.println(m);
+//		System.out.println("입력된 비번 : " + m.getPw());
+//		String pw = sec.encodingPw(m.getPw());
+//		System.out.println("비번 암호화: " + pw);
+		m.setPw(sec.encodingPw(m.getPw()));
 		memberDao.join(m);
 		return "member/joiner";
 	}
@@ -87,7 +94,12 @@ public class MemberController {
 		if(result) {
 			System.out.println("성공");
 			
-			memberDao.temp(tempPw, id);
+			String tempPw2 = sec.encodingPw(tempPw);
+			System.out.println("임시 비번 변경 전 비번 암호화 : " + tempPw2);
+			
+			
+			memberDao.temp(tempPw2, id);
+			
 			EmailService e = new EmailService();
 			e.send(email, tempPw);
 			
@@ -152,6 +164,11 @@ public class MemberController {
 	@RequestMapping(value="/edit", method=RequestMethod.POST)
 	public String edit(Member m, Model model, HttpSession session) {
 		String id = (String) session.getAttribute("id");
+		String pw = sec.encodingPw(m.getPw());
+		
+		System.out.println("회원정보 수정시 비밀번호 암호화 : " + pw);
+		m.setPw(pw);
+		
 		model.addAttribute("mdto", memberDao.profile(id));
 		memberDao.edit(m);
 		return "member/profile";
@@ -167,7 +184,11 @@ public class MemberController {
 	public String delete(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
-		String pw = request.getParameter("pw");
+		
+		String pwcheck = sec.encodingPw(request.getParameter("pw"));
+		System.out.println("회원 탈퇴시 비번 암호화 : " + pwcheck);
+		
+		String pw = sec.encodingPw(request.getParameter("pw"));
 
 		if (memberDao.delete(id, pw)) {
 			model.addAttribute("delete");

@@ -56,6 +56,12 @@ select {
 }
 </style>
 
+<script>
+	function logincheck(){
+		alert("로그인 후 이용가능합니다.");
+	}
+</script>
+
 
 <div class="empty-row"></div>
 <div class="page area-80 center">
@@ -105,7 +111,7 @@ select {
 		<div class="writer text-right">
 			<c:choose>
 				<c:when test="${!login}">
-					<a  href="#">글쓰기</a>
+					<a  onclick="logincheck()" href="list">글쓰기</a>
 				</c:when>
 				<c:otherwise>
 					<a href="write">글쓰기</a>

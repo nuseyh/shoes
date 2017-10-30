@@ -41,16 +41,16 @@
      }
 	//replyboard 삭제버튼 클릭시 확인창
 	var rbdeletecheck;
-	var rbno = ${rboard.no};
-	var rbparent = no;
+	/* var rbno = ${rboard.getNo()}; */
+	var rbparent = ${board.getNo()};
 	function RBdelete_check(){
 		var rbcheck = confirm("정말로 삭제 하시겠습니까?")
 		if(rbcheck){
 			rbdeletecheck = "true";
-			location.href='replydelete?no='+parent+'&parent='+no;
+			location.href='replydelete?parent='+ rbparent;
 		}else{
 			rbdeletecheck = "false";
-			location.href='detail?no='+no;
+			location.href='detail?no='+rbparent;
 		}
 		
 	}
@@ -139,7 +139,7 @@
 			                        <small>${rboard.reg}</small>
 			                        <!-- 관리자만이 삭제가능 -->
 			                        <c:if test="${power eq '관리자'}">
-										<a onclick="RBdelete_check();" href="replydelete?no=${rboard.no}&parent=${rboard.parent}">삭제</a>
+										<a onclick="RBdelete_check();" href="replydelete?no=${rboard.getNo()}&parent=${rboard.getParent()}">삭제</a>
 									</c:if>
 			                    </td>
 			                </tr>

@@ -113,14 +113,18 @@ public class BoardController {
 	@RequestMapping("/detail")
 	public String detail(@RequestParam("no") int no, HttpServletRequest request) {
 		bdao.plusRead(no);
-		request.setAttribute("board", bdao.detail(no));
 		request.setAttribute("no", no);
-
-		List<ReplyBoard> relist = rbdao.list(no);
+		request.setAttribute("board", bdao.detail(no));
+		rbdao.list(no);
 		
-		request.setAttribute("relist", relist);
-		
-		return "board/detail";
+		if(rbdao.list(no).size() == 0) {
+			bdao.changeState(no, "expected");
+			return "board/detail";
+		}else {
+			List<ReplyBoard> relist = rbdao.list(no);
+			request.setAttribute("relist", relist);
+			return "board/detail";
+		}
 	}
 	
 	//로그인 상태가 아닐시 로그인창으로
@@ -176,15 +180,25 @@ public class BoardController {
 	public String reply(@RequestParam("parent") int parent, HttpServletRequest request) {
 		ReplyBoard rboard = new ReplyBoard(request);
 		rbdao.insert(rboard);
+		Board board = bdao.detail(parent);
 		
-		return "redirect:detail?no="+ parent;
+		if(board.getState().equals("답변예정")) {
+			bdao.changeState(parent, "complete");
+			return "redirect:detail?no="+ parent;
+		}else {
+			return "redirect:detail?no="+ parent;
+		}
+		
+		
+		
 	}
 	
 	//답글 삭제
-	@RequestMapping(value="/replydelete", method=RequestMethod.POST)
-	public String replydelete(@RequestParam("no") int no, @RequestParam("parnet") int parent) {
+	@RequestMapping(value="/replydelete")
+	public String replydelete(@RequestParam("no") int no, @RequestParam("parent") int parent) {
+		
 		rbdao.delete(no, parent);
-		return "redirect:detail";
+		return "redirect:detail?no="+parent;
 	}
 	
 }
