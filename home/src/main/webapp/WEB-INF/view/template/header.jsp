@@ -195,6 +195,7 @@
 		var result = pwCheck() & pw2Check() & phoneCheck() & emailCheck();
 		if (!result)
 			alert("제대로 입력하셈");
+		return false;
 
 		//전송
 		var form = document.querySelector("form");
