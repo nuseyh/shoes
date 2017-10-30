@@ -11,8 +11,7 @@
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
 
-	<form action="edit" method="post" class="center"
-		onsubmit="sendCheck();">
+	<form action="edit" method="post" class="center" onsubmit="sendCheck();">
 		<table class="join-table">
 			<tr>
 				<th class="text-left">아이디</th>
@@ -37,11 +36,11 @@
 			</tr>
 			<tr>
 				<th class="text-left">폰번호</th>
-				<td><input type="text" value="${mdto.phone}" name="phone"></td>
+				<td><input type="text" value="${mdto.phone}" name="phone" onblur="phoneCheck();"></td>
 			</tr>
 			<tr>
 				<th class="text-left">이메일</th>
-				<td><input type="text" value="${mdto.email}" name="email"></td>
+				<td><input type="text" value="${mdto.email}" name="email" onblur="emailCheck();"></td>
 			</tr>
 			<tr>
 

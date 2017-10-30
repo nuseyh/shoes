@@ -13,14 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import spring.bean.Member;
+import spring.model.EmailService;
 import spring.model.MemberDao;
+import spring.model.StringUtil;
 
 @Controller
 @RequestMapping("/member")
 public class MemberController {
 	@Autowired
 	private MemberDao memberDao;
-
+	
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@RequestMapping("/join")
@@ -81,7 +83,15 @@ public class MemberController {
 		boolean result = memberDao.pwsearch(id, email);
 		System.out.println(result);
 		
-		return null;
+		String tempPw = StringUtil.createRandomString(10);
+		if(result) {
+			System.out.println("성공");
+			memberDao.temp(tempPw, id);
+			EmailService e = new EmailService();
+			e.send(email, tempPw);
+		}
+		
+		return "member/pwsearch2";
 		
 	}
 
@@ -138,7 +148,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/edit", method=RequestMethod.POST)
-	public String edit(Member m) {
+	public String edit(Member m, Model model, HttpSession session) {
+		String id = (String) session.getAttribute("id");
+		model.addAttribute("mdto", memberDao.profile(id));
 		memberDao.edit(m);
 		return "member/profile";
 	}

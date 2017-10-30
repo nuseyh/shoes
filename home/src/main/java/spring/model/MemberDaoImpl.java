@@ -79,13 +79,11 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	// 임시 비밀번호 설정
-	public boolean temp(String id) {
-		String tempPw = StringUtil.createRandomString(10);
+	public boolean temp(String tempPw, String id) {
 
 		String sql = "update member set pw=? where id=?";
-		Object[] args = { tempPw, id };
-
-		return jdbcTemplate.update(sql, args) > 0;
+		Object[] args = {tempPw, id };
+		return jdbcTemplate.update(sql, args)>0;
 	}
 
 	@Override

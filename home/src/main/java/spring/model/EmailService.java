@@ -15,7 +15,7 @@ public class EmailService {
 	private Logger log = LoggerFactory.getLogger(getClass());
 
 	@Test // main처럼 실행
-	public void send(String email, String id) {
+	public void send(String email, String tempPw) {
 		log.debug("send가 실행");
 
 		// java에서 메일을 보내는 방법은 많지만 Spring에서 제공하는 것을 이용
@@ -42,13 +42,13 @@ public class EmailService {
 		SimpleMailMessage message = new SimpleMailMessage();
 
 		// 내용설정 (보내는 사람, 받는 사람, 참조, 숨은참조, 제목, 내용, 첨부파일)
-		message.setFrom("");
+		message.setFrom("shoes");
 
 		message.setTo(email);
 
 		// 참조 : setCc(), 숨은참조 : setBcc()
-		message.setSubject("메일테스트중");
-		message.setText("");
+		message.setSubject("임시비밀번호");
+		message.setText("임시비밀번호는"+tempPw+"입니다");
 
 		// 전송명령 : sender.send(메세지);
 		sender.send(message);

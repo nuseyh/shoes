@@ -185,12 +185,14 @@
 		//검사
 		var result = pwCheck() & pw2Check() & phoneCheck() & emailCheck();
 		if (!result)
-			return;
+			alert("제대로 입력하셈");
 
 		//전송
 		var form = document.querySelector("form");
 		form.submit();
 	}
+	
+	
 </script>
 
 
