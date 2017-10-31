@@ -9,7 +9,7 @@ img {
 }
 
 .detail_img {
-	width: 300px;
+	width: 500px;
 	height: 300px;
 }
 
@@ -18,19 +18,25 @@ img {
 }
 
 .detail_table {
-	width: 300px;
+	width: 400px;
 	height: 300px;
 	border-top: 2px solid #333;
 	padding: 15px;
 }
 
 .detail_table th {
-	font-size: 13px;
+	text-align: left;
+	font-size: 15px;
 }
 
 .detail_table td {
-	font-size: 12px;
+	font-size: 14px;
 	text-align: right;
+}
+
+.detail input[type=button] {
+	width: 180px;
+	height: 40px;
 }
 </style>
 
@@ -71,19 +77,17 @@ img {
 						<th>수량</th>
 						<td><input type="number" value="1"></td>
 					</tr>
-					<tr class="">
-						<td colspan="2"><input type="button" value="구매하기"></td>
-					</tr>
-					<tr class="">
-						<td colspan="2"><input type="button" value="장바구니"></td>
-					</tr>
+					<tr>
+						<td><input type="button" value="구매하기"></td>
+
+
+						<td><input type="button" value="장바구니"></td>
+					<tr>
 				</tbody>
 			</table>
 		</div>
 	</div>
-	<div>
-		<!--        ${product.i_detail}-->
-	</div>
+	<div>${product.i_detail}</div>
 </div>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

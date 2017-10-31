@@ -4,7 +4,7 @@
             </main>
             
             <footer>
-            	<h1>하단</h1>
+            	<h2 align="center">haechi</h2>
             </footer>
         </div>
 
