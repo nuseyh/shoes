@@ -265,25 +265,10 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 		<li class="portraits"><a
 			href="${pageContext.request.contextPath }/admin/memberlist">회원관리<span></span></a></li>
 		<li class="sports"><a href="/sports">매출내역<span></span></a></li>
-		<li class="weddings"><a href="/weddings"> <span></span></a></li>
+		<li class="weddings"><a href="pmenu">상품관리<span></span></a></li>
 
 	</ul>
 </div>
 	<div class="clear"></div>
 </div>
-
-
-	<div align="center">
-    <table border="1" class="mypage">
-        <tr>
-            <td><a href="${pageContext.request.contextPath }/admin/memberlist">회원목록</a></td>
-
-         	<td><a href="${pageContext.request.contextPath }/imageboard/itemmain">상품목록</a></td>
-
-            <td><a href="pmenu">상품 관리</a></td>
-         
-        </tr> 
-    
-    </table>
-    </div>
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
