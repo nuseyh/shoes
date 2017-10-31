@@ -39,7 +39,7 @@
 	<form action="upload" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
-				<td>이미지 올리기</td>
+				<td>썸네일</td>
 				<!-- <td><input type="file" value="파일선택" multiple></td> -->
 				<td>
 					<input type="file"	id="imgInp" name="file"  multiple/>

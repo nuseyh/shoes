@@ -9,6 +9,30 @@ img {
 	height: 100%;
 }
 .detail_img {
+<<<<<<< HEAD
+	width: 300px;
+	height: 300px;
+}
+
+.detail {
+	display: flex;
+}
+
+.detail_table {
+	width: 300px;
+	height: 300px;
+	border-top: 2px solid #333;
+	padding: 15px;
+}
+
+.detail_table th {
+	font-size: 13px;
+}
+
+.detail_table td {
+	font-size: 12px;
+	text-align: right;
+=======
 	width: 500px;
 	height: 300px;
 }
@@ -39,8 +63,11 @@ img {
 .detail input[type=button] {
 	width: 180px;
 	height: 40px;
+>>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
 }
 </style>
+
+
 <div class="area-60 center align-center">
 
 	<table class="table">
@@ -50,7 +77,7 @@ img {
 				<td>상품명</td>
 				<td>${product.i_name}</td>
 			</tr>
-			<tr>
+			<tr> 
 				<td>판매가</td>
 				<td>${product.i_price}</td>
 			</tr>
@@ -83,6 +110,13 @@ img {
 		</tbody>
 	</table>
 </div>
+<<<<<<< HEAD
+<div class="area-60 center align-center"><img src="img/56456.jpg"></div>
+<div>
+	<form>
+	
+	</form>
+=======
 <div>${product.i_detail}</div>
 
 >>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
@@ -139,6 +173,6 @@ img {
 		</div>
 	</div>
 	<div>${product.i_detail}</div>
+>>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
 </div>
-
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

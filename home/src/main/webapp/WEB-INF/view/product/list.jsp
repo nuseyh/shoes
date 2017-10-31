@@ -27,14 +27,12 @@
 						src="http://img.tjskl.org.cn/pic/z2577d9d-200x200-1/pinarello_lungavita_2010_single_speed_bike.jpg"
 						alt="item" /></a>
 					<h2>${pdao.i_name}</h2>
-
 					<p>
 						Price: <em>${pdao.i_price}원</em>
 					</p>
 				</div>
 				<!-- item -->
 			</c:forEach>
-
 		</div>
 		<!--/ items -->
 	</div>
