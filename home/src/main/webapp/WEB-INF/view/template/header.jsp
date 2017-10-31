@@ -222,12 +222,12 @@
 							<li><a
 								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+								href="${pageContext.request.contextPath }/cart/cart">CART</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/mypage">MY
 									PAGE</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
-							<%-- 							<c:if test="${admin}"> --%>
+							<%-- 							<c:if test="${power eq '관리자'}"> --%>
 							<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
 							<%-- 							</c:if> --%>
 						</c:when>
@@ -237,7 +237,7 @@
 							<li><a
 								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+								href="${pageContext.request.contextPath }/cart/cart">CART</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
