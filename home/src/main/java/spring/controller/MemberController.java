@@ -117,10 +117,11 @@ public class MemberController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String login(Member m, HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession();
-		boolean result = memberDao.login(m);
 		m = memberDao.profile(m.getId());
-		String pw = sec.encodingPw(m.getPw());
-		m.setPw(pw);
+//		String pw = sec.encodingPw(m.getPw());
+//		m.setPw(pw);
+		boolean result = memberDao.login(m);
+		
 		if (!result) {
 
 			model.addAttribute("false");
@@ -196,14 +197,6 @@ public class MemberController {
 			session.invalidate();
 		}
 		return "member/delete2";
-	}
-	
-	
-	//장바구니
-	@RequestMapping("/cart")
-	public String cart() {
-
-		return "member/cart";
 	}
 	
 	@RequestMapping("/logout")

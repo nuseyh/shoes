@@ -49,6 +49,7 @@
 	text-align: center;
 }
 </style>
+
 <form action="delete" method="post">
 	<table class="common-table center">
 		<tr height="30">
