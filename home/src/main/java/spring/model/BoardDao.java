@@ -9,6 +9,7 @@ import spring.bean.Board;
 @Repository
 public interface BoardDao {
 	int insert(Board board);
+	int insert(Board board, int product_no);
 
 	List<Board> list(int start, int end);
 

@@ -2,16 +2,30 @@ package spring.model;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Cart;
 
 @Repository(value = "cartDao")
 public class CartDaoImpl implements CartDao{
+	
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
+	private RowMapper<Cart> mapper = (rs, index) -> {
+		return new Cart(rs);
+	};
+	
 	//장바구니 추가
 	@Override
-	public void insert(Cart cart) {
+	public Cart insert(Cart cart) {
+		String sql = "insert into cart values(cart_seq.nextval, ?, ?, ?)";
+		Object[] obj = {cart.getUser_id(), cart.getProduct_no(), cart.getAmount()};
 		
+		return cart;
 	}
 	//장바구니 목록
 	@Override

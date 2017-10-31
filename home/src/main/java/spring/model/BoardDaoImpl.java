@@ -46,10 +46,35 @@ public class BoardDaoImpl implements BoardDao {
 			parent = board.getParent();
 			depth = board.getDepth() + 1;
 		}
-
-		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, ?)";
+		
+		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, 0, ?)";
 		Object[] obj = {no, "expected", board.getTitle(), board.getWriter(), board.getDetail(),
 							board.getPw(), gno, parent, depth, board.getNotice()};
+		jdbcTemplate.update(sql, obj);
+		return no;
+	}
+	@Override
+	public int insert(Board board, int product_no) {
+		String sql = "select sp_board_seq.nextval from dual";
+		int no = jdbcTemplate.queryForObject(sql, Integer.class);
+		
+		// 새글인지 답글인지에 따라 달라지는 항목들이 존재한다
+		// [새글] gno를 no로 설정, parent = 0, depth = 0
+		// [답글] gno를 넘어온 값으로 설정, parent는 넘어온 값, depth는 넘어온 값 + 1
+		int gno, parent, depth;
+		if (board.getGno() == 0) {// 새글이면
+			gno = no;
+			parent = 0;
+			depth = 0;
+		} else {// 답글이면
+			gno = board.getGno();
+			parent = board.getParent();
+			depth = board.getDepth() + 1;
+		}
+		
+		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, ?, ?)";
+		Object[] obj = {no, "expected", board.getTitle(), board.getWriter(), board.getDetail(),
+							board.getPw(), gno, parent, depth, product_no, board.getNotice()};
 		jdbcTemplate.update(sql, obj);
 		return no;
 	}

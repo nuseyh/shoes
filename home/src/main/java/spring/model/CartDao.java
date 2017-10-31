@@ -9,7 +9,7 @@ import spring.bean.Cart;
 @Repository
 public interface CartDao {
 	// 1. 장바구니 추가
-    void insert(Cart cart);
+    Cart insert(Cart cart);
 	// 2. 장바구니 목록
     List<Cart> cart_list(String user_id);
 	// 3. 장바구니 삭제
