@@ -217,19 +217,20 @@
 		<header>
 			<div class=" text-right">
 				<ul class="top-menu">
-					<c:choose>
+					<c:choose>    
+					
 						<c:when test="${login}">
 							<li><a
 								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/mypage">MY
 									PAGE</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
-							<%-- 							<c:if test="${admin}"> --%>
-							<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
-							<%-- 							</c:if> --%>
+							<c:if test="${power eq '관리자'}">
+								<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
+							</c:if>
 						</c:when>
 						<c:otherwise>
 							<li><a
@@ -237,7 +238,7 @@
 							<li><a
 								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
 							<li><a
-								href="${pageContext.request.contextPath }/member/cart">CART</a></li>
+								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>

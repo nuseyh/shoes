@@ -21,13 +21,13 @@
 			<tr>
 				<th class="text-left">비밀번호</th>
 				<td><input type="password" id="pw" name="pw"
-					onblur="pwCheck();" value="${mdto.pw}">
+					onblur="pwCheck();" value="">
 					<div class="pw-check"></div></td>
 			</tr>
 			<tr>
 				<th class="text-left">비밀번호 확인</th>
 				<td><input type="password" id="pw_check" name="pw2"
-					onblur="pw2Check();" value="${mdto.pw}">
+					onblur="pw2Check();" value="">
 					<div class="pw-recheck"></div></td>
 			</tr>
 			<tr>
