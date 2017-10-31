@@ -129,6 +129,14 @@ public class BoardDaoImpl implements BoardDao {
 		return jdbcTemplate.queryForObject(sql, obj, Integer.class);
 	}
 
+	//답글이 달릴시 게시글의 답변 유무 변경
+	@Override
+	public void changeState(int parent, String state) {
+		String sql = "update sp_board set state=? where no=?";
+		Object[] obj = {state, parent};
+		jdbcTemplate.update(sql, obj);
+	}
+
 
 	
 

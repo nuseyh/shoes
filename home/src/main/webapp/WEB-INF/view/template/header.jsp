@@ -1,4 +1,3 @@
-<%-- <%@page import="home.model.MemberDAO"%> --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -116,8 +115,6 @@
 	function idCheck() {
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
-		
-		
 
 	}
 
@@ -176,7 +173,7 @@
 		if (!regex.test(email)) {
 			document.querySelector(".email-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		}else if(phone==""){
+		}else if(email==""){
 			document.querySelector(".email-check").innerHTML = "이메일을 입력하세요";
 			return false;
 		}  else {

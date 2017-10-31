@@ -23,6 +23,8 @@ public interface BoardDao {
 	void edit(Board board, String detail, String pw);
 	
 	void plusRead(int no);
+	
+	void changeState(int parent, String state);
 
 	int getBoardCount();
 	int getBoardCount(String type, String key);

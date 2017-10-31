@@ -7,10 +7,10 @@
 .common-table {
 	border-collapse: collapse;
 	border: 1px solid #d7d5d5;
-	/* 	border-left: 0; */
+	border-left: 0;
 	/* 	border-right: 0; */
 	line-height: 1.5;
-	width: 100%;
+	width: 80%;
 	font-size: 13px;
 }
 
@@ -49,10 +49,6 @@
 	margin: 20px 0 50px;
 	text-align: center;
 }
-
-.text-right{
-	text-align:right;
-}
 </style>
 
 <script>
@@ -81,19 +77,19 @@
 	}
 	//replyboard 삭제버튼 클릭시 확인창
 	var rbdeletecheck;
-	var rbno = $
+	/* var rbno = ${rboard.getNo()}; */
+	var rbparent = $
 	{
-		rboard.no
+		board.getNo()
 	};
-	var rbparent = no;
 	function RBdelete_check() {
 		var rbcheck = confirm("정말로 삭제 하시겠습니까?")
 		if (rbcheck) {
 			rbdeletecheck = "true";
-			location.href = 'replydelete?no=' + parent + '&parent=' + no;
+			location.href = 'replydelete?parent=' + rbparent;
 		} else {
 			rbdeletecheck = "false";
-			location.href = 'detail?no=' + no;
+			location.href = 'detail?no=' + rbparent;
 		}
 
 	}
@@ -106,39 +102,42 @@
 <div class="empty-row"></div>
 <div class="area-80 center">
 	<div class="row text-center">게시글 보기</div>
-	<form action="detail">
-		<table class="common-table center">
-			<tbody>
-				<tr>
-					<td>${board.getNo()}</td>
-				</tr>
-				<tr>
-					<td class="font-medium">${board.getTitle()}</td>
-				</tr>
-				<tr>
-					<td height="300" valign="top">${board.getWeb()}</td>
-				</tr>
-				<tr>
-					<td>조회 수 ${board.getRead()} 작성 시간 ${board.getAuto()}</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<th colspan="2" align="center">
-						<!--답글쓰기 시 admin인지 분별 후 admin 일떄만 활성화 , 답글쓰기 클릭시 admin이면 댓글창 생성후 답글작성 -->
-						<%-- <c:when test="${power}">
-								<input class="form-btn" type="button" value="답글쓰기 " onclick="location.href='write?title=${board.getTitle()}&gno=${board.getGno()}'"> 
-							</c:when> --%> <input class="form-btn" type="button" value="수정하기"
-						onclick="location.href='edit?no=${board.getNo()}'"> <input
-						class="form-btn" type="button" onclick="Bdelete_check();"
-						value="삭제하기" onclick="location.href='delete?no=${board.getNo()}'">
-						<input class="form-btn" type="button" value="목록으로"
-						onclick="location.href='list'">
-					</th>
-				</tr>
-			</tfoot>
-		</table>
-	</form>
+	<div class="row">
+		<form action="detail">
+			<table class="common-table center">
+				<tbody>
+					<tr>
+						<td>${board.getNo()}</td>
+					</tr>
+					<tr>
+						<td class="font-medium">${board.getTitle()}</td>
+					</tr>
+					<tr>
+						<td height="300" valign="top">${board.getWeb()}</td>
+					</tr>
+					<tr>
+						<td>조회 수 ${board.getRead()} 작성 시간 ${board.getAuto()}</td>
+					</tr>
+				</tbody>
+				<tfoot>
+					<tr>
+						<th colspan="2" align="right">
+							<!--답글쓰기 시 admin인지 분별 후 admin 일떄만 활성화 , 답글쓰기 클릭시 admin이면 댓글창 생성후 답글작성 -->
+							<%-- <c:when test="${power}">
+                        <input class="form-btn" type="button" value="답글쓰기 " onclick="location.href='write?title=${board.getTitle()}&gno=${board.getGno()}'"> 
+                     </c:when> --%> <input class="form-btn"
+							type="button" value="수정하기"
+							onclick="location.href='edit?no=${board.getNo()}'"> <input
+							class="form-btn" type="button" onclick="Bdelete_check();"
+							value="삭제하기" onclick="location.href='delete?no=${board.getNo()}'">
+							<input class="form-btn" type="button" value="목록으로"
+							onclick="location.href='list'">
+						</th>
+					</tr>
+				</tfoot>
+			</table>
+		</form>
+	</div>
 
 
 	<form id="admin" action="reply" method="post">
@@ -164,7 +163,7 @@
 
 	<c:choose>
 		<c:when test="${relist.size() == 0}">
-			<div class="row">답변 대기중입니다.</div>
+			<div class="row font-medium">답변 대기중입니다.</div>
 		</c:when>
 		<c:otherwise>
 			<div class="row">
@@ -180,7 +179,7 @@
 									<hr> <small>${rboard.reg}</small> <!-- 관리자만이 삭제가능 --> <c:if
 										test="${power eq '관리자'}">
 										<a onclick="RBdelete_check();"
-											href="replydelete?no=${rboard.no}&parent=${rboard.parent}">삭제</a>
+											href="replydelete?no=${rboard.getNo()}&parent=${rboard.getParent()}">삭제</a>
 									</c:if>
 								</td>
 							</tr>

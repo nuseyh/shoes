@@ -24,7 +24,6 @@ public class ReplyBoardDaoImpl implements ReplyBoardDao {
 
 	@Override
 	public void insert(ReplyBoard rboard) {
-		
 		//no, writer, detail, reg, parent
 		String sql = "insert into sp_replyboard values(sp_replyboard_seq.nextval, ?, ?, sysdate, ?)";
 		Object[] obj = {rboard.getWriter(), rboard.getDetail(), rboard.getParent()};
@@ -40,9 +39,16 @@ public class ReplyBoardDaoImpl implements ReplyBoardDao {
 
 	@Override
 	public boolean delete(int no, int parent) {
-		String sql = "delete replyboard where no=? and parent=?";
+		String sql = "delete sp_replyboard where no=? and parent=?";
 		Object[] obj = {no, parent};
 		return jdbcTemplate.update(sql, obj) > 0;
 	}
+	
+	//답글의 no를 얻어온다
+//	@Override
+//	public ReplyBoard getno(int parent) {
+//		String sql = "select * from sp_replyboard where parent=?";
+//		
+//	}
 
 }

@@ -11,7 +11,7 @@
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
 
-	<form action="edit" method="post" class="center" onsubmit="sendCheck();">
+	<form action="edit" method="post" class="center">
 		<table class="join-table">
 			<tr>
 				<th class="text-left">아이디</th>

@@ -11,4 +11,5 @@ public interface ReplyBoardDao {
 	void insert(ReplyBoard rboard);
 	List<ReplyBoard> list(int parent);
 	boolean delete(int no, int parent);
+//	int getno(int parent);
 }
