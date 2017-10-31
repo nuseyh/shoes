@@ -56,7 +56,6 @@
 	text-align:right;
 }
 </style>
-<script src="${pageContext.request.contextPath}/js/jquery-te-1.4.0.js"></script>
 <script>
 	$(document).ready(function() {
 		//에디터로 변경

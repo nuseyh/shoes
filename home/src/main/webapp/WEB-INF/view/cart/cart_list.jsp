@@ -53,24 +53,36 @@
 <div class="page area-90 center">
    <form action="" method="post">
       <table class="common-table center">
-         <tr>
-            <th><input type="checkbox" value=""></th>
-            <th width="30%">이미지</th>
-            <th>상품이름</th>
-            <th>상품가격</th>
-            <th>수량</th>
-            <th>판매가</th>
-            <th>합계</th>
-         </tr>
-         <tr>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-            <th></th>
-         </tr>
+         <thead>
+         	<tr>
+	            <th><input type="checkbox" value=""></th>
+	            <th width="30%">이미지</th>
+	            <th>상품이름</th>
+	            <th>상품가격</th>
+	            <th>수량</th>
+	            <th>판매가</th>
+	            <th>합계</th>
+        	</tr>
+         </thead>
+         <tbody>
+         	<tr>
+	            <c:forEach var="map" items="${map.list}">
+					<tr align="center">
+						<th>
+							<input type=checkbox data-num = "" name = sel><span></span>
+						</th>
+						<th>
+							이미지
+						</th>
+						<th>${clist.}</th>
+						<th></th>
+						<th></th>
+						<th></th>
+						<th></th>	
+					</tr>
+				</c:forEach>
+	         </tr>
+         </tbody>
       </table>
 
       <div>

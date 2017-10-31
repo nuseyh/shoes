@@ -41,6 +41,8 @@ img {
 }
 </style>
 <script>
+	
+
    $(document).ready(function(){
        $("#review").on("click", function(){
            if($("#writeform").css("display") == "none"){   
@@ -49,7 +51,15 @@ img {
                jQuery('#writeform').hide();  
            }  
        });
-   });
+   });  
+
+   $(document ).ready(function(){
+		$("#cart").on("click", function(){
+			$("#frm").submit();
+			
+		});
+		
+	});
 </script>
 
 
@@ -76,7 +86,8 @@ img {
                </tr>
                <tr>
                   <th>사이즈</th>
-                  <td><select name="i_size">
+                  <td>
+                  	<select name="i_size">
                         <option>-[필수]사이즈를 선택해 주세요-</option>
                         <option value="210">210</option>
                         <option value="220">220</option>
@@ -84,15 +95,28 @@ img {
                         <option value="240">240</option>
                         <option value="250">250</option>
                         <option value="260">260</option>
-                  </select></td>
+                  	</select>
+                  </td>
                </tr>
                <tr>
                   <th>수량</th>
-                  <td><input type="number" value="1"></td>
+                 <!--  <td><input id="amount" type="text" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'></td> -->
+               	<td>
+                 	 <form id="frm" method="post" action="${pageContext.request.contextPath}/cart/cart_add">
+                       		<input type="hidden" name="product_no" value="${product.i_num}">
+                       		<input type="hidden" name="user_id" value="${id}">
+                    		<select name="amount">
+                     			<c:forEach begin="1" end="${product.i_leftnum}" var="i">
+                    				<option value="${i}">${i}</option>
+                     			</c:forEach>
+                     		</select>
+                     </form>
+                 </td>
+                 
                </tr>
                <tr>
                   <td><input onclick="location.href='${pageContext.request.contextPath}/cart/cart_list'" type="button" value="구매하기"></td>
-                  <td><input onclick="location.href='${pageContext.request.contextPath}/cart/cart_list'" type="button" value="장바구니"></td>
+                  <td><input id="cart" type="button" value="장바구니에 담기"></td>
                <tr>
             </tbody>
          </table>
@@ -142,7 +166,7 @@ img {
 <table class="board-font join-table">
              <tr>
                  <td>작성자</td>
-                 <td colspan="4">sdaf</td>
+                 <td colspan="4"></td>
                  <td>작성일</td>
              </tr>
              <tr>
