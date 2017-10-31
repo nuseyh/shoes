@@ -119,7 +119,8 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		boolean result = memberDao.login(m);
 		m = memberDao.profile(m.getId());
-		
+		String pw = sec.encodingPw(m.getPw());
+		m.setPw(pw);
 		if (!result) {
 
 			model.addAttribute("false");

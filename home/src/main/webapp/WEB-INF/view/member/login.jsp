@@ -69,6 +69,7 @@
 </script>
 <div class="page area-60 center">
 	<div class="area-60 center">
+			<div class="em pty-row"></div>
 		<div>
 			<strong>login</strong>
 			<hr>
@@ -97,6 +98,7 @@
 						href="join">회원가입</a>
 					<hr>
 				</div>
+				<div class="empty-row"></div>
 		</form>
 
 	</div>

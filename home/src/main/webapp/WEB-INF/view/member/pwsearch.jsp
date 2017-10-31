@@ -3,8 +3,7 @@
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
 <form action="pwsearch" class="center text-center" method="post">
-
-	<strong algin="center">비밀번호 찾기</strong>
+	<div class="empty-row"></div>
 	<div class="center area-70">
 		<div class="center area-40">
 			<div class="searchId  center">
@@ -16,7 +15,7 @@
 				</div>
 			</div>
 			<div class="searchId">
-			
+
 				<div class="center">
 					<strong>이메일</strong>
 				</div>
@@ -30,7 +29,7 @@
 			</div>
 		</div>
 	</div>
+	<div class="empty-row"></div>
 </form>
-</div>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

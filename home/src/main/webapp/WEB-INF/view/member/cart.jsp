@@ -50,11 +50,50 @@
 }
 </style>
 
+<script>
+	window.onload = function() {
+		var all = document.querySelector("#all");
+		all.addEventListener("click", function() {
+			//console.log(this.checked);
+			var list = document
+					.querySelectorAll("input[type=checkbox]:not(#all)");
+			for (var i = 0; i < list.length; i++) {
+				list[i].checked = this.checked;
+			}
+
+			var del = documnet.querySelector("#del");
+			del.addEventListener("click", function() {
+				var chk = document.getElementsByName("#del");
+				var data = "";
+				var chk_check = false;
+
+				for (i = 0; i < chk.length; i++) {
+					if (chk[i].checked == true) {
+						data = data + "," + chk[i].value;
+						if (chk[i].checked)
+							chk_check = true;
+					}
+				}
+				if (chk_check) {
+					if (confirm("삭제진짜로할까요?")) {
+						alert("넘어가는 값:" + data);
+
+						document.formName.action = "itemremove"
+					} else {
+						alert("아무것도 선택 되지않았습니다");
+					}
+				}
+			})
+		});
+	};
+</script>
+
 <div class="page area-90 center">
 	<form action="" method="post">
+		<div class="empty-row"></div>
 		<table class="common-table center">
 			<tr>
-				<th><input type="checkbox" value=""></th>
+				<th><input type="checkbox" id="all"></th>
 				<th width="30%">이미지</th>
 				<th>상품정보</th>
 				<th>수량</th>
@@ -74,7 +113,8 @@
 			<div class="join-button">
 				<input type="submit" value="주문하기">
 			</div>
-		</div> 
+		</div>
+		<div class="empty-row"></div>
 	</form>
 </div>
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
