@@ -10,14 +10,16 @@ import spring.bean.Product;
 
 @Repository
 public interface AdminDao {
-	// 관리자 기능
-	List<Member> list();
-	public List<Member> search(String key);
-	
-	boolean delete(String check2);
-	
-	//상품메뉴
-	void insert(Product product);
-	List<Product> plist();
-	Product get(String savename);
+   // 관리자 기능
+   List<Member> list();
+   public List<Member> search(String key);
+   boolean delete(String check2);
+   
+   //상품메뉴
+   void insert(Product product);
+   List<Product> plist();
+   Product get(String savename);
+   boolean remove(String check2);
+   Product itemedit(int no);
+   boolean itemedit2(Product p);
 }

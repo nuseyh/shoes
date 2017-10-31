@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
+<div class="empty-row"></div>
 	<div align="center">
         <table border="1" class="mypage">
             <tr>
@@ -12,4 +13,5 @@
 
         </table>
     </div>
+    <div class="empty-row"></div>
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

@@ -29,6 +29,7 @@ ul {
 header {
 	width: 1300px;
 	/* 	max-height: 130px; */
+	max-height: 220px;
 	text-align: center;
 	order: 1;
 	position: relative;
@@ -422,7 +423,6 @@ button {
 	color: #722A1B;
 	text-transform: uppercase;
 	float: right;
-	margin: 5px 0;
 	font-weight: bold;
 	cursor: pointer;
 }
@@ -442,7 +442,7 @@ span {
 }
 
 /* top menu */
-.topmenu a{
-	font-size:10px;
+.topmenu a {
+	font-size: 10px;
 }
 }

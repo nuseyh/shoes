@@ -9,7 +9,7 @@ img {
 }
 
 .detail_img {
-   width: 300px;
+   width: 400px;
    height: 300px;
 }
 
@@ -22,6 +22,7 @@ img {
    height: 300px;
    border-top: 2px solid #333;
    padding: 15px;
+   margin-left:10px;
 }
 
 .detail_table th {
@@ -53,11 +54,12 @@ img {
 
 
 <div class="area-80 center">
-   <div class="detail">
+<div class="empty-row"></div>
+   <div class="detail center">
       <div class="detail_img">
         <a href="itemedit?no=${product.i_num}"><img id="cb" src="${pageContext.request.contextPath}/file/${product.savename}"></a>
       </div>
-      <div class="center">
+      <div>
          <table class="detail_table center">
             <tbody>
                <tr>
@@ -97,7 +99,6 @@ img {
       </div>
    </div>
    <div>${product.i_detail}</div>
-</div>
 </div>
 <div class="area-60 center align-center"><img src="img/56456.jpg"></div>
 <div>

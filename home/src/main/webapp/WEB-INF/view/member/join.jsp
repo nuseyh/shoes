@@ -9,8 +9,7 @@
 <div class="page center">
 	<div class="empty-row"></div>
 
-	<form action="join" method="post" class="center"
-		onsubmit="sendCheck();">
+	<form action="join" method="post" class="center" onsubmit="sendCheck();">
 		<table class="join-table">
 			<tr>
 				<th class="text-left">아이디</th>
@@ -57,8 +56,7 @@
 			</tr>
 		</table>
 		<div class="join-button">
-			<input type="submit" value="회원가입"> <input type="button"
-				id=reset value="취소">
+			<input type="submit" value="회원가입"> <input type="button" id=reset value="취소">
 		</div>
 		<div class="empty-row"></div>
 	</form>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
@@ -22,9 +22,9 @@
 	height: 28px;
 }
 
-.common-table img{
-	width:100%;
-	height:100%;
+.common-table img {
+	width: 100%;
+	height: 100%;
 }
 
 .common-table th {
@@ -57,8 +57,8 @@
 	text-align: center;
 }
 
-.img-table{
-	width:150px;
+.img-table {
+	width: 150px;
 	height: 150px;
 }
 </style>
@@ -83,43 +83,58 @@
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
+	
+	window.onload = function() {
+		var all = document.querySelector("#all");
+		all.addEventListener("click", function() {
+			//console.log(this.checked);
+			var list = document
+					.querySelectorAll("input[type=checkbox]:not(#all)");
+			for (var i = 0; i < list.length; i++) {
+				list[i].checked = this.checked;
+			}
+		});
+	}
+
 </script>
 
 <div class="user-list">
-   <form action="list" method="post">
+	<form action="list" method="post">
 
-      <table class="common-table">
-         <caption>Item List</caption>
-         <tr>
-            <td scope="col"><input type=checkbox id=all></td>
-            <td scope="col">상품 번호</td>
-            <td scope="col">이미지</td>
-            <td scope="col">아이템 이름</td>
-            <td scope="col">아이템 가격</td>
-            <td scope="col">설명</td>
-            <td scope="col">아이템 유형</td>
+		<table class="common-table">
+			<caption>Item List</caption>
+			<tr>
+				<td scope="col"><input type="checkbox" id="all"></td>
+				<td scope="col">상품 번호</td>
+				<td scope="col">이미지</td>
+				<td scope="col">아이템 이름</td>
+				<td scope="col">아이템 가격</td>
+				<td scope="col">설명</td>
+				<td scope="col">아이템 유형</td>
 
-         </tr>
-         <c:forEach var="product" items="${plist}">
-            <tr id="move">
-               <td scope="row"><input name="check" type="checkbox"
-                  value="${product.i_name }"><span></span></td>
-                  
-               <td scope="row"><a href="itemedit?no=${product.i_num}">${product.i_num}</a></td>
-               <td class="img-table"><a href="itemedit?no=${product.i_num}"><img id="cb" src="${pageContext.request.contextPath}/file/${product.savename}">
-               </a></td>
-               <td>${product.i_name}</td>
-               <td>${product.i_price }</td>
-               <td>${product.i_detail}</td>
-               <td>${product.i_type}</td>
-            </tr>
-         </c:forEach>
-      </table>
-      <div class="join-button">
-         <input type="button" value=등록 onclick="location.href='itemadd';">
-         <input type="submit" value=삭제>
-      </div>
-   </form>
+			</tr>
+			<c:forEach var="product" items="${plist}">
+				<tr id="move">
+					<td scope="row"><input name="check" type="checkbox"
+						value="${product.i_name}"><span></span></td>
+
+					<td scope="row"><a href="itemedit?no=${product.i_num}">${product.i_num}</a></td>
+					<td class="img-table"><a href="itemedit?no=${product.i_num}"><img
+							id="cb"
+							src="${pageContext.request.contextPath}/file/${product.savename}">
+					</a></td>
+					<td>${product.i_name}</td>
+					<td>${product.i_price }</td>
+					<td>${product.i_detail}</td>
+					<td>${product.i_type}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="join-button">
+			<input type="button" value=등록 onclick="location.href='itemadd';">
+			<input type="submit" value=삭제>
+		</div>
+	</form>
 </div>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

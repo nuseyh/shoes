@@ -166,7 +166,7 @@ public class ItemBoardController {
 		@RequestMapping("/remove")
 		public String remove() {
 
-			return "imageboard/remove";
+			return "admin/remove";
 		}
 
 		@RequestMapping(value = "/list", method = RequestMethod.POST)
@@ -179,7 +179,7 @@ public class ItemBoardController {
 				System.out.println(check2);
 				itemBoardDao.remove(check2);
 			}
-			return "imageboard/list2";
+			return "admin/list2";
 		}
 		
 }
