@@ -233,6 +233,7 @@
 							</c:if>
 						</c:when>
 						<c:otherwise>
+						
 							<li><a
 								href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a
