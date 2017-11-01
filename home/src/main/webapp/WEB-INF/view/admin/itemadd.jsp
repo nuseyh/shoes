@@ -86,8 +86,7 @@
 					type="text" id="imgInp" name="savename"></td>
 			</tr>
 			<tr>
-				<td colspan="2"><img id="blah"
-					src="${ pageContext.request.contextPath}/upload/${product.savename }"
+				<td colspan="2"><img id="blah" src="${pageContext.request.contextPath}/upload/${product.savename}"
 					alt="사진을 등록하십시오"> <%-- 					<a href="${pageContext.request.contextPath}/upload/${product.savename}"></a> --%>
 					<%-- 				<img id = "blah" src="${ pageContext.request.contextPath}/file/${product.savename }" alt="${ pageContext.request.contextPath}/upload/${product.savename }"> --%>
 					<%-- 					<a href="${pageContext.request.contextPath}/file/${product.savename}"></a> --%>
@@ -161,7 +160,7 @@
 		</div>
 	</form>
 	<div class="empty-row"></div>
-	s
+
 </div>
 
 
