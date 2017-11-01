@@ -9,12 +9,18 @@ public class Cart {
 	private int cart_no;
 	private String user_id;
 	private int product_no;
+	private String product_name;
+	private int product_price;
+	private int count;
 	private int amount;
 	
 	public Cart(ResultSet rs) throws SQLException{
 		setCart_no(rs.getInt("cart_no"));
 		setUser_id(rs.getString("user_id"));
 		setProduct_no(rs.getInt("product_no"));
+		setProduct_name(rs.getString("product_name"));
+		setProduct_price(rs.getInt("product_price"));
+		setCount(rs.getInt("count"));
 		setAmount(rs.getInt("amount"));
 	}
 	public Cart(HttpServletRequest request) {
@@ -23,14 +29,43 @@ public class Cart {
 		setUser_id(request.getParameter("user_id"));
 		String product_no = request.getParameter("product_no");
 		setProduct_no(product_no==null?0:Integer.parseInt(product_no));
+		
+		setProduct_name(request.getParameter("product_name"));
+		
+		String product_price = request.getParameter("product_price");
+		setProduct_price(product_price==null?0:Integer.parseInt(product_price));
+		
+		String count = request.getParameter("count");
+		setCount(count==null?0:Integer.parseInt(count));
 		String amount = request.getParameter("amount");
 		setAmount(amount==null?0:Integer.parseInt(amount));
 	}
 
-	public Cart(int cart_no, String user_id, int product_no, int amount) {
+	
+	
+	
+	public Cart(int cart_no, String user_id, int product_no, String product_name, int product_price, int count,
+			int amount) {
 		super();
 	}
-	
+	public String getProduct_name() {
+		return product_name;
+	}
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+	public int getProduct_price() {
+		return product_price;
+	}
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
+	}
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
 	public int getCart_no() {
 		return cart_no;
 	}
@@ -57,8 +92,8 @@ public class Cart {
 	}
 	@Override
 	public String toString() {
-		return "Cart [cart_no=" + cart_no + ", user_id=" + user_id + ", product_no=" + product_no + ", amount=" + amount
-				+ "]";
+		return "Cart [cart_no=" + cart_no + ", user_id=" + user_id + ", product_no=" + product_no + ", product_name="
+				+ product_name + ", product_price=" + product_price + ", count=" + count + ", amount=" + amount + "]";
 	}
 	
 	

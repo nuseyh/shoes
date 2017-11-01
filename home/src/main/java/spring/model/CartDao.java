@@ -19,7 +19,10 @@ public interface CartDao {
 	// 5. 장바구니 금액 합계
     int total(String user_id);
 	// 6. 장바구니 상품 확인	detail?
-    int cart_count(int product_no, String user_id);
+    boolean cart_count(int product_no, String user_id);
 	// 7. 장바구니 상품 수량 변경
     void cart_update(Cart cart);
+
+    //장바구니 하나의 모든 정보를 불러온다
+    
 }

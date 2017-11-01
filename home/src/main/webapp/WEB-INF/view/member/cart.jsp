@@ -298,6 +298,44 @@
 }
 </style>
 
+<script>
+	window.onload = function() {
+		var all = document.querySelector("#all");
+		all.addEventListener("click", function() {
+			//console.log(this.checked);
+			var list = document
+					.querySelectorAll("input[type=checkbox]:not(#all)");
+			for (var i = 0; i < list.length; i++) {
+				list[i].checked = this.checked;
+			}
+
+			var del = documnet.querySelector("#del");
+			del.addEventListener("click", function() {
+				var chk = document.getElementsByName("#del");
+				var data = "";
+				var chk_check = false;
+
+				for (i = 0; i < chk.length; i++) {
+					if (chk[i].checked == true) {
+						data = data + "," + chk[i].value;
+						if (chk[i].checked)
+							chk_check = true;
+					}
+				}
+				if (chk_check) {
+					if (confirm("삭제진짜로할까요?")) {
+						alert("넘어가는 값:" + data);
+
+						document.formName.action = "itemremove"
+					} else {
+						alert("아무것도 선택 되지않았습니다");
+					}
+				}
+			})
+		});
+	};
+</script>
+
 <div class="page area-80 center">
    <form action="" method="post">
       <div id="store_cart center">
@@ -307,11 +345,17 @@
             <li class="cart_head_options">수량</li>
             <li class="cart_head_price">판매가</li>
          </ul>
-
+		<div>
+			<div>전체 합계:</div>
+			<div class="join-button">
+				<input type="submit" value="주문하기">
+			</div>
+		</div>
+	</div>
+		<div class="empty-row"></div>
+	</form>
          <ul class="cart_item">
-
-            <li class="cart_img_col"><img
-               src="https://i.imgur.com/6SFageC.jpg"></li>
+            <li class="cart_img_col"><img src="https://i.imgur.com/6SFageC.jpg"></li>
 
             <li class="cart_product_col">
                <p>Off-Road</p> <span><strong>Size: </strong>XL</span>
@@ -332,6 +376,5 @@
       <div class="join-button">
          <input type="submit" value="주문하기">
       </div>
-   </form>
-</div>
+      
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
