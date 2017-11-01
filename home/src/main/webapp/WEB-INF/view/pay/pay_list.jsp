@@ -42,8 +42,8 @@
 			</tr>
 		</table>
 		<div class="join-button">
-			<input type="button" value="결제하기" onclick="pay();"> <input
-				type="button" id=reset value="취소">
+			<input type="button" value="결제하기" onclick="pay();"> 
+			<input type="button" id=reset value="취소">
 		</div>
 	</form>
 </div>

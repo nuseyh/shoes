@@ -59,6 +59,10 @@
 	display: inline-block;
 }
 
+.top-menu li a{
+	font-size: 13px;
+}
+
 .logos {
 	position: relative;
 	display: inline-block;
@@ -270,13 +274,9 @@
 					<c:choose>
 
 						<c:when test="${login}">
-							<li><a
-								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/member/mypage">MY
-									PAGE</a></li>
+							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
+							<li><a href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+							<li><a href="${pageContext.request.contextPath }/member/mypage">MYPAGE</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 							<c:if test="${power eq '관리자'}">
 								<li><a
