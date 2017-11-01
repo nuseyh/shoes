@@ -13,7 +13,7 @@
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
 
-	<form action="order" method="post" class="center">
+	<form action="#" method="post" class="center">
 		<table class="join-table">
 			<tr>
 				<th class="text-left">이름</th>
