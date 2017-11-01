@@ -11,6 +11,8 @@
 	<mvc:resources location="/resource/css/" mapping="/css/**" />
 	<mvc:resources location="/resource/img/" mapping="/img/**" />
 	<mvc:resources location="/resource/js/" mapping="/js/**" />
+	
+	<mvc:resources location="/S.E/" mapping="/S.E/**"/>
 
 	<mvc:resources location="/upload/" mapping="/file/**"/>
 

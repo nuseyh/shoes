@@ -103,5 +103,10 @@ public class Cart {
 		String patternPrice = form.format(product_price);
 		return patternPrice;
 	}
+	public String getPattern_amount() {
+		Format form = new DecimalFormat("#,###");
+		String patternAmount = form.format(amount);
+		return patternAmount;
+	}
 	
 }

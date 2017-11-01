@@ -4,16 +4,42 @@
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
-<link rel="">
 <script src="${pageContext.request.contextPath}/js/jquery-te-1.4.0.js"></script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath }/S.E/js/service/HuskyEZCreator.js" charset="utf-8"></script>
 <script>
-	$(document).ready(function() {
-		//에디터로 변경
-		$("#editor").jqte({
-			b : false
-		});
-	});
+	 $(document).ready(function(){
+         var oEditors = [];
+         nhn.husky.EZCreator.createInIFrame({
+             oAppRef: oEditors,
+             elPlaceHolder: "editor",
+             sSkinURI: "${pageContext.request.contextPath}/S.E/SmartEditor2Skin.html",
+             fCreator: "createSEditor2"
+         });
+         $("#save_btn").click(function(){
+        	 if(validation()){
+        		 oEditors[0].exec("UPDATE_CONTENTS_FIELD", [])
+        		 $("form").attr('action', '${pageContext.request.contextPath }/board/writ').submit()
+        	 }
+        	 function validation() {
+            	 var contents = $.trim(oEditors[0].getContents())
+            	 if(contents === '<p>&nbsp<p>' || contents === '') {
+            		 alert("내용을 입력하세요")
+            		 $("#editor").focus()
+            		 return false
+            	 }
+            	 return true
+             }
+         })
+         $("#cancle_btn").click(function(){
+        	 history.back()
+         })
+     })
+	
 </script>
+
+
+
 
 <script type="text/javascript">
 	function showSub(obj) {
@@ -63,7 +89,7 @@
 	<div class="empty-row"></div>
 	<div class="empty-row"></div>
 	<strong>QnA</strong>
-	<form id="frm" action="write" method="post" class="center" name="select_notice">
+	<form action="write" method="post" class="center" name="select_notice">
 		<c:if test="${not empty title}">
 			<input type="hidden" name="gno" value="${gno}">
 			<input type="hidden" name="parent" value="${parent}">
@@ -79,9 +105,9 @@
 				<td>
 					<select name="notice" class="form-select" onChange="showSub(this.options[this.selectedIndex].text);">
 						<option value="Q" selected>문의</option>
-						<option value="후기">후기</option>
+						<option value="review">후기</option>
 						<c:if test="${power eq '관리자'}">
-							<option value="공지">공지</option>
+							<option value="notice">공지</option>
 						</c:if>
 					</select>
 					<select id="title1"name="title" class="form-select">
@@ -106,7 +132,8 @@
 			</tr>
 		</table>
 		<div class="join-button">
-			<input id="save" class="form-btn" type="submit" value="등록하기"> 
+			<input id="save_btn" class="form-btn" type="submit" value="등록하기"> 
+			<input id="cancle_btn" type="button" value="취소">
 			<input onclick="location.href='list';" class="form-btn" type="button" value="목록으로">
 		</div>
 	</form>

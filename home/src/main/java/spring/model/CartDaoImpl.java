@@ -27,20 +27,20 @@ public class CartDaoImpl implements CartDao{
 		
 		//등록하려는 상품이 이미 있는지 검사후 있으면 수량 변경, 없으면 등록
 		boolean result = cart_count(cart.getProduct_no(), cart.getUser_id());
-//		System.out.println("같은 상품 잇냐? "+ result);
 		
-//		if(result) {
-//			cart_update(cart);
-//		}else {
+		if(result) {
+			cart_update(cart);
+		}else {
 			sql = "insert into cart values(?, ?, ?, ?, ?, ?, ?)";
 			Object[] obj = {no, cart.getUser_id(), cart.getProduct_no(), cart.getProduct_name(), cart.getProduct_price(), cart.getCount(), cart.getProduct_price()*cart.getCount()};
 			jdbcTemplate.update(sql, obj);
-//		}
+		}
 	}
+	
 	//장바구니 목록
 	@Override
 	public List<Cart> cart_list(String user_id) {
-		String sql = "select * from cart where user_id=?";
+		String sql = "select * from cart where user_id=? order by cart_no desc";
 		Object[] obj = {user_id};
 		return jdbcTemplate.query(sql, obj, mapper);
 	}
@@ -72,13 +72,13 @@ public class CartDaoImpl implements CartDao{
 	public boolean cart_count(int product_no, String user_id) {
 		String sql = "select * from cart where product_no=? and user_id=?";
 		Object[] obj = {product_no, user_id};
-		return jdbcTemplate.query(sql, obj, mapper) != null;
+		return jdbcTemplate.query(sql, obj, mapper).size() <= 1;
 	}
 	//같은 상품 있을시 수량 변경
 	@Override
 	public void cart_update(Cart cart) {
-		String sql ="update cart set amount=? where user_id=? and product_no=? and cart_no=?";
-		Object[] obj = {cart.getAmount(), cart.getUser_id(), cart.getProduct_no(), cart.getCart_no()};
+		String sql ="update cart set count=count+?, amount=?*?+amount where user_id=? and product_no=? and cart_no=?";
+		Object[] obj = {cart.getCount(), cart.getProduct_price(), cart.getCount(), cart.getUser_id(), cart.getProduct_no(), cart.getCart_no()};
 		jdbcTemplate.update(sql, obj);
 	}
 

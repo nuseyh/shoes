@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
-
 <style>
 .common-table {
    border-collapse: collapse;
@@ -76,7 +75,7 @@
 						<th>${cart.product_name}</th>
 						<th>${cart.count} 개</th>
 						<th>${cart.pattern_price} 원</th>
-						<th>${cart.amount} 원</th>	
+						<th>${cart.pattern_amount} 원</th>	
 					</tr>
 				</c:forEach>
 	         </tr>
@@ -84,7 +83,11 @@
       </table>
 
       <div>
-         <div>배송비: ${fee}원, 상품 합계: ${total}원, 총 합계: ${total + fee}원</div>
+         <div>
+         	배송비: <fmt:formatNumber value="${fee}" pattern="#,###.##"/>원,  
+       	 	상품 합계: <fmt:formatNumber value="${total}" pattern="#,###.##"/>원,  
+       	  	총 합계: <fmt:formatNumber value="${total+fee}" pattern="#,###.##"/> 원
+         </div> 
          <div class="join-button">
             <input type="submit" value="주문하기">
          </div>
