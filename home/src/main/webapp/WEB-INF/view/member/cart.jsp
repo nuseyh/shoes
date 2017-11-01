@@ -298,7 +298,6 @@
 }
 </style>
 
-<<<<<<< HEAD
 <script>
 	window.onload = function() {
 		var all = document.querySelector("#all");
@@ -337,26 +336,6 @@
 	};
 </script>
 
-<div class="page area-90 center">
-	<form action="" method="post">
-		<div class="empty-row"></div>
-		<table class="common-table center">
-			<tr>
-				<th><input type="checkbox" id="all"></th>
-				<th width="30%">이미지</th>
-				<th>상품정보</th>
-				<th>수량</th>
-				<th>판매가</th>
-			</tr>
-			<tr>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-				<th></th>
-			</tr>
-		</table>
-=======
 <div class="page area-80 center">
    <form action="" method="post">
       <div id="store_cart center">
@@ -366,22 +345,17 @@
             <li class="cart_head_options">수량</li>
             <li class="cart_head_price">판매가</li>
          </ul>
->>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
-
-<<<<<<< HEAD
 		<div>
 			<div>전체 합계:</div>
 			<div class="join-button">
 				<input type="submit" value="주문하기">
 			</div>
 		</div>
+	</div>
 		<div class="empty-row"></div>
 	</form>
-=======
          <ul class="cart_item">
-
-            <li class="cart_img_col"><img
-               src="https://i.imgur.com/6SFageC.jpg"></li>
+            <li class="cart_img_col"><img src="https://i.imgur.com/6SFageC.jpg"></li>
 
             <li class="cart_product_col">
                <p>Off-Road</p> <span><strong>Size: </strong>XL</span>
@@ -402,7 +376,5 @@
       <div class="join-button">
          <input type="submit" value="주문하기">
       </div>
-   </form>
->>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
-</div>
+      
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>
