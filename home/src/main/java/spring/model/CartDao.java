@@ -9,7 +9,7 @@ import spring.bean.Cart;
 @Repository
 public interface CartDao {
 	// 1. 장바구니 추가
-    Cart insert(Cart cart);
+    void insert(Cart cart);
 	// 2. 장바구니 목록
     List<Cart> cart_list(String user_id);
 	// 3. 장바구니 삭제
@@ -22,4 +22,7 @@ public interface CartDao {
     boolean cart_count(int product_no, String user_id);
 	// 7. 장바구니 상품 수량 변경
     void cart_update(Cart cart);
+
+    //장바구니 하나의 모든 정보를 불러온다
+    
 }

@@ -51,34 +51,32 @@
 </style>
 
 <div class="page area-90 center">
-   <form action="" method="post">
+   <form action="#" method="post">
       <table class="common-table center">
          <thead>
          	<tr>
 	            <th><input type="checkbox" value=""></th>
 	            <th width="30%">이미지</th>
 	            <th>상품이름</th>
-	            <th>상품가격</th>
 	            <th>수량</th>
-	            <th>판매가</th>
+	            <th>상품가격</th>
 	            <th>합계</th>
         	</tr>
          </thead>
          <tbody>
          	<tr>
-	            <c:forEach var="map" items="${map.list}">
+	            <c:forEach var="cart" items="${clist}">
 					<tr align="center">
 						<th>
 							<input type=checkbox data-num = "" name = sel><span></span>
 						</th>
 						<th>
-							이미지
+							<p><img src="${pageContext.request.contextPath}/file/${cart.product_name}"></p>
 						</th>
-						<th>${clist.}</th>
-						<th></th>
-						<th></th>
-						<th></th>
-						<th></th>	
+						<th>${cart.product_name}</th>
+						<th>${cart.count} 개</th>
+						<th>${cart.pattern_price} 원</th>
+						<th>${cart.amount} 원</th>	
 					</tr>
 				</c:forEach>
 	         </tr>
@@ -86,7 +84,7 @@
       </table>
 
       <div>
-         <div>전체 합계:</div>
+         <div>배송비: ${fee}원, 상품 합계: ${total}원, 총 합계: ${total + fee}원</div>
          <div class="join-button">
             <input type="submit" value="주문하기">
          </div>

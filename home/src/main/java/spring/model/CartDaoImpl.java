@@ -14,25 +14,28 @@ public class CartDaoImpl implements CartDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+	
 	private RowMapper<Cart> mapper = (rs, index) -> {
 		return new Cart(rs);
 	};
 	
 	//장바구니 추가
 	@Override
-	public Cart insert(Cart cart) {
+	public void insert(Cart cart) {
 		String sql = "select cart_seq.nextval from dual";
 		int no = jdbcTemplate.queryForObject(sql, Integer.class);
 		
 		//등록하려는 상품이 이미 있는지 검사후 있으면 수량 변경, 없으면 등록
 		boolean result = cart_count(cart.getProduct_no(), cart.getUser_id());
-		if(result) {
-			cart_update(cart);
-		}else {
-			sql = "insert into cart values(?, ?, ?, ?)";
-			Object[] obj = {no, cart.getUser_id(), cart.getProduct_no(), cart.getAmount()};
-		}
-		return cart;
+//		System.out.println("같은 상품 잇냐? "+ result);
+		
+//		if(result) {
+//			cart_update(cart);
+//		}else {
+			sql = "insert into cart values(?, ?, ?, ?, ?, ?, ?)";
+			Object[] obj = {no, cart.getUser_id(), cart.getProduct_no(), cart.getProduct_name(), cart.getProduct_price(), cart.getCount(), cart.getProduct_price()*cart.getCount()};
+			jdbcTemplate.update(sql, obj);
+//		}
 	}
 	//장바구니 목록
 	@Override
@@ -58,8 +61,8 @@ public class CartDaoImpl implements CartDao{
 	//장바구니 금액 합계
 	@Override
 	public int total(String user_id) {
-//		String sql = "select sum() from cart where user_id=?";
-		return 0;
+		String sql = "select sum(amount) from cart where user_id='"+user_id+"'";
+		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 	
 	
