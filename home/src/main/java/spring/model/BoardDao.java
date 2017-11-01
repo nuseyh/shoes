@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Board;
+import spring.bean.Member;
 
 @Repository
 public interface BoardDao {
@@ -29,5 +30,5 @@ public interface BoardDao {
 	int getBoardCount();
 	int getBoardCount(String type, String key);
 
-
+	List<Board> profile(String id);
 }

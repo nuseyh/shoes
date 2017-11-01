@@ -7,7 +7,7 @@
             <tr>
                 <td><a href="#">주문내역 조회</a></td>
                 <td><a href="${pageContext.request.contextPath }/member/profile">회원 정보</a></td>
-                <td><a href="#">1:1 문의</a></td>
+                <td><a href="${pageContext.request.contextPath }/board/myqa">나의 문의내역</a></td>
         
             </tr>
 

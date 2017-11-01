@@ -3,6 +3,7 @@ package spring.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -200,5 +201,21 @@ public class BoardController {
 		rbdao.delete(no, parent);
 		return "redirect:detail?no="+parent;
 	}
+	
+	@RequestMapping("/myqa")
+	public String myqa(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("id");
+		List<Board> list = bdao.profile(id);
+		model.addAttribute("list", list);
+		
+		
+		return "board/myqa";
+	}
+//	
+//	@RequestMapping("/myqa")
+//	public String myqa() {
+//		return "board/myqa";
+//	}
+	
 	
 }

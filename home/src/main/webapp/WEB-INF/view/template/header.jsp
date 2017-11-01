@@ -298,7 +298,7 @@
 			</div>
 			<div class="logos center">
 
-				<a href="${pageContext.request.contextPath }/home" class="logo">
+				<a href="${pageContext.request.contextPath }" class="logo">
 					<img src="${pageContext.request.contextPath }/img/logo.jpg" />
 				</a>
 

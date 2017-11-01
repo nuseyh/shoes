@@ -47,7 +47,7 @@ public class BoardDaoImpl implements BoardDao {
 			depth = board.getDepth() + 1;
 		}
 
-		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, ?)";
+		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, 0, ?)";
 		Object[] obj = {no, "expected", board.getTitle(), board.getWriter(), board.getDetail(),
 							board.getPw(), gno, parent, depth, board.getNotice()};
 		jdbcTemplate.update(sql, obj);
@@ -136,6 +136,17 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] obj = {state, parent};
 		jdbcTemplate.update(sql, obj);
 	}
+
+
+	@Override
+	public List<Board> profile(String id) {
+		
+		String sql = "select * from sp_board where writer=?";
+		Object[] args = {id};
+		return jdbcTemplate.query(sql, args, mapper);
+		
+	}
+
 
 
 	
