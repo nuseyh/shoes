@@ -56,13 +56,39 @@
 	text-align:right;
 }
 </style>
+<<<<<<< HEAD
+=======
+<script type="text/javascript" src="${pageContext.request.contextPath }/S.E/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+>>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
 <script>
-	$(document).ready(function() {
-		//에디터로 변경
-		$("#editor").jqte({
-			b : false
-		});
-	});
+	 $(document).ready(function(){
+         var oEditors = [];
+         nhn.husky.EZCreator.createInIFrame({
+             oAppRef: oEditors,
+             elPlaceHolder: "editor",
+             sSkinURI: "${pageContext.request.contextPath}/S.E/SmartEditor2Skin.html",
+             fCreator: "createSEditor2"
+         });
+         $("#save_btn").click(function(){
+        	 if(validation()){
+        		 oEditors[0].exec("UPDATE_CONTENTS_FIELD", [])
+        		 $("form").attr('action', '${pageContext.request.contextPath }/board/writ').submit()
+        	 }
+        	 function validation() {
+            	 var contents = $.trim(oEditors[0].getContents())
+            	 if(contents === '<p>&nbsp<p>' || contents === '') {
+            		 alert("내용을 입력하세요")
+            		 $("#editor").focus()
+            		 return false
+            	 }
+            	 return true
+             }
+         })
+         $("#cancle_btn").click(function(){
+        	 history.back()
+         })
+     })
+	
 </script>
 
 <div class="empty-row"></div>
@@ -97,7 +123,8 @@
 
 			</table>
 			<div class="join-button">
-				<input class="form-btn" type="submit" value="수정하기">
+				<input id="save_btn" class="form-btn" type="submit" value="수정하기">
+				<input id="cancle_btn" type="button" value="취소">
 				<input class="form-btn" type="button" value="목록으로" onclick="location.href='list'">
 			</div>
 		</form>

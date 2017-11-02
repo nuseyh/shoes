@@ -7,7 +7,7 @@
 	border-collapse: collapse;
 	border: 1px solid #d7d5d5;
 	border-left: 0;
-/* 	border-right: 0; */
+	/* 	border-right: 0; */
 	line-height: 1.5;
 	width: 27%;
 	font-size: 13px;
@@ -51,6 +51,7 @@
 </style>
 
 <form action="delete" method="post">
+	<div class="empty-row"></div>
 	<table class="common-table center">
 		<tr height="30">
 			<td>비밀번호</td>

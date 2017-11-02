@@ -11,7 +11,8 @@ public interface BoardDao {
 	int insert(Board board);
 	int insert(Board board, int product_no);
 
-	List<Board> list(int start, int end);
+	List<Board> list(int start, int end, String notice);
+	List<Board> list(int no);
 
 	List<Board> search(String type, String key, int start, int end);
 	
@@ -30,5 +31,5 @@ public interface BoardDao {
 	int getBoardCount();
 	int getBoardCount(String type, String key);
 
-
+	List<Board> profile(String id);
 }

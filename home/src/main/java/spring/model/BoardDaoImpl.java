@@ -46,13 +46,15 @@ public class BoardDaoImpl implements BoardDao {
 			parent = board.getParent();
 			depth = board.getDepth() + 1;
 		}
-		
+
 		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, 0, ?)";
 		Object[] obj = {no, "expected", board.getTitle(), board.getWriter(), board.getDetail(),
 							board.getPw(), gno, parent, depth, board.getNotice()};
 		jdbcTemplate.update(sql, obj);
 		return no;
 	}
+	
+	//상품페이지 후기 작성
 	@Override
 	public int insert(Board board, int product_no) {
 		String sql = "select sp_board_seq.nextval from dual";
@@ -71,26 +73,52 @@ public class BoardDaoImpl implements BoardDao {
 			parent = board.getParent();
 			depth = board.getDepth() + 1;
 		}
-		
+	
 		sql = "insert into sp_board values(?, ?, ?, ?, ?, ?, sysdate, 0, ?, ?, ?, ?, ?)";
 		Object[] obj = {no, "expected", board.getTitle(), board.getWriter(), board.getDetail(),
-							board.getPw(), gno, parent, depth, product_no, board.getNotice()};
+							board.getPw(), gno, parent, depth, product_no ,board.getNotice()};
 		jdbcTemplate.update(sql, obj);
-		return no;
+		return product_no;
 	}
 
 
 	// 게시글 리스트
 	@Override
-	public List<Board> list(int start, int end) {
-		String sql = "select * from (" + "select rownum as rn, A.* from (" + "select * from sp_board " 
-				+ "start with parent=0 " 
-				+ "connect by prior no=parent "
-				+ "order siblings by gno desc, no asc" 
-				+ ")A" + ") where rn between ? and ?";
-		Object[] obj = { start, end };
+	public List<Board> list(int start, int end, String notice) {
+		String sql="";
+		
+		System.out.println("notice: "+notice);
+		System.out.println("start: "+start);
+		System.out.println("end :"+end);
+		
+		//Q&A 게시판에 들어갈시 review를 제외하고 보여준다
+		if(notice.equals("review")) {
+			sql = "select * from (select rownum as rn, A.* from (select * from sp_board where not notice=? start with parent=0 connect by prior no=parent order siblings by gno desc, no asc)A) where rn between ? and ?";
+			Object[] obj = {notice, start, end};
+			
+			System.out.println("이거 돌려짐 :"+ sql);
+			
+			return jdbcTemplate.query(sql, obj, mapper);
+		}else {
+			sql = "select * from (" + "select rownum as rn, A.* from (" 
+					+ "select * from sp_board " 
+					+ "start with parent=0 " 
+					+ "connect by prior no=parent "
+					+ "order siblings by gno desc, no asc" 
+					+ ")A" + ") where rn between ? and ?";
+			Object[] obj = { start, end };
+			return jdbcTemplate.query(sql, obj, mapper);
+		}
+	}
+	
+	// 후기 리스트
+	@Override
+	public List<Board> list(int no) {
+		String sql = "select * from sp_board where product_no=? order by reg desc"; 
+		Object[] obj = {no};
 		return jdbcTemplate.query(sql, obj, mapper);
 	}
+
 
 	// 게시글 검색
 	@Override
@@ -161,6 +189,16 @@ public class BoardDaoImpl implements BoardDao {
 		Object[] obj = {state, parent};
 		jdbcTemplate.update(sql, obj);
 	}
+
+
+	@Override
+	public List<Board> profile(String id) {
+		String sql = "select * from sp_board where writer=?";
+		Object[] args = {id};
+		return jdbcTemplate.query(sql, args, mapper);
+		
+	}
+
 
 
 	

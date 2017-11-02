@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 
@@ -59,6 +60,10 @@
 	display: inline-block;
 }
 
+.top-menu li a{
+	font-size: 13px;
+}
+
 .logos {
 	position: relative;
 	display: inline-block;
@@ -101,6 +106,7 @@
 	}
 
 	//로그인
+
 	function checking() {
 		if (document.querySelector("input[name=id]").value == "") {
 			alert("ID를 입력하세요");
@@ -108,6 +114,54 @@
 		} else if (document.querySelector("input[name=pw]").value == "") {
 			alert("비밀번호를 입력하세요");
 			return false;
+		}
+
+	}
+
+	window.onload = function() {
+
+		if (getCookie("id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
+			document.loginForm.id.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+			document.loginForm.idsave.checked = true; // 체크는 체크됨으로
+		}
+
+	}
+
+	function confirmSave(checkbox) {
+		var isRemember;
+
+		if (checkbox.checked) {
+			isRemember = confirm("이 PC에 로그인 정보를 저장하시겠습니까? PC방등의 공공장소에서는 개인정보가 유출될 수 있으니 주의해주십시오.");
+
+			if (!isRemember)
+				checkbox.checked = false;
+		}
+	}
+
+	if (getCookie("id")) { // getCookie함수로 id라는 이름의 쿠키를 불러와서 있을경우
+		document.loginForm.id.value = getCookie("id"); //input 이름이 id인곳에 getCookie("id")값을 넣어줌
+		document.loginForm.idsave.checked = true; // 체크는 체크됨으로
+	}
+
+	function setCookie(name, value, expiredays) //쿠키 저장함수
+	{
+		var todayDate = new Date();
+		todayDate.setDate(todayDate.getDate() + expiredays);
+		document.cookie = name + "=" + escape(value) + "; path=/; expires="
+				+ todayDate.toGMTString() + ";"
+	}
+
+	function getCookie(Name) { // 쿠키 불러오는 함수
+		var search = Name + "=";
+		if (document.cookie.length > 0) { // if there are any cookies
+			offset = document.cookie.indexOf(search);
+			if (offset != -1) { // if cookie exists
+				offset += search.length; // set index of beginning of value
+				end = document.cookie.indexOf(";", offset); // set index of end of cookie value
+				if (end == -1)
+					end = document.cookie.length;
+				return unescape(document.cookie.substring(offset, end));
+			}
 		}
 	}
 
@@ -138,7 +192,7 @@
 		var pw2 = document.querySelector("input[name=pw2]");
 
 		if (pw.value.length < 1) {
-			document.querySelector(".pw-recheck").innerHTML = "";
+			document.querySelector(".pw-recheck").innerHTML = null;
 			return false;
 		} else if (pw.value == pw2.value) {
 			document.querySelector(".pw-recheck").innerHTML = "일치";
@@ -156,12 +210,11 @@
 		if (!regex.test(phone)) {
 			document.querySelector(".phone-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		}else if(phone==""){
+		} else if (phone == "") {
 			document.querySelector(".phone-check").innerHTML = "폰번호를 입력하세요";
 			return false;
-		} 
-		else {
-			document.querySelector(".phone-check").innerHTML = "";
+		} else {
+			document.querySelector(".phone-check").innerHTML = null;
 			return true;
 		}
 	}
@@ -173,11 +226,11 @@
 		if (!regex.test(email)) {
 			document.querySelector(".email-check").innerHTML = "올바른 형식이아닙니다";
 			return false;
-		}else if(email==""){
+		} else if (email == "") {
 			document.querySelector(".email-check").innerHTML = "이메일을 입력하세요";
 			return false;
-		}  else {
-			document.querySelector(".email-check").innerHTML = "";
+		} else {
+			document.querySelector(".email-check").innerHTML = null;
 			return true;
 		}
 	}
@@ -190,16 +243,36 @@
 
 		//검사
 		var result = pwCheck() & pw2Check() & phoneCheck() & emailCheck();
-		if (!result)
+		if (!result) {
 			alert("제대로 입력하셈");
-		return false;
+
+			return false;
+
+		}
 
 		//전송
 		var form = document.querySelector("form");
 		form.submit();
+		alert("회원가입 완료");
 	}
 	
-	
+	$(document).ready(function(){
+		var Q = "Q";
+		var notice = "notice";
+		$(".board_list_param").on("click", function(){
+			$.ajax({
+				tpye:"get",
+				url: "${pageContext.request.contextPath}/board/list",
+				data: {notice1: Q, notice2:notice},
+				success: function(data){
+					console.log(data);
+				}
+				
+			});
+			
+			/* $("#list_param").submit();  */
+		});
+	});
 </script>
 
 
@@ -217,59 +290,62 @@
 		<header>
 			<div class=" text-right">
 				<ul class="top-menu">
-					<c:choose>    
-					
+					<c:choose>
+
 						<c:when test="${login}">
-							<li><a
-								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/member/mypage">MY
-									PAGE</a></li>
-							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
+							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
+							<c:if test="${login}">
+								<li><a href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+							</c:if>
+							<li><a href="${pageContext.request.contextPath }/member/mypage">MYPAGE</a></li>
+							<li><a href="${pageContext.request.contextPath}/board/list?notice=review">Q&amp;A</a></li>
 							<c:if test="${power eq '관리자'}">
-								<li><a href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
+								<li><a
+									href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
 							</c:if>
 						</c:when>
 						<c:otherwise>
+
 							<li><a
 								href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
-							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
+							<c:if test="${login}">
+								<li>
+									<a href="${pageContext.request.contextPath }/cart/cart_list">CART</a>
+								</li>
+							</c:if>
+							<li><a href="${pageContext.request.contextPath}/board/list?notice=review">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
 			</div>
 			<div class="logos center">
 
-				<a href="${pageContext.request.contextPath }/home" class="logo">
-				<img src="${pageContext.request.contextPath }/img/logo.jpg" />
+				<a href="${pageContext.request.contextPath}" class="logo">
+					<img src="${pageContext.request.contextPath}/img/logo.jpg" />
 				</a>
 
 			</div>
 			<!-- 			http://pyeonne.tistory.com/9 -->
-		<nav>
-			<ul class="menu">
-				<li><a href="#">NEW</a></li>
-				<li><a href="#">BEST</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=sneakers">SNEAKERS</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=sandal">SANDAL</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=flat/loafer">FLAT/LOAFER</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=boots">BOOTS</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/product/list?type=shoe">SHOE</a></li>
-			</ul>
-		</nav>
+			<nav>
+				<ul class="menu">
+					<li><a href="#">NEW</a></li>
+					<li><a href="#">BEST</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=sneakers">SNEAKERS</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=sandal">SANDAL</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=flat/loafer">FLAT/LOAFER</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=boots">BOOTS</a></li>
+					<li><a
+						href="${pageContext.request.contextPath}/product/list?type=shoe">SHOE</a></li>
+				</ul>
+			</nav>
 		</header>
 		<!-- // 			http://autumnly.tistory.com/61 -->
 		<main> <!-- 		http://blog.naver.com/hanhunh89/220403113901 -->

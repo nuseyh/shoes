@@ -47,5 +47,26 @@
 		</div>
 	</div>
 </div>
+<div class="center">
+	<div class="center">
+
+		<div class="clear"></div>
+		<!-- items -->
+		<div class="items">
+			<c:forEach var="pdao" items="${plist}" begin="0"   end="11">
+				<div class="item">
+					<a href="product/detail?no=${pdao.i_num}"><img src="${pageContext.request.contextPath}/file/${pdao.savename1}" width="275" height="200"></a>
+					<h2>${pdao.i_name}</h2>
+					<p>
+						Price: <em>${pdao.i_price}원</em>
+					</p>
+				</div>
+				<!-- item -->
+			</c:forEach>
+		</div>
+		<!--/ items -->
+	</div>
+	<div class="clear"></div>
+</div>
 
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

@@ -3,6 +3,7 @@ package spring.controller;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,11 +34,16 @@ public class BoardController {
 	//게시판 리스트
 	@RequestMapping("/list")
 	public String list(HttpServletRequest request, Model model) {
-		int boardsize = 3;//게시판 1p에 표시할 글 개수
-		int blocksize = 3;//게시판 1p에 표시할 링크 개수
+		int boardsize = 10;//게시판 1p에 표시할 글 개수
+		int blocksize = 10;//게시판 1p에 표시할 링크 개수
 		
 		String key = request.getParameter("key");
 		String type = request.getParameter("type");
+		
+		//게시판의 종류를 받아서 해당하는 것만을 보여주기위한 변수
+		String notice = request.getParameter("notice");
+		
+		System.out.println("넘어온 파라미터 : "+ notice);
 		
 		boolean searchFlag = type != null && key != null;
 		
@@ -69,7 +75,7 @@ public class BoardController {
 		if(searchFlag){
 			list = bdao.search(type, key, start, end); 
 		}else{
-			list = bdao.list(start, end); 
+			list = bdao.list(start, end, notice); 
 		}
 		
 		String searchParam;
@@ -91,6 +97,15 @@ public class BoardController {
 		//nextPage 설정
 		return "board/list";
 		
+	}
+	
+	//상품후기 작성
+	@RequestMapping(value="/detail", method=RequestMethod.POST)
+	public String review(HttpServletRequest request, @RequestParam("no") int product_no) {
+		Board board = new Board(request);
+		int no = bdao.insert(board, product_no);
+		request.setAttribute("no", product_no);
+		return "redirect:poduct/detail?no="+product_no;
 	}
 	
 	//게시판 글쓰기
@@ -200,5 +215,21 @@ public class BoardController {
 		rbdao.delete(no, parent);
 		return "redirect:detail?no="+parent;
 	}
+	
+	@RequestMapping("/myqa")
+	public String myqa(HttpSession session, Model model) {
+		String id = (String) session.getAttribute("id");
+		List<Board> list = bdao.profile(id);
+		model.addAttribute("list", list);
+		
+		
+		return "board/myqa";
+	}
+//	
+//	@RequestMapping("/myqa")
+//	public String myqa() {
+//		return "board/myqa";
+//	}
+	
 	
 }

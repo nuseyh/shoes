@@ -68,7 +68,7 @@ img {
    <div class="detail center">
       <div class="detail_img">
         <a href="itemedit?no=${product.i_num}">
-        <img id="cb" src="${pageContext.request.contextPath}/file/${product.savename}">
+        <img id="cb" src="${pageContext.request.contextPath}/file/${product.savename1}">
         </a>
       </div>
       <div>
@@ -102,7 +102,6 @@ img {
                </tr>
                <tr>
                   <th>수량</th>
-                 <!--  <td><input id="amount" type="text" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'></td> -->
                	<td>
                  	 <form id="frm" method="post" action="${pageContext.request.contextPath}/cart/cart_add">
                        		<input type="hidden" name="product_no" value="${product.i_num}">
@@ -128,18 +127,20 @@ img {
    </div>
    <div>${product.i_detail}</div>
 </div>
-<div class="area-60 center align-center"><img src="img/56456.jpg"></div>
+<div class="area-60 center align-center"><img src="${pageContext.request.contextPath}/file/${product.savename2}"></div>
 <div>
    <strong>review 작성</strong>
    <button id="review">리뷰작성하기</button>
    </div>
    <div id="writeform" style="display: none;">
-   <form id="frm" action="board/write" method="post" class="center" name="select_notice">
-      <c:if test="${not empty title}">
-         <input type="hidden" name="gno" value="${gno}">
-         <input type="hidden" name="parent" value="${parent}">
-         <input type="hidden" name="depth" value="${depth}">
-      </c:if>
+   <form id="frm" action="review_board" method="post" class="center" name="select_notice">
+	   		<c:if test="${not empty title}">
+				<input type="hidden" name="gno" value="${gno}">
+				<input type="hidden" name="parent" value="${parent}">
+				<input type="hidden" name="depth" value="${depth}">
+			</c:if>
+	         <input type="hidden" name="notice" value="review">
+	         <input type="hidden" name="product_no" value="${product.i_num}">
       <table class="join-table">
          <tr>
             <th class="text-left">작성자</th>
@@ -168,15 +169,18 @@ img {
 <div>
    <strong>review</strong>
 <table class="board-font join-table">
+		<c:forEach var="board" items="${blist}">
              <tr>
-                 <td>작성자</td>
-                 <td colspan="4"></td>
-                 <td>작성일</td>
+                 <td>${board.writer}</td>
+                 <td>${board.reg}</td>
              </tr>
              <tr>
-                 <td colspan="5">내용</td>
+                 <td colspan="5">${board.detail}</td>
              </tr>
-             <tr><td colspan="6"><button>삭제</button></td></tr>
+             <tr><td colspan="6">
+             <button value="삭제하기" onclick="location.href='delete?no=${board.getNo()}&product_no=${product.i_num}'">삭제하기</button></td>
+             </tr>             
+             </c:forEach>
       </table>
 </div>
 

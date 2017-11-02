@@ -2,6 +2,8 @@ package spring.bean;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.text.Format;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -96,6 +98,15 @@ public class Cart {
 				+ product_name + ", product_price=" + product_price + ", count=" + count + ", amount=" + amount + "]";
 	}
 	
-	
+	public String getPattern_price() {
+		Format form = new DecimalFormat("#,###");
+		String patternPrice = form.format(product_price);
+		return patternPrice;
+	}
+	public String getPattern_amount() {
+		Format form = new DecimalFormat("#,###");
+		String patternAmount = form.format(amount);
+		return patternAmount;
+	}
 	
 }

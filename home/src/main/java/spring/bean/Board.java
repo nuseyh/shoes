@@ -15,11 +15,14 @@ public class Board {
 	private String detail;
 	private String pw;
 	private String reg;
+	
 	private int read;
 
 	private int gno;
 	private int parent;
 	private int depth;
+	
+	private int product_no;
 	private String notice;
 
 	public Board() {
@@ -39,6 +42,8 @@ public class Board {
 		setGno(rs.getInt("gno"));
 		setParent(rs.getInt("parent"));
 		setDepth(rs.getInt("depth"));
+		
+		setProduct_no(rs.getInt("product_no"));
 		setNotice(rs.getString("notice"));
 	}
 	
@@ -60,9 +65,22 @@ public class Board {
 		setParent(parent==null?0:Integer.parseInt(parent));
 		String depth = request.getParameter("depth");
 		setDepth(depth==null?0:Integer.parseInt(depth));
+		
+		String product_no = request.getParameter("product_no");
+		setProduct_no(product_no==null?0:Integer.parseInt(product_no));
+		
 		setNotice(request.getParameter("notice"));
 	}
 	
+	
+	public int getProduct_no() {
+		return product_no;
+	}
+
+	public void setProduct_no(int product_no) {
+		this.product_no = product_no;
+	}
+
 	public int getNo() {
 		return no;
 	}
