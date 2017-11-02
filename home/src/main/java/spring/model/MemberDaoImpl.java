@@ -53,15 +53,24 @@ public class MemberDaoImpl implements MemberDao {
 		return result > 0;
 	}
 
-	 public int idcheck(String id) {
-	 String sql = "select count(*) from member where id=?";
-	 Object[] args = {id};
-	 int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
-	
-	 return result;
-	
-	 }
-	
+	public int idcheck(String id) {
+		String sql = "select count(*) from member where id=?";
+		Object[] args = { id };
+		int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
+
+		return result;
+
+	}
+
+	public int emailcheck(String email) {
+		String sql = "select count(*) from member where email=?";
+
+		Object[] args = { email };
+		int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
+
+		return result;
+	}
+
 	public String idsearch(String name, String email) {
 		String sql = "select id from member where name=? and email=?";
 		// Object[] args = {name, email};
@@ -82,8 +91,8 @@ public class MemberDaoImpl implements MemberDao {
 	public boolean temp(String tempPw, String id) {
 
 		String sql = "update member set pw=? where id=?";
-		Object[] args = {tempPw, id };
-		return jdbcTemplate.update(sql, args)>0;
+		Object[] args = { tempPw, id };
+		return jdbcTemplate.update(sql, args) > 0;
 	}
 
 	@Override

@@ -9,12 +9,20 @@ public class Pay {
 	private int pay_no;
 	private String user_id;
 	private int product_no;
+	private int product_price;
+	private int product_size;
+	private String product_color;
+	private int count;
 	private int amount;
 
 	public Pay(ResultSet rs) throws SQLException{
 		setPay_no(rs.getInt("pay_no"));
 		setUser_id(rs.getString("user_id"));
 		setProduct_no(rs.getInt("product_no"));
+		setProduct_price(rs.getInt("product_price"));
+		setProduct_size(rs.getInt("product_size"));
+		setProduct_color(rs.getString("product_color"));
+		setCount(rs.getInt("count"));
 		setAmount(rs.getInt("amount"));
 	}
 	
@@ -24,9 +32,18 @@ public class Pay {
 		setUser_id(request.getParameter("user_id"));
 		String product_no = request.getParameter("product_no");
 		setProduct_no(product_no==null?0:Integer.parseInt(product_no));
+		String product_price = request.getParameter("product_price");
+		setProduct_price(product_price==null?0:Integer.parseInt(product_price));
+		String product_size = request.getParameter("product_size");
+		setProduct_size(product_size==null?0:Integer.parseInt(product_size));
+		setProduct_color(request.getParameter("product_color"));
+		String count = request.getParameter("count");
+		setCount(product_no==null?0:Integer.parseInt(count));
 		String amount = request.getParameter("amount");
 		setAmount(amount==null?0:Integer.parseInt(amount));
 	}
+
+
 	
 	public int getPay_no() {
 		return pay_no;
@@ -52,6 +69,39 @@ public class Pay {
 		this.product_no = product_no;
 	}
 
+	public int getProduct_price() {
+		return product_price;
+	}
+
+	public void setProduct_price(int product_price) {
+		this.product_price = product_price;
+	}
+	
+
+	public int getProduct_size() {
+		return product_size;
+	}
+
+	public void setProduct_size(int product_size) {
+		this.product_size = product_size;
+	}
+
+	public String getProduct_color() {
+		return product_color;
+	}
+
+	public void setProduct_color(String product_color) {
+		this.product_color = product_color;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
 	public int getAmount() {
 		return amount;
 	}
@@ -59,6 +109,8 @@ public class Pay {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	
 
 	public Pay() {
 		super();

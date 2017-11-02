@@ -49,20 +49,25 @@
 	text-align: center;
 }
 </style>
+<script>
+	function delete(){
+		alert("정말 탈퇴하시겠습니까?");
+	}
+</script>
 
-<form action="delete" method="post">
+<form action="delete" method="post" onsubmit="delete();">
 	<div class="empty-row"></div>
 	<table class="common-table center">
 		<tr height="30">
 			<td>비밀번호</td>
-			<td><input type="text" name="pw"></td>
+			<td><input type="password" name="pw"></td>
 		</tr>
 
 	</table>
 	<div class="join-button">
 		<input type="button" value="메인으로"
 			onclick="javascript<x>:window.location = 'home'"> <input
-			type="submit" value="탈퇴">
+			type="submit" onclick = "" value="탈퇴">
 	</div>
 </form>
 

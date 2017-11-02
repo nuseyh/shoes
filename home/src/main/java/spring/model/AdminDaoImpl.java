@@ -1,3 +1,4 @@
+
 package spring.model;
 
 import java.sql.ResultSet;
@@ -12,13 +13,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Member;
+import spring.bean.Pay;
 import spring.bean.Product;
 
 @Repository(value = "AdminDao")
 public class AdminDaoImpl implements AdminDao {
-	
-//	@Autowired
-//	private AdminDao adao;
+   
+//   @Autowired
+//   private AdminDao adao;
 
    @Autowired
    private JdbcTemplate jdbcTemplate;
@@ -90,11 +92,11 @@ public class AdminDaoImpl implements AdminDao {
             product.getFilename2(),
             product.getFilelen2(),
             product.getSavename2()
-		};
-		jdbcTemplate.update(sql, args);
-		
-	}
-	
+      };
+      jdbcTemplate.update(sql, args);
+      
+   }
+   
 
    //상품목록 리스트
    @Override
@@ -162,6 +164,12 @@ public class AdminDaoImpl implements AdminDao {
          Object[] args = {p.getI_leftnum(), p.getI_price(), p.getI_color(), p.getI_size(), p.getI_detail(), p.getI_type(), p.getI_name(), p.getI_name() };
          return jdbcTemplate.update(sql, args) > 0;
       }
+
+	@Override
+	public List<Pay> selllist() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 
 }

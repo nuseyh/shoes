@@ -5,7 +5,7 @@
 <head>
 <title>이미지 게시판</title>
 
-s</head>
+</head>
 <form action="itemmain" method="post">
 		<div class="empty-row"></div>
 		<div class="empty-row"></div>

@@ -37,12 +37,13 @@ public class PayDaoImpl implements PayDao{
 	@Override
 	public boolean insert(Pay p) {
 		System.out.println(p);
-		String sql = "insert ino pay values(pay_seq.nextval,?,?,0)";
+		String sql = "insert ino pay values(pay_seq.nextval,?,?,?,?,?,?,?)";
 		System.out.println(sql);
 		
-		int result = jdbcTemplate.update(sql, p.getPay_no(), p.getUser_id(), p.getProduct_no(), p.getAmount());
+		int result = jdbcTemplate.update(sql, p.getPay_no(), p.getUser_id(), p.getProduct_no(),p.getProduct_price(), p.getProduct_size(), p.getProduct_color(),p.getCount(), p.getAmount());
 		System.out.println(result);
-		return false;
+		
+		return result>0;
 	}
 
 }

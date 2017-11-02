@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Member;
+import spring.bean.Pay;
 import spring.bean.Product;
 
 
@@ -23,4 +24,6 @@ public interface AdminDao {
 	Product itemedit(String no);
 	boolean itemedit2(Product p);
 	Product get2(String savename2);
+	
+	List<Pay> selllist();
 }

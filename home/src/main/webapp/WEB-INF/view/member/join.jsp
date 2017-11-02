@@ -41,7 +41,7 @@
 			</tr>
 			<tr>
 				<th class="text-left">이메일</th>
-				<td><input type="text" name="email" onblur="emailCheck();">
+				<td><input type="text" id="email" name="email" onblur="emailCheck();">
 					<div class="email-check"></div></td>
 			</tr>
 			<tr>

@@ -11,7 +11,7 @@ public interface MemberDao {
 
 	boolean join(Member m);
 
-	boolean temp(String tempPw,String id);
+	boolean temp(String tempPw, String id);
 
 	String idsearch(String name, String email);
 
@@ -22,7 +22,9 @@ public interface MemberDao {
 	boolean delete(String id, String pw);
 
 	boolean edit(Member m);
-	
+
 	int idcheck(String id);
+
+	int emailcheck(String email);
 
 }

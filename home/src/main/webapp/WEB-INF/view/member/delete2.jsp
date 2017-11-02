@@ -9,20 +9,8 @@
 			alert("탈퇴완료");
 			location.href = 'home';
 		</script>
-		<c:if test="${delete eq null}">
-			<script>
-				alert("비밀번호를 입력하세요");
-				location.href = 'delete';
-			</script>
-		</c:if>
 	</c:when>
 	<c:otherwise>
-		<c:if test="${power eq '관리자'}">
-			<script>
-				alert("관리자는 탈퇴할수 없습니다");
-				location.href = 'delete';
-			</script>
-		</c:if>
 		<script>
 			alert("비밀번호가 일치하지 않습니다");
 			location.href = 'delete';
