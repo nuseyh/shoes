@@ -193,16 +193,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<Board> profile(String id) {
-		String sql = "select * from sp_board where writer=?";
+		String sql = "select * from sp_board where writer=? order by reg desc";
 		Object[] args = {id};
 		return jdbcTemplate.query(sql, args, mapper);
 		
 	}
-
-
-
-	
-
-	
 
 }

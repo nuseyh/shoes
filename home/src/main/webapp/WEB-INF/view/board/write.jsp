@@ -110,15 +110,13 @@
 			</tr>
 			<tr>
 				<th class="text-left">제목</th>
-				<td><select name="notice" class="form-select"
-					onChange="showSub(this.options[this.selectedIndex].text);">
+				<td><select name="notice" class="form-select" onChange="showSub(this.options[this.selectedIndex].text);">
 						<option value="Q" selected>문의</option>
 						<option value="review">후기</option>
 						<c:if test="${power eq '관리자'}">
 							<option value="notice">공지</option>
 						</c:if>
 					</select>
-					<select id="title1"name="title" class="form-select">
 				</select> 
 				<select id="title1" name="title" class="form-select">
 						<option value="일반문의입니다!">일반문의입니다!</option>
@@ -143,9 +141,8 @@
 		</table>
 		<div class="join-button">
 			<input id="save_btn" class="form-btn" type="submit" value="등록하기">
-			<input id="cancle_btn" type="button" value="취소"> <input
-				onclick="location.href='list';" class="form-btn" type="button"
-				value="목록으로">
+			<input id="cancle_btn" type="button" value="취소"> 
+			<input onclick="location.href='list';" class="form-btn" type="button" value="목록으로">
 		</div>
 	</form>
 </div>

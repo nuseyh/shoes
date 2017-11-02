@@ -175,38 +175,6 @@ public class AdminController {
       return "admin/list";
    }
    
-   
-   
-//   @RequestMapping("/download/{filename:.+}")
-//   public void download(@PathVariable String filename,
-//                              HttpServletResponse response) throws IOException{
-//      log.debug("filename = {}", filename);
-//      
-//      //전송해줄 때 사용할 이름
-//      Product product = adminDao.get(filename);
-//      String sendFilename = product.getFilename();
-//      
-//      //파일 읽기
-//      String realPath = servletContext.getRealPath("/upload");
-//      File target = new File(realPath, filename);
-//      
-//      //apache common-io의 기능을 이용하여 파일을 한줄로 byte[] 읽기
-//      byte[] data = FileUtils.readFileToByteArray(target);
-//      
-//      
-//      //전송 설정 - 파일 전송용으로 response를 다시 설정
-//      response.setContentType("application/octet-stream");
-//      response.setContentLength(data.length);
-//      response.setHeader("Content-Disposition", 
-//                                 "attachment; fileName=\""+sendFilename+"\";");
-//      response.setHeader("Content-Transfer-Encoding", "binary");
-//      
-//      //파일 전송
-//      OutputStream out = response.getOutputStream();
-//      out.write(data);
-//      out.close();
-//   }
-   
    // 상품삭제
    @RequestMapping("/remove")
    public String remove() {

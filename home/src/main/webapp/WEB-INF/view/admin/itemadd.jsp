@@ -47,47 +47,47 @@
 }
 </style>
 
-<script type="text/javascript"src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+<script type="text/javascript"
+   src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
-   $(document).ready(function(){
+   var fileTypes = ["bmp", "gif", "png", "jpg", "jpeg"];
+
+   
+   $(function() {
       $("#imgInp1").on('change', function() {
-         readURL1(this);
+         readURL(this);
       });
       $("#imgInp2").on('change', function() {
          readURL2(this);
       });
-      
    });
-   /* $(function() {
-      $("#imgInp1").on('change', function() {
-         readURL(this);
-      });
-      $("#imgInp2").on('change', function() {
-         readURL(this);
-      });
-   }); */
-   s
-   function readURL1(input) {
+   
+
+   function readURL(input) {
       if (input.files && input.files[0]) {
-         var reader1 = new FileReader();
-         reader1.onload = function(e) {
+         var reader = new FileReader();
+         reader.readAsDataURL(input.files[0]);
+         
+         reader.onload = function(e) {
             $('#blah1').attr('src', e.target.result);
          }
-         reader1.readAsDataURL(input.files[0]);
-
       }
    }
    
-   function redURL2(input){
-      if(input.files && input.files[0]) {
-         var reader2 = new FileReader();
-         reader2.onload = function(e) {
+   function readURL2(input) {
+      if (input.files && input.files[0]) {
+         var reader = new FileReader();
+         reader.readAsDataURL(input.files[0]);
+         
+         reader.onload = function(e) {
             $('#blah2').attr('src', e.target.result);
          }
-         reader2.readAsDataURL(input.files[1]);
       }
    }
 </script>
+
+
+
 
 <div class="area-100 center">
    <div class="empty-row"></div>
@@ -102,10 +102,7 @@
          </tr>
          <tr>
             <td colspan="2">
-               <img id="blah1" src="${pageContext.request.contextPath}/file/${product.savename1}" alt="사진을 등록하십시오"> 
-                  <%-- <a href="${pageContext.request.contextPath}/file/${product.savename1}"></a> --%>
-               <%-- <img id = "blah" src="${ pageContext.request.contextPath}/file/${product.savename2}" alt="사진을 등록하십시오"> 
-                   <a href="${pageContext.request.contextPath}/file/${product.savename2}"></a>  --%>
+               <img id="blah1" src="" alt="사진을 등록하십시오">  
             </td>
          </tr>
 
@@ -137,9 +134,8 @@
             </td>
          </tr>
          <tr>
-            <td colspan="2">
-               <img id="blah2" src="${pageContext.request.contextPath}/file/${product.savename2}" alt="사진을 등록하십시오"> 
-               <%-- <a href="${pageContext.request.contextPath}/file/${product.savename2}"></a> --%>
+            <td colspan="2"><img id="blah2" src=""
+               alt="사진을 등록하십시오"> 
             </td>
          </tr>
          <tr>

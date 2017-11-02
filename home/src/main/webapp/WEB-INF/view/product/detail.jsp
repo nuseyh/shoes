@@ -41,8 +41,6 @@ img {
 }
 </style>
 <script>
-	
-
    $(document).ready(function(){
        $("#review").on("click", function(){
            if($("#writeform").css("display") == "none"){   
@@ -53,12 +51,16 @@ img {
        });
    });  
 
-   $(document ).ready(function(){
+   $(document).ready(function(){
 		$("#cart").on("click", function(){
 			$("#frm").submit();
-			
 		});
 		
+	});
+
+   $(".no_login").on("click", function(){
+		alert("로그인 후 이용 가능합니다.");
+		location.href='../member/login';
 	});
 </script>
 
@@ -106,8 +108,10 @@ img {
                  	 <form id="frm" method="post" action="${pageContext.request.contextPath}/cart/cart_add">
                        		<input type="hidden" name="product_no" value="${product.i_num}">
                        		<input type="hidden" name="user_id" value="${id}">
-                       		<input type="hidden" name="product_name" value="${product.i_name}">
+                       		<input type="hidden" name="product_name" value="${product.savename1}">
                        		<input type="hidden" name="product_price" value="${product.i_price}">
+                       		<input type="hidden" name="product_size" value="${product.i_size}">
+                       		<input type="hidden" name="product_color" value="${product.i_color}">
                     		<select name="count">
                      			<c:forEach begin="1" end="${product.i_leftnum}" var="i">
                     				<option value="${i}">${i}</option>
@@ -118,9 +122,17 @@ img {
                  
                </tr>
                <tr>
-                  <td><input onclick="location.href='${pageContext.request.contextPath}/cart/cart_list'" type="button" value="구매하기"></td>
-                  <td><input id="cart" type="button" value="장바구니에 담기"></td>
-               <tr>
+					<c:choose>
+						<c:when test="${login}">
+		               		<td><input onclick="location.href='${pageContext.request.contextPath}/cart/cart_list'" type="button" value="구매하기"></td>
+		               		<td><input id="cart" type="button" value="장바구니에 담기"></td>
+						</c:when>
+						<c:otherwise>
+							<td><input class="no_login" type="button" value="구매하기"></td>
+							<td><input class="no_login" type="button" value="장바구니 담기"></td>						
+						</c:otherwise>
+					</c:choose>
+              <tr>
             </tbody>
          </table>
       </div>
