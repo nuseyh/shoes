@@ -94,6 +94,15 @@ public class BoardController {
 		
 	}
 	
+	//상품후기 작성
+	@RequestMapping(value="/detail", method=RequestMethod.POST)
+	public String review(HttpServletRequest request, @RequestParam("no") int product_no) {
+		Board board = new Board(request);
+		int no = bdao.insert(board, product_no);
+		request.setAttribute("no", product_no);
+		return "redirect:poduct/detail?no="+product_no;
+	}
+	
 	//게시판 글쓰기
 	@RequestMapping("/write")
 	public String write() {

@@ -53,15 +53,15 @@ public class MemberDaoImpl implements MemberDao {
 		return result > 0;
 	}
 
-	// public boolean idcheck(String id) {
-	// String sql = "select * from member where id=?";
-	// Object[] args = {id};
-	// int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
-	//
-	// return result > 0;
-	//
-	// }
-	//
+	 public int idcheck(String id) {
+	 String sql = "select count(*) from member where id=?";
+	 Object[] args = {id};
+	 int result = jdbcTemplate.queryForObject(sql, Integer.class, args);
+	
+	 return result;
+	
+	 }
+	
 	public String idsearch(String name, String email) {
 		String sql = "select id from member where name=? and email=?";
 		// Object[] args = {name, email};

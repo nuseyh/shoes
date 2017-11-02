@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <html>
 
@@ -59,7 +60,7 @@
 	display: inline-block;
 }
 
-.top-menu li a{
+.top-menu li a {
 	font-size: 13px;
 }
 
@@ -164,13 +165,35 @@
 		}
 	}
 
-	//회원가입 유효성 검사
+	//회원가입 유효성,중복 검사
 	function idCheck() {
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
 
+		$.ajax({
+					// type을 설정합니다.
+					type : 'POST',
+					url : "idcheck",
+					// 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
+					data : {
+						user_id : $("#id").val()
+					},
+					// 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+					success : function(data) {
+						// 서버에서 Return된 값으로 중복 여부를 사용자에게 알려줍니다.
+						console.log(data);
+						if (data != 0) {
+							document.querySelector(".id-check").innerHTML = "사용할수 없는 아이디입니다";
+						} else {
+							document.querySelector(".id-check").innerHTML = "사용 가능한 아이디입니다";
+						}
+					}
+
+				});
+
 	}
 
+	//비밀번호 유효성 검사
 	function pwCheck() {
 		var input = document.querySelector("input[name=pw]").value;
 		var regex = /^[\w]{6,15}$/g;
@@ -241,7 +264,8 @@
 		event.preventDefault();
 
 		//검사
-		var result = pwCheck() & pw2Check() & phoneCheck() & emailCheck();
+		var result = idCheck() & pwCheck() & pw2Check() & phoneCheck()
+				& emailCheck();
 		if (!result) {
 			alert("제대로 입력하셈");
 
@@ -274,9 +298,12 @@
 					<c:choose>
 
 						<c:when test="${login}">
-							<li><a href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
-							<li><a href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
-							<li><a href="${pageContext.request.contextPath }/member/mypage">MYPAGE</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/logout">LOGOUT</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/member/mypage">MYPAGE</a></li>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 							<c:if test="${power eq '관리자'}">
 								<li><a
@@ -298,8 +325,8 @@
 			</div>
 			<div class="logos center">
 
-				<a href="${pageContext.request.contextPath }" class="logo">
-					<img src="${pageContext.request.contextPath }/img/logo.jpg" />
+				<a href="${pageContext.request.contextPath}" class="logo"> <img
+					src="${pageContext.request.contextPath}/img/logo.jpg" />
 				</a>
 
 			</div>

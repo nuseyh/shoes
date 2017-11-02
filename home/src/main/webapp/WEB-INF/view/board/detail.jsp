@@ -59,7 +59,7 @@
 
 	//board 삭제버튼 클릭시 확인창
 	var deletecheck;
-	var no = $
+	var no = ${no};
 	{
 		board.getNo()
 	};

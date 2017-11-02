@@ -15,6 +15,7 @@ public class Board {
 	private String detail;
 	private String pw;
 	private String reg;
+	
 	private int read;
 
 	private int gno;
