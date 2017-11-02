@@ -12,11 +12,13 @@
 	<c:otherwise>
 		<div class="empty-row"></div>
 		<div class="area-40 center">
-			<div class="row text-center font-medium">MY PAGE</div>
+			<div class="row text-center font-medium">아이디찾기</div>
 			<hr>
 			<div class="row">
-				<table class="profile">
-					<tr>아이디는 ${searchid}입니다</tr>
+				<table class="join-table">
+					<tr>
+						<th>아이디는 ${searchid}입니다</th>
+					</tr>
 				</table>
 			</div>
 		</div>

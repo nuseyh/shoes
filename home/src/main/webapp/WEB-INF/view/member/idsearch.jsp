@@ -5,6 +5,9 @@
 <form action="idsearch" class="center text-center" method="post">
 	<div class="empty-row"></div>
 	<div class="center area-70">
+	<div class="row text-center font-medium">아이디 찾기</div>
+	<hr>
+	<div class="empty-row"></div>
 		<div class="center area-40">
 			<div class="searchId  center">
 				<div class="center">

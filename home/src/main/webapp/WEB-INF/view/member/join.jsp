@@ -58,7 +58,7 @@
 		</table>
 		<div class="join-button">
 			<input type="submit" value="회원가입"> <input type="button"
-				id=reset value="취소">
+				onclick="location.href='login';" value="취소">
 		</div>
 		<div class="empty-row"></div>
 	</form>

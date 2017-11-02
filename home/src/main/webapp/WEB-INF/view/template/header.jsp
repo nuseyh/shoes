@@ -170,7 +170,8 @@
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
 
-		$.ajax({
+		$
+				.ajax({
 					// type을 설정합니다.
 					type : 'POST',
 					url : "idcheck",
@@ -278,6 +279,12 @@
 		form.submit();
 		alert("회원가입 완료");
 	}
+
+	//로그인 확인
+	function logincheck() {
+		alert("로그인 후 이용가능합니다.");
+		location.href = 'login';
+	}
 </script>
 
 
@@ -316,8 +323,17 @@
 								href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
-							<li><a
-								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+<!-- 							<li><a -->
+<%-- 								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li> --%>
+
+							<c:choose>
+								<c:when test="${!login}">
+									<li><a onclick="logincheck()" href="${pageContext.request.contextPath }/member/login">CART</a></li>
+								</c:when>
+								<c:otherwise>
+									<li><a href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+								</c:otherwise>
+							</c:choose>
 							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
