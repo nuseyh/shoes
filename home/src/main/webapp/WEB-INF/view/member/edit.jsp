@@ -55,7 +55,7 @@
 		</table>
 		<div class="join-button">
 			<input type="submit" value="수정"> 
-			<input type="button" id=reset value="취소">
+			<input type="button" onclick="location.href='profile';" value="취소">
 		</div>
 	</form>
 </div>

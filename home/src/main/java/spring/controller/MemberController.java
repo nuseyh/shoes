@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import spring.bean.Member;
 import spring.model.EmailService;
@@ -46,16 +47,18 @@ public class MemberController {
 		return "member/joiner";
 	}
 
-	// 아이디 중복 검사
-	// @RequestMapping(value = "/idcheck", method = RequestMethod.POST)
-	// public boolean idcheck(HttpServletRequest request, Member m) {
-	// String id = request.getParameter("id");
-	// System.out.println(id);
-	// boolean result = memberDao.idcheck(id);
-	//
-	// return result;
-	//
-	// }
+//	 아이디 중복 검사
+	 @RequestMapping(value = "/idcheck", method = RequestMethod.POST)
+	 @ResponseBody
+	 public String idcheck(HttpServletRequest request, Member m) {
+	 String id = request.getParameter("user_id");
+	 System.out.println(id);
+	 int result = memberDao.idcheck(id);
+	 System.out.println(result);
+	
+	 return String.valueOf(result);
+	
+	 }
 
 	// 아이디 찾기
 	@RequestMapping("/idsearch")

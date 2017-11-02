@@ -3,10 +3,13 @@
 
 <%@ include file="/WEB-INF/view/template/header.jsp"%>
 
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/css/jquery-te-1.4.0.css">
 <script src="${pageContext.request.contextPath}/js/jquery-te-1.4.0.js"></script>
 
-<script type="text/javascript" src="${pageContext.request.contextPath }/S.E/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+<script type="text/javascript"
+	src="${pageContext.request.contextPath }/S.E/js/service/HuskyEZCreator.js"
+	charset="utf-8"></script>
 <script>
 	 $(document).ready(function(){
          var oEditors = [];
@@ -43,24 +46,24 @@
 
 <script type="text/javascript">
 	function showSub(obj) {
-	    f = document.forms.select_notice;
-	
-	    if(obj == "문의") {
-	        f.title1.style.display = "";
-	        f.title2.style.display = "none";
-	        f.title3.style.display = "none";
-	
-	    } else if(obj == "후기"){
-	        f.title1.style.display = "none";
-	        f.title2.style.display = "";
-	        f.title3.style.display = "none";
-	
-	    } else if(obj == "공지"){
-	    	 f.title1.style.display = "none";
-	         f.title2.style.display = "none";
-	         f.title3.style.display = "";
-	    }
-}
+		f = document.forms.select_notice;
+
+		if (obj == "문의") {
+			f.title1.style.display = "";
+			f.title2.style.display = "none";
+			f.title3.style.display = "none";
+
+		} else if (obj == "후기") {
+			f.title1.style.display = "none";
+			f.title2.style.display = "";
+			f.title3.style.display = "none";
+
+		} else if (obj == "공지") {
+			f.title1.style.display = "none";
+			f.title2.style.display = "none";
+			f.title3.style.display = "";
+		}
+	}
 </script>
 
 
@@ -83,6 +86,10 @@
 .write select {
 	width: 100%;
 }
+
+.join-table {
+	border-right: 1;
+}
 </style>
 
 <div class="page center">
@@ -98,12 +105,13 @@
 		<table class="join-table">
 			<tr>
 				<th class="text-left">작성자</th>
-				<td><input type="text" name="writer" value="${id}" required readonly></td>
+				<td><input type="text" name="writer" value="${id}" required
+					readonly></td>
 			</tr>
 			<tr>
 				<th class="text-left">제목</th>
-				<td>
-					<select name="notice" class="form-select" onChange="showSub(this.options[this.selectedIndex].text);">
+				<td><select name="notice" class="form-select"
+					onChange="showSub(this.options[this.selectedIndex].text);">
 						<option value="Q" selected>문의</option>
 						<option value="review">후기</option>
 						<c:if test="${power eq '관리자'}">
@@ -111,16 +119,18 @@
 						</c:if>
 					</select>
 					<select id="title1"name="title" class="form-select">
+				</select> 
+				<select id="title1" name="title" class="form-select">
 						<option value="일반문의입니다!">일반문의입니다!</option>
 						<option value="주문문의입니다!">주문문의입니다!</option>
 						<option value="배송문의입니다!">배송문의입니다!</option>
-					</select>
-					<select id="title2"name="title" class="form-select" style="display: none;">
-							<option value="후기입니다!">후기입니다!</option>	
-					</select>
-					<select id="title3"name="title" class="form-select" style="display: none;">
+				</select>
+				<select id="title2" name="title" class="form-select" style="display: none;">
+						<option value="후기입니다!">후기입니다!</option>
+				</select> 
+				<select id="title3" name="title" class="form-select" style="display: none;">
 						<option value="공지입니다!">공지입니다!</option>
-					</select>
+				</select>
 				</td>
 			</tr>
 			<tr>
@@ -132,9 +142,10 @@
 			</tr>
 		</table>
 		<div class="join-button">
-			<input id="save_btn" class="form-btn" type="submit" value="등록하기"> 
-			<input id="cancle_btn" type="button" value="취소">
-			<input onclick="location.href='list';" class="form-btn" type="button" value="목록으로">
+			<input id="save_btn" class="form-btn" type="submit" value="등록하기">
+			<input id="cancle_btn" type="button" value="취소"> <input
+				onclick="location.href='list';" class="form-btn" type="button"
+				value="목록으로">
 		</div>
 	</form>
 </div>

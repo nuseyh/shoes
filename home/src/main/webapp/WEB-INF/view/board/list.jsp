@@ -59,6 +59,7 @@ select {
 <script>
 	function logincheck(){
 		alert("로그인 후 이용가능합니다.");
+		
 	}
 </script>
 
@@ -111,7 +112,7 @@ select {
 		<div class="writer text-right">
 			<c:choose>
 				<c:when test="${!login}">
-					<a  onclick="logincheck()" href="list">글쓰기</a>
+					<a  onclick="logincheck()" href="${pageContext.request.contextPath }/member/login">글쓰기</a>
 				</c:when>
 				<c:otherwise>
 					<a href="write">글쓰기</a>

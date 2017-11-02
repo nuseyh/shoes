@@ -22,5 +22,7 @@ public interface MemberDao {
 	boolean delete(String id, String pw);
 
 	boolean edit(Member m);
+	
+	int idcheck(String id);
 
 }

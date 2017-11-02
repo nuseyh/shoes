@@ -12,7 +12,7 @@
 	<div class="area-60 center">
 		<div class="empty-row"></div>
 		<div>
-			<strong>login</strong>
+			<div class="row text-center font-medium">Login</div>
 			<hr>
 		</div>
 		<form action="login" name="loginForm" method="post" class="center"
