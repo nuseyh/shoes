@@ -2,7 +2,6 @@ package spring.model;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -65,10 +64,10 @@ public class ProductDaoImpl implements ProductDao{
 				product.getI_detail(),
 				product.getI_type(),
 				product.getI_name(),
-				product.getFiletype(),
-				product.getFilename(),
-				product.getFilelen(),
-				product.getSavename()
+				product.getFiletype1(),
+				product.getFilename1(),
+				product.getFilelen1(),
+				product.getSavename1()
 
 		};
 		jdbcTemplate.update(sql, args);

@@ -258,17 +258,18 @@ border-radius: 1%     1%     1%     1% /     1%     1%     1%     1%;*/
 	}
 } 
 </style>
-
+<div class="empty-row"></div>
 <div class="area-80 center">
 <div class="galleryCategoryMenu center">
 	<ul>
 		<li class="portraits"><a
 			href="${pageContext.request.contextPath }/admin/memberlist">회원관리<span></span></a></li>
-		<li class="sports"><a href="/sports">매출내역<span></span></a></li>
+		<li class="sports"><a href="${pageContext.request.contextPath }/admin/selllist">매출내역<span></span></a></li>
 		<li class="weddings"><a href="pmenu">상품관리<span></span></a></li>
 
 	</ul>
 </div>
 	<div class="clear"></div>
 </div>
+<div class="empty-row"></div>
 <%@ include file="/WEB-INF/view/template/footer.jsp"%>

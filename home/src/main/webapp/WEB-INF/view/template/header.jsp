@@ -169,7 +169,14 @@
 	function idCheck() {
 		var input = document.querySelector("input[name=id]").value;
 		var regex = /^[\w]{6,15}$/g;
-
+		if (!regex.test(input)) {
+			document.querySelector(".id-check").innerHTML = "6~15글자사이로 입력하세요";
+			return false;
+		}else if(input.length < 1){
+			document.querySelector(".id-check").innerHTML = "아이디를 입력하세요";
+			return false;
+		}else{
+			document.querySelector(".id-check").innerHTML = "";
 		$
 				.ajax({
 					// type을 설정합니다.
@@ -191,6 +198,12 @@
 					}
 
 				});
+		return true;
+		}
+		
+		
+		
+
 
 	}
 
@@ -254,6 +267,28 @@
 			return false;
 		} else {
 			document.querySelector(".email-check").innerHTML = null;
+			$
+					.ajax({
+						// type을 설정합니다.
+						type : 'POST',
+						url : "emailcheck",
+						// 사용자가 입력하여 id로 넘어온 값을 서버로 보냅니다.
+						data : {
+							user_email : $("#email").val()
+						},
+						// 성공적으로 값을 서버로 보냈을 경우 처리하는 코드입니다.
+						success : function(data) {
+							// 서버에서 Return된 값으로 중복 여부를 사용자에게 알려줍니다.
+							console.log(data);
+							if (data != 0) {
+								document.querySelector(".email-check").innerHTML = "이미 등록된 이메일입니다";
+							} else {
+								document.querySelector(".email-check").innerHTML = "사용 가능한 이메일입니다";
+							}
+						}
+
+					});
+
 			return true;
 		}
 	}
@@ -311,7 +346,8 @@
 								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/mypage">MYPAGE</a></li>
-							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/board/list?notice=review">Q&amp;A</a></li>
 							<c:if test="${power eq '관리자'}">
 								<li><a
 									href="${pageContext.request.contextPath }/admin/home">관리자</a></li>
@@ -323,18 +359,21 @@
 								href="${pageContext.request.contextPath }/member/login">LOGIN</a></li>
 							<li><a
 								href="${pageContext.request.contextPath }/member/join">JOIN</a></li>
-<!-- 							<li><a -->
-<%-- 								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li> --%>
+							<!-- 							<li><a -->
+							<%-- 								href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li> --%>
 
 							<c:choose>
 								<c:when test="${!login}">
-									<li><a onclick="logincheck()" href="${pageContext.request.contextPath }/member/login">CART</a></li>
+									<li><a onclick="logincheck()"
+										href="${pageContext.request.contextPath }/member/login">CART</a></li>
 								</c:when>
 								<c:otherwise>
-									<li><a href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
+									<li><a
+										href="${pageContext.request.contextPath }/cart/cart_list">CART</a></li>
 								</c:otherwise>
 							</c:choose>
-							<li><a href="${pageContext.request.contextPath }/board/list">Q&amp;A</a></li>
+							<li><a
+								href="${pageContext.request.contextPath }/board/list?notice=review">Q&amp;A</a></li>
 						</c:otherwise>
 					</c:choose>
 				</ul>
@@ -349,8 +388,6 @@
 			<!-- 			http://pyeonne.tistory.com/9 -->
 			<nav>
 				<ul class="menu">
-					<li><a href="#">NEW</a></li>
-					<li><a href="#">BEST</a></li>
 					<li><a
 						href="${pageContext.request.contextPath}/product/list?type=pumps">PUMPS</a></li>
 					<li><a

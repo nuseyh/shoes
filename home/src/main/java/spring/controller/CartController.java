@@ -33,6 +33,7 @@ public class CartController {
 			//총금액에 따라서 배송이 부여 여부
 			fee = total >= 100000 ? 0 : 2500;
 		}
+		fee=0;
 		
 		request.setAttribute("clist", clist);
 		request.setAttribute("total", total);
@@ -44,6 +45,9 @@ public class CartController {
 	
 	@RequestMapping(value="/cart_add",method=RequestMethod.POST)
 	public String cart_add(HttpServletRequest request) {
+		Cart cart = new Cart(request);
+		System.out.println(cart);
+		
 		cdao.insert(new Cart(request));
 		
 		return "redirect:cart_list";

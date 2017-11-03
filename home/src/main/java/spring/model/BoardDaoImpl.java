@@ -84,20 +84,37 @@ public class BoardDaoImpl implements BoardDao {
 
 	// 게시글 리스트
 	@Override
-	public List<Board> list(int start, int end) {
-		String sql = "select * from (" + "select rownum as rn, A.* from (" + "select * from sp_board " 
-				+ "start with parent=0 " 
-				+ "connect by prior no=parent "
-				+ "order siblings by gno desc, no asc" 
-				+ ")A" + ") where rn between ? and ?";
-		Object[] obj = { start, end };
-		return jdbcTemplate.query(sql, obj, mapper);
+	public List<Board> list(int start, int end, String notice) {
+		String sql="";
+		
+		System.out.println("notice: "+notice);
+		System.out.println("start: "+start);
+		System.out.println("end :"+end);
+		
+		//Q&A 게시판에 들어갈시 review를 제외하고 보여준다
+		if(notice.equals("review")) {
+			sql = "select * from (select rownum as rn, A.* from (select * from sp_board where not notice=? start with parent=0 connect by prior no=parent order siblings by gno desc, no asc)A) where rn between ? and ?";
+			Object[] obj = {notice, start, end};
+			
+			System.out.println("이거 돌려짐 :"+ sql);
+			
+			return jdbcTemplate.query(sql, obj, mapper);
+		}else {
+			sql = "select * from (" + "select rownum as rn, A.* from (" 
+					+ "select * from sp_board " 
+					+ "start with parent=0 " 
+					+ "connect by prior no=parent "
+					+ "order siblings by gno desc, no asc" 
+					+ ")A" + ") where rn between ? and ?";
+			Object[] obj = { start, end };
+			return jdbcTemplate.query(sql, obj, mapper);
+		}
 	}
 	
 	// 후기 리스트
 	@Override
 	public List<Board> list(int no) {
-		String sql = "select * from sp_board where product_no=?"; 
+		String sql = "select * from sp_board where product_no=? order by reg desc"; 
 		Object[] obj = {no};
 		return jdbcTemplate.query(sql, obj, mapper);
 	}
@@ -176,17 +193,10 @@ public class BoardDaoImpl implements BoardDao {
 
 	@Override
 	public List<Board> profile(String id) {
-		
-		String sql = "select * from sp_board where writer=?";
+		String sql = "select * from sp_board where writer=? order by reg desc";
 		Object[] args = {id};
 		return jdbcTemplate.query(sql, args, mapper);
 		
 	}
-
-
-
-	
-
-	
 
 }

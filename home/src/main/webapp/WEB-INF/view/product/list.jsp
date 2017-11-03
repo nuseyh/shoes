@@ -23,7 +23,7 @@
 		<div class="items">
 			<c:forEach var="pdao" items="${plist}">
 				<div class="item">
-					<a href="detail?no=${pdao.i_num}"><img src="${pageContext.request.contextPath}/file/${pdao.savename}" width="275" height="200"></a>
+					<a href="detail?no=${pdao.i_num}"><img src="${pageContext.request.contextPath}/file/${pdao.savename1}" width="275" height="200"></a>
 					<h2>${pdao.i_name}</h2>
 					<p>
 						Price: <em>${pdao.i_price}원</em>

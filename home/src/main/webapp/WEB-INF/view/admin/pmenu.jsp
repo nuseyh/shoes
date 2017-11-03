@@ -4,7 +4,7 @@
 <html>
 <head>
 <title>이미지 게시판</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/main.css">
+
 </head>
 <form action="itemmain" method="post">
 		<div class="empty-row"></div>

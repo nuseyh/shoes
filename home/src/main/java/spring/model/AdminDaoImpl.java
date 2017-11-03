@@ -1,3 +1,4 @@
+
 package spring.model;
 
 import java.sql.ResultSet;
@@ -12,10 +13,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Member;
+import spring.bean.Pay;
 import spring.bean.Product;
 
 @Repository(value = "AdminDao")
 public class AdminDaoImpl implements AdminDao {
+   
+//   @Autowired
+//   private AdminDao adao;
 
    @Autowired
    private JdbcTemplate jdbcTemplate;
@@ -26,6 +31,14 @@ public class AdminDaoImpl implements AdminDao {
          return new Member(rs);
       }
    };
+   
+   private RowMapper<Pay> mapper2 = new RowMapper<Pay>() {
+	      @Override
+	      public Pay mapRow(ResultSet rs, int index) throws SQLException {
+	         return new Pay(rs);
+	      }
+	   };
+   
    private ResultSetExtractor<Member> extractor = new ResultSetExtractor<Member>() {
       @Override
       public Member extractData(ResultSet rs) throws SQLException, DataAccessException {
@@ -62,7 +75,7 @@ public class AdminDaoImpl implements AdminDao {
    //상품등록
    @Override
    public void insert(Product product) {
-      String sql = "insert into itemboard values(itemboard_seq.nextval,?,?,?,?,?,?,?,sysdate,?,?,?,?)";
+      String sql = "insert into itemboard values(itemboard_seq.nextval,?,?,?,?,?,?,?,sysdate,?,?,?,?,?,?,?,?)";
       Object[] args = { 
             /*product.getI_num(), product.getI_leftnum(), product.getI_price(), product.getI_color(),
             product.getI_size(), product.getI_detail(), product.getI_type(), product.getI_name(), product.getDate(),
@@ -77,16 +90,20 @@ public class AdminDaoImpl implements AdminDao {
             product.getI_detail(),
             product.getI_type(),
             product.getI_name(),
-            product.getFiletype(),
-            product.getFilename(),
-            product.getFilelen(),
-            product.getSavename()
-
+            
+            product.getFiletype1(),
+            product.getFilename1(),
+            product.getFilelen1(),
+            product.getSavename1(),
+            
+            product.getFiletype2(),
+            product.getFilename2(),
+            product.getFilelen2(),
+            product.getSavename2()
       };
       jdbcTemplate.update(sql, args);
       
    }
-   
    
 
    //상품목록 리스트
@@ -100,15 +117,27 @@ public class AdminDaoImpl implements AdminDao {
    }
 
    @Override
-   public Product get(String savename) {
-      String sql = "select * from itemBoard where savename = ?";
+   public Product get(String savename1) {
+      String sql = "select * from itemBoard where savename1 = ?";
       ResultSetExtractor<Product> extractor = rs -> {
          if (rs.next())
             return new Product(rs);
          else
             return null;
       };
-      return jdbcTemplate.query(sql, extractor, savename);
+      return jdbcTemplate.query(sql, extractor, savename1);
+   }
+   
+   @Override
+   public Product get2(String savename2) {
+      String sql = "select * from itemBoard where savename2 = ?";
+      ResultSetExtractor<Product> extractor = rs -> {
+         if (rs.next())
+            return new Product(rs);
+         else
+            return null;
+      };
+      return jdbcTemplate.query(sql, extractor, savename2);
    }
 
    @Override
@@ -130,7 +159,7 @@ public class AdminDaoImpl implements AdminDao {
       };
    
    //아이템 수정창
-   public Product itemedit(int no) {
+   public Product itemedit(String no) {
          String sql = "select * from itemBoard where i_num=?";
          Object[] obj = {no};
          return jdbcTemplate.query(sql, obj, extractor1);
@@ -139,10 +168,32 @@ public class AdminDaoImpl implements AdminDao {
       //아이템수정 완료
       @Override
       public boolean itemedit2(Product p) {
-         String sql = "update itemboard set i_leftnum=?, i_price=?, i_color=?, i_size=?, i_detail=?, i_type=?, i_name=? where i_num=?";
-         Object[] args = {p.getI_leftnum(), p.getI_price(), p.getI_color(), p.getI_size(), p.getI_detail(), p.getI_type(), p.getI_name(), p.getI_num() };
+         String sql = "update itemboard set i_leftnum=?, i_price=?, i_color=?, i_size=?, i_detail=?, i_type=?, i_name=? where i_name=?";
+         Object[] args = {p.getI_leftnum(), p.getI_price(), p.getI_color(), p.getI_size(), p.getI_detail(), p.getI_type(), p.getI_name(), p.getI_name() };
          return jdbcTemplate.update(sql, args) > 0;
       }
+
+//    //주문 db
+//    @Override
+//    public Pay info(String user_id) {
+//    	String sql = "select * from pay where user_id=?";
+//    	return jdbcTemplate
+//    	
+//    }
+    
+    
+	@Override
+	public List<Pay> selllist() {
+		 String sql = "select * from pay order by pay_no";
+	      return jdbcTemplate.query(sql, mapper2);
+	}
+
+	@Override
+	  public List<Pay> search2(String key) {
+	      String sql = "select * from pay " + "where user_id like ? or pay_no like ? " + "order by pay_no";
+	      Object[] args = { "%" + key + "%", "%" + key + "%" };
+	      return jdbcTemplate.query(sql, args, mapper2);
+	   }
 
 
 }

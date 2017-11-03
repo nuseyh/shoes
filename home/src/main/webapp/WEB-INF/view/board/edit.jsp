@@ -56,7 +56,10 @@
 	text-align:right;
 }
 </style>
+<<<<<<< HEAD
+=======
 <script type="text/javascript" src="${pageContext.request.contextPath }/S.E/js/service/HuskyEZCreator.js" charset="utf-8"></script>
+>>>>>>> branch 'master' of https://github.com/nuseyh/shoes.git
 <script>
 	 $(document).ready(function(){
          var oEditors = [];

@@ -5,14 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import spring.bean.Board;
-import spring.bean.Member;
 
 @Repository
 public interface BoardDao {
 	int insert(Board board);
 	int insert(Board board, int product_no);
-	
-	List<Board> list(int start, int end);
+
+	List<Board> list(int start, int end, String notice);
 	List<Board> list(int no);
 
 	List<Board> search(String type, String key, int start, int end);

@@ -34,11 +34,16 @@ public class BoardController {
 	//게시판 리스트
 	@RequestMapping("/list")
 	public String list(HttpServletRequest request, Model model) {
-		int boardsize = 3;//게시판 1p에 표시할 글 개수
-		int blocksize = 3;//게시판 1p에 표시할 링크 개수
+		int boardsize = 10;//게시판 1p에 표시할 글 개수
+		int blocksize = 10;//게시판 1p에 표시할 링크 개수
 		
 		String key = request.getParameter("key");
 		String type = request.getParameter("type");
+		
+		//게시판의 종류를 받아서 해당하는 것만을 보여주기위한 변수
+		String notice = request.getParameter("notice");
+		
+		System.out.println("넘어온 파라미터 : "+ notice);
 		
 		boolean searchFlag = type != null && key != null;
 		
@@ -70,7 +75,7 @@ public class BoardController {
 		if(searchFlag){
 			list = bdao.search(type, key, start, end); 
 		}else{
-			list = bdao.list(start, end); 
+			list = bdao.list(start, end, notice); 
 		}
 		
 		String searchParam;
